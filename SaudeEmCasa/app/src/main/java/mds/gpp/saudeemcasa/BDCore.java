@@ -18,7 +18,7 @@ public class BDCore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL("create table drugStore(_id integer primary key autoincrement, name text not null, email text not null, adress text not null)");
     }
 
     @Override
