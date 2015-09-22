@@ -7,12 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by lucas on 9/22/15.
  */
-public class BDCore extends SQLiteOpenHelper {
+public class DBCore extends SQLiteOpenHelper {
 
     private static final String NOME_BD = "NOME";
     private static final int VERSAO_BD = 6;
 
-    public BDCore(Context ctx){
+    public DBCore(Context ctx){
         super(ctx,NOME_BD,null,VERSAO_BD);
     }
 
