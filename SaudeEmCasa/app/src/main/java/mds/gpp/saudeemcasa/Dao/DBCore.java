@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBCore extends SQLiteOpenHelper {
 
-    private static final String NOME_BD = "NOME";
-    private static final int VERSAO_BD = 6;
+    private static final String NOME_DB = "NOME";
+    private static final int VERSAO_DB= 6;
 
     private static final String CREATE_USER = "CREATE TABLE [User] ( " +
             "[id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
@@ -30,7 +30,7 @@ public class DBCore extends SQLiteOpenHelper {
             "[dateComment] DATE, [idUser] INTEGER NOT NULL CONSTRAINT [idUser] REFERENCES [User]([id]), " +
             "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES [Stablishment]([id]));";
     public DBCore(Context ctx){
-        super(ctx,NOME_BD,null,VERSAO_BD);
+        super(ctx,NOME_DB,null,VERSAO_DB);
     }
 
     @Override
