@@ -5,6 +5,14 @@ package mds.gpp.saudeemcasa.model;
  */
 public class DrugStore extends Stablishment {
 
+    public DrugStore(int id, String latitude, String longitude, String postalCode,String city, String address, float rate) {
+        super (String city, String address,float rate);
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.postalCode = postalCode;
+    }
+
+    protected int id=0;
     protected String latitude = "";
     protected String longitude = "";
     protected String postalCode = "";

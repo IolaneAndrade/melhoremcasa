@@ -11,7 +11,14 @@ public class Stablishment {
     protected String city = "";
     protected String address = "";
     protected String state = "";
-    protected int rate = 0;
+    protected float rate = 0;
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setCity(String city) {
         this.city = city;
@@ -25,7 +32,7 @@ public class Stablishment {
         this.state = state;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 
