@@ -5,8 +5,8 @@ package mds.gpp.saudeemcasa.model;
  */
 public class Hospital extends Stablishment {
 
-    public Hospital(int id, String type, String number, String district, String telephone, String name,String city, String address,float rate) {
-        super (String city, String address,float rate);
+    public Hospital(int id, String type, String number, String district, String telephone, String name,String state, String city, String address, float rate) {
+        super(city,address,state, rate,id);
         this.type = type;
         this.number = number;
         this.district = district;
@@ -14,7 +14,6 @@ public class Hospital extends Stablishment {
         this.name = name;
     }
 
-    protected int id=0;
     protected String type = "";
     protected String number = "";
     protected String district = "";
