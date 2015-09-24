@@ -9,11 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBCore extends SQLiteOpenHelper {
 
-    private static final String NOME_DB = "NOME";
-    private static final int VERSAO_DB= 6;
+    private static final String DATABASE_NAME= "saudeEmCasaManager";
+    private static final int DATABASE_VERSION= 1;
+
+    private static final String KEY_ID = "[id]";
+
 
     private static final String CREATE_USER = "CREATE TABLE [User] ( " +
-            "[id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+            KEY_ID +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
             "[nameUser] VARCHAR(15), [emailUser] VARCHAR(30), [birthDateUser] DATE(15));";
 
     private static final String CREATE_STABLISHMENT = "CREATE TABLE [Stablishment] ( " +
@@ -29,8 +32,9 @@ public class DBCore extends SQLiteOpenHelper {
             "[id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [textComment] varchar(400), " +
             "[dateComment] DATE, [idUser] INTEGER NOT NULL CONSTRAINT [idUser] REFERENCES [User]([id]), " +
             "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES [Stablishment]([id]));";
+
     public DBCore(Context ctx){
-        super(ctx,NOME_DB,null,VERSAO_DB);
+        super(ctx,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
     @Override
