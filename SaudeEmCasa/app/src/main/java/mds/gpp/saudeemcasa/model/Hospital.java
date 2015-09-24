@@ -5,11 +5,22 @@ package mds.gpp.saudeemcasa.model;
  */
 public class Hospital extends Stablishment {
 
+    public Hospital(int id, String type, String number, String district, String telephone, String name,String city, String address,float rate) {
+        super (String city, String address,float rate);
+        this.type = type;
+        this.number = number;
+        this.district = district;
+        this.telephone = telephone;
+        this.name = name;
+    }
+
+    protected int id=0;
     protected String type = "";
     protected String number = "";
     protected String district = "";
     protected String telephone = "";
     protected String name = "";
+
 
     public String getType() {
         return type;
