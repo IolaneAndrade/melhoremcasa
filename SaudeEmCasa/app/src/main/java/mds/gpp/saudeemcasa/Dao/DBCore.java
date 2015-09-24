@@ -11,27 +11,53 @@ public class DBCore extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME= "saudeEmCasaManager";
     private static final int DATABASE_VERSION= 1;
-
+    //tables
+    private static final String USER_TABLE = "[User]";
+    private static final String STABLISHMENT_TABLE = "[Stablishment]";
+    private static final String DRUGSTORE_TABLE = "[Drugstore]";
+    private static final String HOSPITAL_TABLE = "[Hospital]";
+    private static final String COMMENT_TABLE = "[Comment]";
+    //COMMON
     private static final String KEY_ID = "[id]";
+    //USER
+    private static final String USER_EMAIL = "[emailUser]";
+    private static final String USER_NAME ="[nameUser]";
+    private static final String USER_BIRTH_DATE = "[birthDateUser]";
+    //STABLISHMENT
+    private static final String STABLISHMENT_CITY ="[city]";
+    private static final String STABLISHMENT_ADDRESS ="[address]";
+    private static final String STABLISHMENT_STATE ="[state]";
+    private static final String STABLISHMENT_RATE ="[rate]";
+    //DRUGSTORE
+    private static final String DRUGSTORE_LATITUDE = "[latitude]";
+    private static final String DRUGSTORE_LONGETUDE = "[longitude]";
+    private static final String DRUGSTORE_POSTALCODE = "[postalCode]";
+    //HOSPITAL
+    private static final String HOSPITAL_TYPE = "[type]";
+    private static final String HOSPITAL_NUMBER = "[number]";
+    private static final String HOSPITAL_DISTRICT = "[district]";
+    private static final String HOSPITAL_TELEPHONE = "[telephone]";
+    private static final String HOSPITAL_NAME = "[name]";
+    //COMMENT
+    private static final String COMMENT_TEXT = "[textComment]";
+    private static final String COMMENT_DATE = "[dateComment]";
 
-
-    private static final String CREATE_USER = "CREATE TABLE [User] ( " +
+    private static final String CREATE_USER = "CREATE TABLE "+USER_TABLE+" ( " +
             KEY_ID +" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-            "[nameUser] VARCHAR(15), [emailUser] VARCHAR(30), [birthDateUser] DATE(15));";
-
-    private static final String CREATE_STABLISHMENT = "CREATE TABLE [Stablishment] ( " +
-            "[id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,[city] VARCHAR(20), " +
-            "[address] VARCHAR(20), [state] VARCHAR(20), [rate] FLOAT);";
-    private static final String CREATE_DRUGSTORE = "CREATE TABLE [Drugstore] ( [latitude] VARCHAR(10), " +
-            "[longitude] VARCHAR(10), [id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [postalCode] VARCHAR(15), " +
-            "[idStablishment] INTEGER NOT NULL CONSTRAINT [idStablishment] REFERENCES [Stablishment]([id]));";
-    private static final String CREATE_HOSPITAL = "CREATE TABLE [Hospital] ( [id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-            "[type] VARCHAR(10), [number] VARCHAR(10), [district] VARCHAR(50), [telephone] VARCHAR(15), [name] VARCHAR(70), " +
-            "[idStablishment] INTEGER NOT NULL CONSTRAINT [idStablishment] REFERENCES [Stablishment]([id]));";
-    private static final String CREATE_COMMENT = "CREATE TABLE [Comment] ( " +
-            "[id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, [textComment] varchar(400), " +
-            "[dateComment] DATE, [idUser] INTEGER NOT NULL CONSTRAINT [idUser] REFERENCES [User]([id]), " +
-            "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES [Stablishment]([id]));";
+            USER_NAME+" VARCHAR(15),"+USER_EMAIL+"  VARCHAR(30), "+USER_BIRTH_DATE+" DATE(15));";
+    private static final String CREATE_STABLISHMENT = "CREATE TABLE "+STABLISHMENT_TABLE+" ( " +
+            KEY_ID +"  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+STABLISHMENT_CITY+" VARCHAR(20), " +
+            STABLISHMENT_ADDRESS+" VARCHAR(20), "+STABLISHMENT_STATE+" VARCHAR(20), "+STABLISHMENT_RATE+" FLOAT);";
+    private static final String CREATE_DRUGSTORE = "CREATE TABLE "+DRUGSTORE_TABLE+" ("+DRUGSTORE_LATITUDE+"  VARCHAR(10), " +
+            DRUGSTORE_LONGETUDE+" VARCHAR(10), "+KEY_ID+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+DRUGSTORE_POSTALCODE+" VARCHAR(15), " +
+            "INTEGER NOT NULL CONSTRAINT [idStablishment] REFERENCES "+STABLISHMENT_TABLE+"("+KEY_ID+"));";
+    private static final String CREATE_HOSPITAL = "CREATE TABLE "+HOSPITAL_TABLE+" ( "+KEY_ID+"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+            HOSPITAL_TYPE+" VARCHAR(10), "+HOSPITAL_NUMBER+" VARCHAR(10), "+HOSPITAL_DISTRICT+" VARCHAR(50), "+HOSPITAL_TELEPHONE+" VARCHAR(15), "+HOSPITAL_NAME+" VARCHAR(70), " +
+            "[idStablishment] INTEGER NOT NULL CONSTRAINT [idStablishment] REFERENCES "+STABLISHMENT_TABLE+"("+KEY_ID+"));";
+    private static final String CREATE_COMMENT = "CREATE TABLE "+COMMENT_TABLE+" ( " +
+            KEY_ID+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "+COMMENT_TEXT+" varchar(400), " +
+            COMMENT_DATE+" DATE, [idUser] INTEGER NOT NULL CONSTRAINT [idUser] REFERENCES "+USER_TABLE+"("+KEY_ID+"), " +
+            "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES "+STABLISHMENT_TABLE+"("+KEY_ID+"));";
 
     public DBCore(Context ctx){
         super(ctx,DATABASE_NAME,null,DATABASE_VERSION);
