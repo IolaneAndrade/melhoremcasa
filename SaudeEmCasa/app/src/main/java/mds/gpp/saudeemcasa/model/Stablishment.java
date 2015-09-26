@@ -6,13 +6,16 @@ package mds.gpp.saudeemcasa.model;
 
 
 
-public class Stablishment {
+    public class Stablishment {
 
     protected String city = "";
     protected String address = "";
     protected String state = "";
     protected float rate = 0;
     protected int id;
+
+    public Stablishment() {
+    }
 
     public Stablishment(String city, String address, String state, float rate, int id) {
         this.city = city;

@@ -19,6 +19,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import mds.gpp.saudeemcasa.R;
+import mds.gpp.saudeemcasa.model.DrugStore;
 
 
 public class AndroidJSONParsingActivity extends ListActivity {
@@ -31,7 +32,7 @@ public class AndroidJSONParsingActivity extends ListActivity {
     private static final String TAG_CATEGORY_ID = "category_id";
     private static final String TAG_NAME = "name";
     private static final String TAG_IS_ACTIVE = "is_active";
-    */
+
     //contacts JSONArray
     JSONArray contacts = null;
     private DBCore db;
@@ -80,4 +81,5 @@ public class AndroidJSONParsingActivity extends ListActivity {
         }
 
     }
+*/
 }

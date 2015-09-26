@@ -4,6 +4,8 @@ package mds.gpp.saudeemcasa.model;
  * Created by freemanpivo on 9/20/15.
  */
 public class DrugStore extends Stablishment {
+    public DrugStore() {
+    }
 
     public DrugStore(int id, String latitude, String longitude, String postalCode,String state, String city, String address, float rate) {
         super(city,address,state, rate,id);
