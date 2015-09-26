@@ -5,5 +5,5 @@ package mds.gpp.saudeemcasa.controller;
  */
 
 public class DrugStoreController {
-    
+
 }
