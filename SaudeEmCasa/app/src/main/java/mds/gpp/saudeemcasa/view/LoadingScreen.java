@@ -40,7 +40,7 @@ public class LoadingScreen extends Activity {
                 spinner.startAnimation(fadeOutEffect);
 
                 finish();
-                Intent nextScreen = new Intent(getBaseContext(), MainActivity.class);
+                Intent nextScreen = new Intent(getBaseContext(), ChooseScreen.class);
                 startActivity(nextScreen);
             }
 
