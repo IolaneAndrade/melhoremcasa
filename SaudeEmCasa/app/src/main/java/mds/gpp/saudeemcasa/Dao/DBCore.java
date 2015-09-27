@@ -104,9 +104,6 @@ public class DBCore extends SQLiteOpenHelper {
         values.put(DRUGSTORE_LATITUDE, drugStore.getLatitude());
         values.put(DRUGSTORE_LONGETUDE, drugStore.getLongitude());
         values.put(DRUGSTORE_POSTALCODE, drugStore.getPostalCode());
-        //WHAT ABOUT THe OTHER ONE
-        //insert row
-
 
         return db.insert(DRUGSTORE_TABLE, null, values);
     }
