@@ -1,19 +1,8 @@
 package api.Helper;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-
-import mds.gpp.saudeemcasa.model.Comment;
-import mds.gpp.saudeemcasa.model.DrugStore;
-import mds.gpp.saudeemcasa.model.Hospital;
-import mds.gpp.saudeemcasa.model.Stablishment;
 
 /**
  * Created by lucas on 9/22/15.
