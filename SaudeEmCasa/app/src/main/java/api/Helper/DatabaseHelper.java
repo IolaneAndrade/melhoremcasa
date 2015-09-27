@@ -1,4 +1,4 @@
-package mds.gpp.saudeemcasa.Dao;
+package api.Helper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,7 +18,7 @@ import mds.gpp.saudeemcasa.model.Stablishment;
 /**
  * Created by lucas on 9/22/15.
  */
-public class DBCore extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "saudeEmCasaManager";
     private static final int DATABASE_VERSION = 1;
@@ -78,7 +78,7 @@ public class DBCore extends SQLiteOpenHelper {
             "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES " + STABLISHMENT_TABLE + "(" + STABLISHMENT_ID + "));";
 
     //CONSTRUCTOR
-    public DBCore(Context ctx) {
+    public DatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -93,76 +93,6 @@ public class DBCore extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //no use
+        //empty method
     }
-    //for drugStore
-    public long insertStablishmentGeneric(DrugStore drugStore, long id) {
-        //for upgrading
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(DRUGSTORE_LATITUDE, drugStore.getLatitude());
-        values.put(DRUGSTORE_LONGETUDE, drugStore.getLongitude());
-        values.put(DRUGSTORE_POSTALCODE, drugStore.getPostalCode());
-
-        return db.insert(DRUGSTORE_TABLE, null, values);
-    }
-    //for hospital
-    public long insertStablishmentGeneric(Hospital hospital,long id) {
-        //for upgrading
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("[idStablishment]", id);
-        values.put(HOSPITAL_TYPE, hospital.getType());
-        values.put(HOSPITAL_NUMBER, hospital.getNumber());
-        values.put(HOSPITAL_DISTRICT, hospital.getDistrict());
-        values.put(HOSPITAL_TELEPHONE, hospital.getTelephone());
-        values.put(HOSPITAL_NAME, hospital.getName());
-
-
-        //WHAT ABOUT THe OTHER ONE
-        //insert row
-
-        return db.insert(HOSPITAL_TABLE, null, values);
-
-    }
-    public long insertStablishment(Hospital stablishment){
-        //for upgrading
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(HOSPITAL_TYPE, stablishment.getCity());
-        values.put(HOSPITAL_NUMBER, stablishment.getAddress());
-        values.put(HOSPITAL_DISTRICT, stablishment.getState());
-        values.put(HOSPITAL_TELEPHONE, stablishment.getRate());
-
-
-        //WHAT ABOUT THe OTHER ONE
-        //insert row
-        //TODO test to see if the id is the right one.
-        long id = db.insert(STABLISHMENT_TABLE,null,values);
-        insertStablishmentGeneric(stablishment , id);
-        return 1;
-    }
-
-    public long insertStablishment(DrugStore stablishment){
-        //for upgrading
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(HOSPITAL_TYPE, stablishment.getCity());
-        values.put(HOSPITAL_NUMBER, stablishment.getAddress());
-        values.put(HOSPITAL_DISTRICT, stablishment.getState());
-        values.put(HOSPITAL_TELEPHONE, stablishment.getRate());
-
-
-        //WHAT ABOUT THe OTHER ONE
-        //insert row
-        //TODO test to see if the id is the right one.
-        long id = db.insert(STABLISHMENT_TABLE,null,values);
-        insertStablishmentGeneric(stablishment , id);
-        return 1;
-    }
-
 }
