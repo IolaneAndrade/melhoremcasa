@@ -8,6 +8,11 @@ package mds.gpp.saudeemcasa.model;
 
     public class Stablishment {
 
+    protected String latitude = "";
+    protected String longitude = "";
+    protected String type = "";
+    protected String telephone = "";
+    protected String name = "";
     protected String city = "";
     protected String address = "";
     protected String state = "";
@@ -17,19 +22,27 @@ package mds.gpp.saudeemcasa.model;
     public Stablishment() {
     }
 
-    public Stablishment(String city, String address, String state, float rate, int id) {
-        this.city = city;
-        this.address = address;
-        this.state = state;
-        this.rate = rate;
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public void setCity(String city) {
@@ -49,7 +62,6 @@ package mds.gpp.saudeemcasa.model;
     }
 
     public String getCity() {
-
         return city;
     }
 
@@ -63,5 +75,29 @@ package mds.gpp.saudeemcasa.model;
 
     public float getRate() {
         return rate;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -24,22 +24,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String USER_BIRTH_DATE = "[birthDateUser]";
     //STABLISHMENT
     private static final String STABLISHMENT_ID = "[stablishmentId]";
+    private static final String STABLISHMENT_LATITUDE = "[latitude]";
+    private static final String STABLISHMENT_LONGETUDE = "[longitude]";
     private static final String STABLISHMENT_CITY = "[city]";
     private static final String STABLISHMENT_ADDRESS = "[address]";
     private static final String STABLISHMENT_STATE = "[state]";
     private static final String STABLISHMENT_RATE = "[rate]";
+    private static final String STABLISHMENT_TELEPHONE = "[telephone]";
+    private static final String STABLISHMENT_NAME = "[name]";
+    private static final String STABLISHMENT_TYPE = "[type]";
     //DRUGSTORE
     private static final String DRUGSTORE_ID = "[drugstoreId]";
-    private static final String DRUGSTORE_LATITUDE = "[latitude]";
-    private static final String DRUGSTORE_LONGETUDE = "[longitude]";
     private static final String DRUGSTORE_POSTALCODE = "[postalCode]";
     //HOSPITAL
     private static final String HOSPITAL_ID = "[hospitalId]";
-    private static final String HOSPITAL_TYPE = "[type]";
     private static final String HOSPITAL_NUMBER = "[number]";
     private static final String HOSPITAL_DISTRICT = "[district]";
-    private static final String HOSPITAL_TELEPHONE = "[telephone]";
-    private static final String HOSPITAL_NAME = "[name]";
     //COMMENT
     private static final String COMMENT_ID = "[commentId]";
     private static final String COMMENT_TEXT = "[textComment]";
@@ -50,15 +50,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             USER_NAME + " VARCHAR(15)," + USER_EMAIL + "  VARCHAR(30), " + USER_BIRTH_DATE + " DATE(15));";
 
     private static final String CREATE_STABLISHMENT = "CREATE TABLE " + STABLISHMENT_TABLE + " ( " +
-            STABLISHMENT_ID + "  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," + STABLISHMENT_CITY + " VARCHAR(20), " +
-            STABLISHMENT_ADDRESS + " VARCHAR(20), " + STABLISHMENT_STATE + " VARCHAR(20), " + STABLISHMENT_RATE + " FLOAT);";
+            STABLISHMENT_ID + "  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," + STABLISHMENT_LATITUDE + "  VARCHAR(10), "+
+            STABLISHMENT_LONGETUDE + " VARCHAR(10), "+STABLISHMENT_TELEPHONE + " VARCHAR(15), "+ STABLISHMENT_CITY + " VARCHAR(20), " +
+            STABLISHMENT_NAME + " VARCHAR(70), "+STABLISHMENT_TYPE + " VARCHAR(10), "+ STABLISHMENT_ADDRESS + " VARCHAR(20), " +
+            STABLISHMENT_STATE + " VARCHAR(20), " + STABLISHMENT_RATE + " FLOAT);";
 
-    private static final String CREATE_DRUGSTORE = "CREATE TABLE " + DRUGSTORE_TABLE + " (" + DRUGSTORE_LATITUDE + "  VARCHAR(10), " +
-            DRUGSTORE_LONGETUDE + " VARCHAR(10), " + DRUGSTORE_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " + DRUGSTORE_POSTALCODE + " VARCHAR(15), " +
+    private static final String CREATE_DRUGSTORE = "CREATE TABLE " + DRUGSTORE_TABLE + " (" +
+             DRUGSTORE_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " + DRUGSTORE_POSTALCODE + " VARCHAR(15), " +
             "INTEGER NOT NULL CONSTRAINT [idStablishment] REFERENCES " + STABLISHMENT_TABLE + "(" + STABLISHMENT_ID + "));";
 
     private static final String CREATE_HOSPITAL = "CREATE TABLE " + HOSPITAL_TABLE + " ( " + HOSPITAL_ID + "INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-            HOSPITAL_TYPE + " VARCHAR(10), " + HOSPITAL_NUMBER + " VARCHAR(10), " + HOSPITAL_DISTRICT + " VARCHAR(50), " + HOSPITAL_TELEPHONE + " VARCHAR(15), " + HOSPITAL_NAME + " VARCHAR(70), " +
+             HOSPITAL_NUMBER + " VARCHAR(10), " + HOSPITAL_DISTRICT + " VARCHAR(50), " +
             "[idStablishment] INTEGER NOT NULL CONSTRAINT [idStablishment] REFERENCES " + STABLISHMENT_TABLE + "(" + STABLISHMENT_ID + "));";
 
     private static final String CREATE_COMMENT = "CREATE TABLE " + COMMENT_TABLE + " ( " +

@@ -5,31 +5,11 @@ package mds.gpp.saudeemcasa.model;
  */
 public class Hospital extends Stablishment {
     //empty contructor
-    public Hospital() {}
-
-    public Hospital(int id, String type, String number, String district, String telephone, String name,String state, String city, String address, float rate) {
-        super(city,address,state, rate,id);
-        this.type = type;
-        this.number = number;
-        this.district = district;
-        this.telephone = telephone;
-        this.name = name;
+    public Hospital() {
     }
 
-    protected String type = "";
     protected String number = "";
     protected String district = "";
-    protected String telephone = "";
-    protected String name = "";
-
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getNumber() {
         return number;
@@ -47,19 +27,4 @@ public class Hospital extends Stablishment {
         this.district = district;
     }
 
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
