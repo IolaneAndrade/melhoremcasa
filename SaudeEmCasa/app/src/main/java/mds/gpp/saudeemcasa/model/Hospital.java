@@ -4,6 +4,8 @@ package mds.gpp.saudeemcasa.model;
  * Created by freemanpivo on 9/20/15.
  */
 public class Hospital extends Stablishment {
+    //empty contructor
+    public Hospital() {}
 
     public Hospital(int id, String type, String number, String district, String telephone, String name,String state, String city, String address, float rate) {
         super(city,address,state, rate,id);
