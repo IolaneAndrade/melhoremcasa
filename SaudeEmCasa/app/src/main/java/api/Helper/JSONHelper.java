@@ -1,7 +1,10 @@
 package api.Helper;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,26 +35,29 @@ public class JSONHelper {
             Hospital hospital = null;
 
             for( int index = 0; index < jArray.length(); index++ ) {
+                JSONObject temp = jArray.getJSONObject(index).getJSONObject("features");
 
                 hospital = new Hospital();
 
-                hospital.setType(jArray.getJSONObject(index).getString("tipo_sus"));
+                hospital.setLatitude(temp.getJSONObject("geometry").getString("coordinates"));
 
-                hospital.setCity(jArray.getJSONObject(index).getString("cidade"));
+                hospital.setLongitude(temp.getJSONObject("geometry").getString("coordinates"));
 
-                hospital.setState(jArray.getJSONObject(index).getString("uf"));
+                hospital.setType(temp.getJSONObject("properties").getString("tipo_sus"));
 
-                hospital.setNumber(jArray.getJSONObject(index).getString("nu_endereco"));
+                hospital.setCity(temp.getJSONObject("properties").getString("cidade"));
 
-                hospital.setDistrict(jArray.getJSONObject(index).getString("no_bairro"));
+                hospital.setState(temp.getJSONObject("properties").getString("uf"));
 
-                hospital.setTelephone(jArray.getJSONObject(index).getString("nu_telefone"));
+                hospital.setNumber(temp.getJSONObject("properties").getString("nu_endereco"));
 
-                hospital.setName(jArray.getJSONObject(index).getString("no_fantasia"));
+                hospital.setDistrict(temp.getJSONObject("properties").getString("no_bairro"));
 
-                hospital.setAddress(jArray.getJSONObject(index).getString("no_logradouro"));
+                hospital.setTelephone(temp.getJSONObject("properties").getString("nu_telefone"));
 
-                hospital.setRate(0);
+                hospital.setName(temp.getJSONObject("properties").getString("no_fantasia"));
+
+                hospital.setAddress(temp.getJSONObject("properties").getString("no_logradouro"));
 
 
                 hospitalList.add(hospital);
@@ -81,29 +87,27 @@ public class JSONHelper {
             DrugStore drugStore = null;
 
             for( int index = 0; index < jArray.length(); index++ ) {
-                /*
+                JSONObject temp = jArray.getJSONObject(index).getJSONObject("features");
+
                 drugStore = new DrugStore();
 
-                hospital.setType(jArray.getJSONObject(index).getString("tipo_sus"));
+                drugStore.setLatitude(temp.getJSONObject("geometry").getString("coordinates"));
+                Log.i(temp.getJSONObject("geometry").getString("coordinates"),"");
+                drugStore.setLongitude(temp.getJSONObject("geometry").getString("coordinates"));
 
-                hospital.setCity(jArray.getJSONObject(index).getString("cidade"));
+                drugStore.setType("AQUITEMFARMACIAPOPULAR");
 
-                hospital.setState(jArray.getJSONObject(index).getString("uf"));
+                drugStore.setCity(temp.getJSONObject("properties").getString("no_cidade"));
 
-                hospital.setNumber(jArray.getJSONObject(index).getString("nu_endereco"));
+                drugStore.setState(temp.getJSONObject("properties").getString("uf"));
 
-                hospital.setDistrict(jArray.getJSONObject(index).getString("no_bairro"));
+                drugStore.setPostalCode(temp.getJSONObject("properties").getString("nu_cep_farmacia"));
 
-                hospital.setTelephone(jArray.getJSONObject(index).getString("nu_telefone"));
+                drugStore.setTelephone(temp.getJSONObject("properties").getString("nu_ddd_farmacia")+temp.getJSONObject("properties").getString("nu_telefone_farmacia"));
 
-                hospital.setName(jArray.getJSONObject(index).getString("no_fantasia"));
+                drugStore.setName(temp.getJSONObject("properties").getString("no_farmacia"));
 
-                hospital.setAddress(jArray.getJSONObject(index).getString("no_logradouro"));
-
-                hospital.setRate(0);
-
-
-                hospitalList.add(hospital);*/
+                drugStore.setAddress(temp.getJSONObject("properties").getString("no_logradouro"));
             }
 
         } catch( NullPointerException npe ) {}

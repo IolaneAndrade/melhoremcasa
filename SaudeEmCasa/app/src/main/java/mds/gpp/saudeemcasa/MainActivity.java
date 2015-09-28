@@ -6,6 +6,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import api.Helper.JSONHelper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +28,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        String input ="";
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("/home/lucas/hospital.JSON"));
+            input = in.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            JSONHelper.hospitalListFromJSON(input);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return true;
     }
 
