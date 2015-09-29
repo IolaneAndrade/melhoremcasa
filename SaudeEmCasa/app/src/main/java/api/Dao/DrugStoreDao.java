@@ -1,8 +1,10 @@
 package api.Dao;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import api.Helper.DatabaseHelper;
 import mds.gpp.saudeemcasa.model.DrugStore;
@@ -51,6 +53,19 @@ public class DrugStoreDao extends Dao{
             isEmpty = true;
         }
 
-        return isEmpty;        
+        return isEmpty;
+    }
+    public long insertStablishmentGeneric(DrugStore drugStore, long id) {
+        //for upgrading
+        SQLiteDatabase db = database.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        /*
+        values.put(DRUGSTORE_LATITUDE, drugStore.getLatitude());
+        values.put(DRUGSTORE_LONGETUDE, drugStore.getLongitude());
+        values.put(DRUGSTORE_POSTALCODE, drugStore.getPostalCode());
+
+        return db.insert(DRUGSTORE_TABLE, null, values);*/
+        return 1;
     }
 }
