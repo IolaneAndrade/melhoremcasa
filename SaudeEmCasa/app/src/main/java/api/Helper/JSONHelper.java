@@ -28,36 +28,36 @@ public class JSONHelper {
     * @throws JSONException
     * */
     public static List<Hospital> hospitalListFromJSON(String hospitalJsonList )throws JSONException {
-
-        JSONArray jArray = new JSONArray( hospitalJsonList );
+        Log.e("IN", "try1");
+        JSONObject jsonObj = new JSONObject(hospitalJsonList);
+        JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
             Hospital hospital = null;
-
+            Log.e("IN", "try2");
             for( int index = 0; index < jArray.length(); index++ ) {
-                JSONObject temp = jArray.getJSONObject(index).getJSONObject("features");
 
                 hospital = new Hospital();
 
-                hospital.setLatitude(temp.getJSONObject("geometry").getString("coordinates"));
+                hospital.setLatitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(1));
 
-                hospital.setLongitude(temp.getJSONObject("geometry").getString("coordinates"));
+                hospital.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));
 
-                hospital.setType(temp.getJSONObject("properties").getString("tipo_sus"));
+                hospital.setType(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(1).getString("tipo_sus"));
 
-                hospital.setCity(temp.getJSONObject("properties").getString("cidade"));
+                hospital.setState(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(2).getString("uf"));
 
-                hospital.setState(temp.getJSONObject("properties").getString("uf"));
+                hospital.setCity(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(3).getString("cidade"));
 
-                hospital.setNumber(temp.getJSONObject("properties").getString("nu_endereco"));
+                hospital.setAddress(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(4).getString("no_logradouro"));
 
-                hospital.setDistrict(temp.getJSONObject("properties").getString("no_bairro"));
+                hospital.setNumber(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(5).getString("nu_endereco"));
 
-                hospital.setTelephone(temp.getJSONObject("properties").getString("nu_telefone"));
+                hospital.setDistrict(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(6).getString("no_bairro"));
 
-                hospital.setName(temp.getJSONObject("properties").getString("no_fantasia"));
+                hospital.setTelephone(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(7).getString("nu_telefone"));
 
-                hospital.setAddress(temp.getJSONObject("properties").getString("no_logradouro"));
+                hospital.setName(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(8).getString("no_fantasia"));
 
 
                 hospitalList.add(hospital);
@@ -79,9 +79,10 @@ public class JSONHelper {
     *
     * @throws JSONException
     * */
-    public static List<DrugStore> drugstoreListFromJSON(String drugstoreJsonList )throws JSONException {
+    public static List<DrugStore> drugstoreBrazilListFromJSON(String drugstoreJsonList )throws JSONException {
 
-        JSONArray jArray = new JSONArray( drugstoreJsonList );
+        JSONObject jsonObj = new JSONObject(drugstoreJsonList);
+        JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
             DrugStore drugStore = null;

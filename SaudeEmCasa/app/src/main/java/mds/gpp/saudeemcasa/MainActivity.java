@@ -15,6 +15,8 @@ import java.io.IOException;
 
 import api.Helper.JSONHelper;
 
+import static api.Helper.JSONHelper.hospitalListFromJSON;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,27 +24,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.e("CREATED: ", "SUCESS");
+        String input ="{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":[{\"gid\":\"2001063\"},{\"tipo_sus\":\"SUS\"},{\"uf\":\"AC\"},{\"cidade\":\"Rio Branco\"},{\"no_logradouro\":\"TRAVESSA IPASE\"},{\"nu_endereco\":\"77\"},{\"no_bairro\":\"CENTRO\"},{\"nu_telefone\":\"(68)3224 3693\"},{\"no_fantasia\":\"CENTRO DE CONTROLE DE ONCOLOGIA DO ACRE\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-67.81423,-9.96876]}}]}";
+        Log.e("IN = ", input);
+        try {
+            hospitalListFromJSON(input);
+        } catch (JSONException e) {
+            Log.e("ERROR","JSON");
+        }
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        String input ="";
-        try {
-            BufferedReader in = new BufferedReader(new FileReader("/home/lucas/hospital.JSON"));
-            input = in.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            JSONHelper.hospitalListFromJSON(input);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         return true;
     }
