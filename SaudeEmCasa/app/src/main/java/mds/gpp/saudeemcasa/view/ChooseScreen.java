@@ -23,7 +23,7 @@ public class ChooseScreen extends Activity{
 
         Button hospitalButton = (Button) findViewById(R.id.hospitalbutton);
         Button drugStoreButton = (Button) findViewById(R.id.drugbutton);
-        
+
 
     }
 
@@ -53,7 +53,7 @@ public class ChooseScreen extends Activity{
         });
     }
 
-    private int buttonIsClicked(Button button){
+    private void buttonIsClicked(Button button){
         switch(button.getId()){
             case R.id.drugbutton:
                 drugStoreButton = true;
