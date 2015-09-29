@@ -4,6 +4,18 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+    }
     defaultConfig {
         applicationId "mds.gpp.saudeemcasa"
         minSdkVersion 19
@@ -20,7 +32,7 @@ android {
 }
 
 dependencies {
+
     compile 'com.android.support:appcompat-v7:23.0.1'
-    compile files('src/main/java/Libs/httpclient-4.5.1.jar')
-    compile files('src/main/java/Libs/httpcore-4.4.3.jar')
+
 }

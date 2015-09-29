@@ -6,18 +6,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.json.JSONException;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
-import api.Helper.JSONHelper;
 
-import static api.Helper.JSONHelper.drugstorePrivateListFromJSON;
-import static api.Helper.JSONHelper.drugstorePublicListFromJSON;
-import static api.Helper.JSONHelper.hospitalListFromJSON;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
     }
 
