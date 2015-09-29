@@ -8,10 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import api.Helper.DatabaseHelper;
 import mds.gpp.saudeemcasa.model.DrugStore;
+import mds.gpp.saudeemcasa.model.Hospital;
 
 /**
  * Created by lucas on 9/27/15.
@@ -66,7 +68,7 @@ public class DrugStoreDao extends Dao{
         return isEmpty;
     }
 
-    public long insertDrugstore(DrugStore drugStore) {
+    public boolean insertDrugstore(DrugStore drugStore) {
 
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
 
@@ -84,7 +86,7 @@ public class DrugStoreDao extends Dao{
         values.put(tableColumns[9], drugStore.getType());
 
 
-        long result = insertAndClose(sqLiteDatabase,tableName, values);
+        boolean result = insertAndClose(sqLiteDatabase,tableName, values)>0;
         return result;
     }
 
@@ -133,5 +135,17 @@ public class DrugStoreDao extends Dao{
         //sqliteDatabase.close();
 
         return listDrugstores;
+    }
+
+    public boolean insertAllDrogstores( List<DrugStore> drugStoresList ) {
+        Iterator<DrugStore> index = drugStoresList.iterator();
+
+        boolean result = true;
+
+        while( index.hasNext() ) {
+            result = insertDrugstore(index.next());
+        }
+
+        return result;
     }
 }
