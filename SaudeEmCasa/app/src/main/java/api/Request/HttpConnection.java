@@ -1,5 +1,5 @@
-package api.Request;
-/**
+/*package api.Request;
+
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -13,11 +13,11 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-*/
-/**
+
+*//**
  * Created by lucas on 9/28/15.
- */
-/*
+ *//*
+
 public class HttpConnection {
 
     public final static ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
@@ -59,5 +59,4 @@ public class HttpConnection {
 
         return json;
     }
-}
-*/
+}*/
