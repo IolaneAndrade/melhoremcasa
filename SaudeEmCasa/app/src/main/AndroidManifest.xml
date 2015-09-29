@@ -33,6 +33,16 @@
 
         </activity>
 
+        <activity android:name=".view.DrugStoreList">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
+        <activity android:name=".view.HospitalList">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
     </application>
 
 </manifest>
