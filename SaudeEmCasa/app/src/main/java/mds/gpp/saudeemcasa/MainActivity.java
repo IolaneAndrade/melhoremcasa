@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         DDao = DrugStoreDao.getInstance(getApplicationContext());
         DrugStore drugstore = new DrugStore();
         Log.e("entrei","criadoDRug");
-        drugstore.setPostalCode("00000000001");
+        drugstore.setPostalCode("00001");
         Log.e("entrei", "setadoDrug");
         drugstore.toString();
         DDao.insertDrugstore(drugstore);
 
-        Log.e("CEP: ",DDao.getAllDrugStores().get(0).getPostalCode());
+        System.out.println(DDao.getAllDrugStores().size());
     }
 
     @Override
