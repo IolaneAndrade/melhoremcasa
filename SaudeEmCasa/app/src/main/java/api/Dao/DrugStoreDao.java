@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import api.Helper.DatabaseHelper;
 import mds.gpp.saudeemcasa.model.DrugStore;
@@ -12,9 +13,15 @@ import mds.gpp.saudeemcasa.model.DrugStore;
 /**
  * Created by lucas on 9/27/15.
  */
+
 public class DrugStoreDao extends Dao{
+
+    private static String tableColumns[]={"drugstoreId","postalCode","idStablishment"};
+
     private static DrugStoreDao instance;
+
     private static String tableName = "Drugstore";
+
     private DrugStoreDao( Context context ) {
         DrugStoreDao.database = new DatabaseHelper( context );
     }
@@ -55,17 +62,17 @@ public class DrugStoreDao extends Dao{
 
         return isEmpty;
     }
-    public long insertStablishmentGeneric(DrugStore drugStore, long id) {
-        //for upgrading
-        SQLiteDatabase db = database.getWritableDatabase();
+
+    public long insertDrugstore(DrugStore drugStore, long id) {
+
+        SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        /*
-        values.put(DRUGSTORE_LATITUDE, drugStore.getLatitude());
-        values.put(DRUGSTORE_LONGETUDE, drugStore.getLongitude());
-        values.put(DRUGSTORE_POSTALCODE, drugStore.getPostalCode());
 
-        return db.insert(DRUGSTORE_TABLE, null, values);*/
-        return 1;
+
+        values.put(tableColumns[1], drugStore.getPostalCode());
+        values.put(tableColumns[2], id);
+        Log.e("PATH:",sqliteDatabase.getPath());
+        return sqLiteDatabase.insert(tableName, null, values);
     }
 }
