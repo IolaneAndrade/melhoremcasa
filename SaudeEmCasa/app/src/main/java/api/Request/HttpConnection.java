@@ -20,6 +20,14 @@ import java.io.InputStreamReader;
  */
 public class HttpConnection {
 
+    public final static ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
+        public String handleResponse( HttpResponse response ){
+            String result = null;
+
+            
+            return result;
+        }
+    };
     public static String request( String url ) throws IOException {
 
         HttpClient client = HttpClientBuilder.create().build();
@@ -28,7 +36,5 @@ public class HttpConnection {
         //String json = new String( client.execute( http ));
         Log.e( response.getEntity().getContent().read()));
         return "";
-
-
     }
 }
