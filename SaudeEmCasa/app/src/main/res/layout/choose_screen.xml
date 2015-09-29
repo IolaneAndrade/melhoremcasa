@@ -9,10 +9,10 @@
     android:contextClickable="false">
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
         android:text="Melhor em Casa"
-        android:id="@+id/hospitalbutton"
+        android:id="@+id/melhor_em_casa_button"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="74dp"
@@ -22,30 +22,31 @@
 
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
         android:text="Farmácia Popular"
-        android:id="@+id/drugbutton"
+        android:id="@+id/farm_popular_button"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/hospitalbutton"
+        android:layout_alignStart="@+id/melhor_em_casa_button"
         android:layout_marginBottom="113dp"
         android:textColor="#ffffff"
-        android:nestedScrollingEnabled="false"
         android:background="#2585ff" />
 
     <ImageView
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:id="@+id/melhoremcasa"
-        android:layout_alignBottom="@+id/hospitalbutton"
-        android:layout_toStartOf="@+id/hospitalbutton"
-        android:src="@mipmap/melhor_em_casa" />
+        android:id="@+id/melhoremcasalogo"
+        android:layout_alignBottom="@+id/melhor_em_casa_button"
+        android:layout_toStartOf="@+id/melhor_em_casa_button"
+        android:src="@mipmap/melhor_em_casa"/>
+
 
     <ImageView
         android:layout_width="80dp"
         android:layout_height="100dp"
-        android:id="@+id/farmpopular"
-        android:layout_alignBottom="@+id/drugbutton"
-        android:layout_alignEnd="@+id/melhoremcasa"
-        android:src="@mipmap/farmacia_popular" />
+        android:id="@+id/farmpopularlogo"
+        android:src="@mipmap/farmacia_popular"
+        android:layout_alignBottom="@+id/farm_popular_button"
+        android:layout_alignEnd="@+id/melhoremcasalogo"/>
+
 </RelativeLayout>
