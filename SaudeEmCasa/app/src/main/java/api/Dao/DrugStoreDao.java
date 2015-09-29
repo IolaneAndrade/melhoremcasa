@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import api.Helper.DatabaseHelper;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
@@ -16,7 +19,7 @@ import mds.gpp.saudeemcasa.model.DrugStore;
 
 public class DrugStoreDao extends Dao{
 
-    private static String tableColumns[]={"drugstoreId","postalCode","idStablishment"};
+    private static String tableColumns[]={"latitude","longitude","city","address","state","rate","postalCode","telephone","name","type"};
 
     private static DrugStoreDao instance;
 
@@ -63,16 +66,72 @@ public class DrugStoreDao extends Dao{
         return isEmpty;
     }
 
-    public long insertDrugstore(DrugStore drugStore, long id) {
+    public long insertDrugstore(DrugStore drugStore) {
 
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
+        values.put(tableColumns[0], drugStore.getLatitude());
+        values.put(tableColumns[1], drugStore.getLongitude());
+        values.put(tableColumns[2], drugStore.getCity());
+        values.put(tableColumns[3], drugStore.getAddress());
+        values.put(tableColumns[4], drugStore.getState());
+        values.put(tableColumns[5], drugStore.getRate());
+        values.put(tableColumns[6], drugStore.getPostalCode());
+        values.put(tableColumns[7], drugStore.getTelephone());
+        values.put(tableColumns[8], drugStore.getName());
+        values.put(tableColumns[9], drugStore.getType());
 
-        values.put(tableColumns[1], drugStore.getPostalCode());
-        values.put(tableColumns[2], id);
-        Log.e("PATH:",sqliteDatabase.getPath());
-        return sqLiteDatabase.insert(tableName, null, values);
+
+        long result = insertAndClose(sqLiteDatabase,tableName, values);
+        return result;
+    }
+
+    public List<DrugStore> getAllDrugStores() {
+
+        sqliteDatabase = database.getReadableDatabase();
+
+        String query = "SELECT * FROM " + tableName;
+
+        Cursor cursor = sqliteDatabase.rawQuery( query, null );
+
+        List<DrugStore> listDrugstores = new ArrayList<DrugStore>();
+
+        while( cursor.moveToNext() ) {
+
+            DrugStore drugStore = new DrugStore();
+
+            drugStore.setId(cursor.getInt( cursor
+                    .getColumnIndex( "drugstoreId" ) ) );
+
+            drugStore.setLatitude(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[0])));
+
+            drugStore.setLongitude(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[1])));
+            drugStore.setCity(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[2])));
+            drugStore.setAddress(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[3])));
+            drugStore.setState(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[4])));
+            drugStore.setRate(cursor.getFloat(cursor
+                    .getColumnIndex(tableColumns[5])));
+            drugStore.setPostalCode(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[6])));
+            drugStore.setTelephone(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[7])));
+            drugStore.setName(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[8])));
+            drugStore.setType(cursor.getString( cursor
+                    .getColumnIndex( tableColumns[9])));
+
+            listDrugstores.add(drugStore );
+        }
+
+        //sqliteDatabase.close();
+
+        return listDrugstores;
     }
 }

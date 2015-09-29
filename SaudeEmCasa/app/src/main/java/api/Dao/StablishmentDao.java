@@ -1,3 +1,4 @@
+/*
 package api.Dao;
 
 import android.content.ContentValues;
@@ -9,12 +10,14 @@ import api.Helper.DatabaseHelper;
 import mds.gpp.saudeemcasa.model.DrugStore;
 import mds.gpp.saudeemcasa.model.Hospital;
 
+*/
 /**
  * Created by lucas on 9/27/15.
- */
+ *//*
+
 public class StablishmentDao extends Dao{
 
-    private static String tableColumns[]={"stablishmentId","latitude","latitude","city","adress","state","rate","telephone","name","type"};
+    private static String tableColumns[]={"stablishmentId","latitude","latitude","city","address","state","rate","telephone","name","type"};
 
     private static StablishmentDao instance;
 
@@ -26,7 +29,9 @@ public class StablishmentDao extends Dao{
 
     public static StablishmentDao getInstance( Context context ) {
         if( StablishmentDao.instance != null ) {
-			/* !Nothing To Do. */
+			*/
+/* !Nothing To Do. *//*
+
 
         } else {
             StablishmentDao.instance = new StablishmentDao( context );
@@ -62,25 +67,33 @@ public class StablishmentDao extends Dao{
     }
 
     //for drugStore
-    public long insertStablishmentGeneric(DrugStore stablishment) {
+    public long insertStablishmentGeneric(DrugStore stablishment) throws NullPointerException{
         //for upgrading
         sqliteDatabase = database.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(tableColumns[1], stablishment.getLatitude());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[2], stablishment.getLongitude());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[3], stablishment.getCity());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[4], stablishment.getAddress());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[5], stablishment.getState());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[6], stablishment.getRate());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[7], stablishment.getTelephone());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[8], stablishment.getName());
+        Log.e("entrei", "Setado");
         values.put(tableColumns[9], stablishment.getType());
 
-        long id = sqliteDatabase.insert(tableName, null, values);
-        Log.e("ADD",sqliteDatabase.getPath());
-        DrugStoreDao.getInstance(context).insertDrugstore(stablishment, id);
-        return id;
+        long result = insertAndClose(sqliteDatabase,tableName,values);
+        Log.e("ADD","inse");
+        if(result > 0) DrugStoreDao.getInstance(context).insertDrugstore(stablishment, result);
+        return result;
     }
     //for hospital
     public long insertStablishmentGeneric(Hospital stablishment) {
@@ -109,3 +122,4 @@ public class StablishmentDao extends Dao{
 }
 
 
+*/

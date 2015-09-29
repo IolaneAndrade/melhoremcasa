@@ -6,10 +6,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
-
-
-
+import api.Dao.DrugStoreDao;
+import mds.gpp.saudeemcasa.model.DrugStore;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,8 +16,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DrugStoreDao DDao;
+        DDao = DrugStoreDao.getInstance(getApplicationContext());
+        DrugStore drugstore = new DrugStore();
+        Log.e("entrei","criadoDRug");
+        drugstore.setPostalCode("00000000001");
+        Log.e("entrei", "setadoDrug");
+        drugstore.toString();
+        DDao.insertDrugstore(drugstore);
 
-
+        Log.e("CEP: ",DDao.getAllDrugStores().get(0).getPostalCode());
     }
 
     @Override
