@@ -21,7 +21,7 @@ public class LoadingScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
 
-        final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa);
+        final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa_logo);
         final ImageView spinner = (ImageView) findViewById(R.id.spinner);
 
         final Animation spinnerAnimation = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
