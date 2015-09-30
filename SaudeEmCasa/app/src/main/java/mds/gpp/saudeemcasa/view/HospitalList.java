@@ -32,9 +32,7 @@ public class HospitalList extends Activity {
         lista.add("Hospital Santa Marta");
         lista.add("Hospital Alvorada");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                lista);
+                this,android.R.layout.simple_list_item_1,lista);
         listView.setAdapter(adapter);
 
 

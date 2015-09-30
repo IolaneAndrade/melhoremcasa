@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-
+    android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="5dip"
+    tools:context="{relativePackage}.${activityClass}">
 
-    //android:background="@drawable/list_selector"
-
-    <!-- ListRow Left side Thumbnail image -->
     <LinearLayout
         android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="5dip"
-        android:padding="3dip" >
+        android:padding="3dip"
+        android:weightSum="1">
         <ImageView
             android:id="@+id/list_image"
-            android:contentDescription="@string/app_name"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
-            android:src="@mipmap/farm_popular" />
+            android:contentDescription="@string/program_hospital"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/melhor_em_casa" />
     </LinearLayout>
     <!-- Rightend Arrow -->
     <ImageView
         android:id="@+id/imageView1"
-        android:contentDescription="@string/app_name"
+        android:contentDescription="@string/program_hospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/arrow_right" />
+        android:src="@mipmap/arrow_right"
+        android:layout_alignTop="@+id/tvCity"
+        android:layout_alignParentEnd="true" />
     <!-- City-->
     <TextView
         android:id="@+id/tvCity"
@@ -40,15 +39,15 @@
         android:layout_height="wrap_content"
 
         android:layout_marginLeft="75dip"
-        android:layout_centerVertical="true"
         android:paddingBottom ="10dip"
         android:text="Drogaria Rosário"
         android:textColor="#040404"
         android:textSize="25dip"
         android:textStyle="bold"
-        android:typeface="sans" />
+        android:typeface="sans"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_centerHorizontal="true" />
 
-    //android:layout_toRightOf="@+id/list_image"
     <!-- Weather Information-->
     <TextView
         android:id="@+id/tvCondition"
@@ -61,4 +60,5 @@
         android:text="Endereço"
         android:textColor="#343434"
         android:textSize="15dip" />
+
 </RelativeLayout>
