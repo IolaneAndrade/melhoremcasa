@@ -106,8 +106,6 @@ public class HospitalDao extends Dao{
 
             hospital.setId(cursor.getInt(cursor
                     .getColumnIndex("hospitalId")));
-            Log.e("i am","fine");
-
 
             hospital.setLatitude(cursor.getString(cursor
                     .getColumnIndex(tableColumns[0])));

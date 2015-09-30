@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
         try {
-            hospitalController.initController();
+            hospitalController.initControllerHospital();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {

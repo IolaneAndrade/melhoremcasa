@@ -46,7 +46,7 @@ public class HospitalController {
         return hospitalList;
     }
 
-    public boolean initController() throws IOException, JSONException {
+    public boolean initControllerHospital() throws IOException, JSONException {
         try {
             if (hospitalDao.isDbEmpty()) {
                 //getJSON
