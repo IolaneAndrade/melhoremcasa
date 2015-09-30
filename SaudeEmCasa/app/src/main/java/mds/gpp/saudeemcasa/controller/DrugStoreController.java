@@ -14,6 +14,7 @@ import mds.gpp.saudeemcasa.model.Hospital;
  */
 
 public class DrugStoreController {
+
     private static DrugStoreController instance = null;
     private static DrugStore drugStore;
     private static List<DrugStore> drugStoreList = new ArrayList<DrugStore>();
