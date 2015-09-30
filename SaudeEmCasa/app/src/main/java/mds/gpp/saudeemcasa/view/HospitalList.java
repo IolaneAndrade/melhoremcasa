@@ -2,13 +2,15 @@ package mds.gpp.saudeemcasa.view;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
-import mds.gpp.saudeemcasa.controller.GPSTracker;
+import mds.gpp.saudeemcasa.helper.GPSTracker;
+import mds.gpp.saudeemcasa.model.Hospital;
 
 /**
  * Created by gabriel on 29/09/15.
@@ -22,7 +24,7 @@ public class HospitalList extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hospital_list);
+        setContentView(R.layout.hospital_list_screen);
 
         listView = (ListView) findViewById(R.id.listView);
         List<String> lista = new ArrayList<String>();
@@ -47,8 +49,7 @@ public class HospitalList extends Activity {
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
 
-                    Toast.makeText(HospitalList.this, "Your location is /nLong" + longitude +
-                            "/nLat" + latitude, Toast.LENGTH_LONG).show();
+                    Toast.makeText(HospitalList.this,"Seu local é \nLONG:"+longitude+"\nLAT:"+latitude,Toast.LENGTH_LONG).show();
                 }
             }
         });

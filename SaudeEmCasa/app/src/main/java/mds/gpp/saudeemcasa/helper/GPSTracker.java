@@ -1,4 +1,4 @@
-package mds.gpp.saudeemcasa.controller;
+package mds.gpp.saudeemcasa.helper;
 
 import android.app.Service;
 import android.content.Context;
