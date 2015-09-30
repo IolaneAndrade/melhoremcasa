@@ -37,7 +37,9 @@ public class DrugStoreController {
         DrugStoreController.drugStore = drugStore;
     }
 
-
+    public List<DrugStore> getAllDrugstores(){
+        return drugStoreList;
+    }
 
 
 }
