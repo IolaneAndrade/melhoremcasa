@@ -28,11 +28,11 @@ public class HospitalList extends Activity {
         setContentView(R.layout.hospital_list_screen);
 
         // Initializing fake hospitals
-        Hospital h1 = new Hospital(0," ", " ", " ", "(61) 3321-8181","Hospital Taxiado", " ", " ", " ",4);
-        Hospital h2 = new Hospital(0," ", " ", " ", "(61) 3321-8080","Hospital Uberado", " ", " ", " ",4);
-        Hospital h3 = new Hospital(0," ", " ", " ", "(61) 3321-8000","Hospital Motorizado", " ", " ", " ",4);
-        Hospital h4 = new Hospital(0," ", " ", " ", "(61) 3321-5151","Hospital Veiculado", " ", " ", " ",4);
-        Hospital h5 = new Hospital(0," ", " ", " ", "(61) 3321-0000","Hospital Polemica", " ", " ", " ",4);
+        Hospital h1 = new Hospital();
+        Hospital h2 = new Hospital();
+        Hospital h3 = new Hospital();
+        Hospital h4 = new Hospital();
+        Hospital h5 = new Hospital();
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
