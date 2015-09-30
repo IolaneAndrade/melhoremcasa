@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/saude_em_casa"
+        android:id="@+id/saude_em_casa_logo"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/saude_em_casa" />
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:src="@mipmap/orange_loader_64"
-        android:layout_below="@+id/saude_em_casa"
+        android:layout_below="@+id/saude_em_casa_logo"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
