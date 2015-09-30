@@ -60,7 +60,6 @@ public class JSONHelper {
 
                 hospital.setName(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(8).getString("no_fantasia"));
 
-
                 hospitalList.add(hospital);
             }
 

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 
 import mds.gpp.saudeemcasa.controller.HospitalController;
@@ -16,10 +18,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
         try {
             hospitalController.initController();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
