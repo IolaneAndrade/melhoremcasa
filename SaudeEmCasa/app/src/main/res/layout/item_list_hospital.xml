@@ -44,7 +44,7 @@
         android:paddingBottom ="2dip"
         android:text="Name"
         android:textColor="#040404"
-        android:textSize="25dip"
+        android:textSize="17dip"
         android:textStyle="bold"
         android:typeface="sans"
         android:singleLine="true"
