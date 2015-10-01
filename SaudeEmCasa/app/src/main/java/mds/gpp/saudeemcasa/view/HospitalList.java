@@ -43,9 +43,9 @@ public class HospitalList extends Activity {
         try {
             hospitalController.initControllerHospital();
         } catch (IOException e) {
-            e.printStackTrace();
+                e.printStackTrace();
         } catch (JSONException e) {
-            e.printStackTrace();
+                e.printStackTrace();
         }
 
             // Initializing list view
