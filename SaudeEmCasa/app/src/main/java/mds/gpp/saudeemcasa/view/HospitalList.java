@@ -6,10 +6,15 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
+import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.Hospital;
 
@@ -26,32 +31,44 @@ public class HospitalList extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_list_screen);
 
-        // Initializing fake hospitals
+        /* Initializing fake hospitals
         Hospital h1 = new Hospital("Hospital Maria Auxiadora de Sao Jose", "(61) 3321-8181");
         Hospital h2 = new Hospital("Hospital Santa Luzia", "(61) 3321-8080");
         Hospital h3 = new Hospital("Hospital do Coracao do Brasil", "(61) 3321-8000");
         Hospital h4 = new Hospital("Hospital Veiculado", "(61) 3321-5151");
         Hospital h5 = new Hospital("Hospital Polemica", "(61) 3321-0000");
+        */
 
-        // Initializing list view
-        listView = (ListView) findViewById(R.id.listView);
+        HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
+        try {
+            hospitalController.initControllerHospital();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        // Initialize and fill list of hospital
-        ArrayList<Hospital> lista = new ArrayList<Hospital>();
+            // Initializing list view
+            listView = (ListView) findViewById(R.id.listView);
+
+            // Initialize and fill list of hospital
+        /* ArrayList<Hospital> lista = new ArrayList<Hospital>();
         lista.add(h1);
         lista.add(h2);
         lista.add(h3);
         lista.add(h4);
         lista.add(h5);
+            */
+            ArrayList<Hospital> lista = (ArrayList)hospitalController.getAllHospitals();
 
-        // Initializing new HospitalAdapter with list of hospitals
-        HospitalAdapter adapter = new HospitalAdapter(this,lista);
+            // Initializing new HospitalAdapter with list of hospitals
+            HospitalAdapter adapter = new HospitalAdapter(this, lista);
 
-        // Setting adapter to listView
-        listView.setAdapter(adapter);
+            // Setting adapter to listView
+            listView.setAdapter(adapter);
 
-        // Tirei o botao para nao dar confusao, ele nao sera usado, mas deixe o codigo para usarmos
-        // de colinha
+            // Tirei o botao para nao dar confusao, ele nao sera usado, mas deixe o codigo para usarmos
+            // de colinha
 
 //        show = (Button) findViewById(R.id.show_location);
 //        show.setOnClickListener(new View.OnClickListener() {
@@ -67,5 +84,5 @@ public class HospitalList extends Activity {
 //                }
 //            }
 //        });
-    }
+        }
 }
