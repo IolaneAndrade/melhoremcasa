@@ -49,7 +49,8 @@ public class HospitalController {
         try {
             if (hospitalDao.isDbEmpty()) {
                 String JsonList = null;
-                new HttpConnection().execute();;
+                JsonList = HttpConnection.request(HttpConnection.getResponseHandler(),"http://159.203.95.153:8000/habilitados");
+                Log.e(JsonList," Aqui caralho");
                 //getJSON
                 //readFile("/home/lucas/git/melhoremcasa/SaudeEmCasa/app/src/main/java/mds/gpp/saudeemcasa/controller/hp");
                 //Create JSON helper

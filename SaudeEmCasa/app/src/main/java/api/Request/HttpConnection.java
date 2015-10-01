@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  * Created by lucas on 9/28/15.
  */
 
-public class HttpConnection extends AsyncTask {
+public class HttpConnection{// extends AsyncTask<Void,Void,Void> {
 
     public final static ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
         public String handleResponse( HttpResponse response ) throws IOException {
@@ -60,16 +60,24 @@ public class HttpConnection extends AsyncTask {
 
         return json;
     }
+//    @Override
+//    protected void onPreExecute(){
+//        //TODO put initial screen to animate.
+//    }
+//    @Override
+//    protected Void doInBackground(Void... params) {
+//        HttpClient client = HttpClientBuilder.create().build();
+//        HttpGet http = new HttpGet( "http://159.203.95.153:8000/farmacia_popular_conveniada" );
+//
+//
+//        try {
+//            json = new String( client.execute( http, responseHandler ).getBytes(
+//                    "ISO-8859-1"), "UTF-8" );
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
 
-    @Override
-    protected Object doInBackground(Object[] params) {
-        try {
-            Log.e(request(responseHandler,"http://159.203.95.153:8000/farmacia_popular_conveniada"),"");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 }
