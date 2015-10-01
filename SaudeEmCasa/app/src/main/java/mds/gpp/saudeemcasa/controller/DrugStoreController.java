@@ -10,6 +10,7 @@ import java.util.List;
 
 import api.Dao.DrugStoreDao;
 import api.Helper.JSONHelper;
+import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
 
@@ -22,10 +23,11 @@ public class DrugStoreController {
     private static DrugStoreController instance = null;
     private static DrugStore drugStore;
     private static List<DrugStore> drugStoreList = new ArrayList<DrugStore>();
-
+    private static Context context;
     private static DrugStoreDao drugStoreDao;
 
     private DrugStoreController(Context context) {
+        this.context = context;
         drugStoreDao = DrugStoreDao.getInstance(context);
     }
 
@@ -41,6 +43,23 @@ public class DrugStoreController {
         DrugStoreController.drugStore = drugStore;
     }
 
+    public void updateDruStores(String json){
+        //JSON
+        JSONHelper jsonParser = new JSONHelper();
+        //PARSE JSON to object
+        List<DrugStore> tempDrugStoreList = null;
+
+        try {
+            tempDrugStoreList = jsonParser.drugstorePrivateListFromJSON(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //insert private drugstores
+        drugStoreDao.insertAllDrogstores(tempDrugStoreList);
+        //setting DrugStores to local list
+        drugStoreList = drugStoreDao.getAllDrugStores();
+    }
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
     }
@@ -48,24 +67,11 @@ public class DrugStoreController {
     public boolean initControllerDrugstore() throws IOException, JSONException {
         try {
             if (drugStoreDao.isDbEmpty()) {
-                //getJSON
-                //TODO http request should return to JsonList
-                String JsonList = jsonInput; //readFile("/home/lucas/git/melhoremcasa/SaudeEmCasa/app/src/main/java/mds/gpp/saudeemcasa/controller/hp");
-                //Create JSON helper
-                JSONHelper jsonParser = new JSONHelper();
-                //PARSE JSON to object
-                //TODO there should be two different methods and list for public and private drugstore
-                List<DrugStore> tempDrugStoreList = jsonParser.drugstorePrivateListFromJSON(JsonList);
+                //creating
+                HttpConnection httpConnection = new HttpConnection(context);
+                //requesting
+                httpConnection.execute("159.203.95.153:8000/farmacia_popular","159.203.95.153:8000/farmacia_popular_conveniada");
 
-                //insert private drugstores
-                drugStoreDao.insertAllDrogstores(tempDrugStoreList);
-                JsonList = jsonInput2;
-                //Parse public list
-                tempDrugStoreList = jsonParser.drugstorePublicListFromJSON(JsonList);
-                //insert public drugstores
-                drugStoreDao.insertAllDrogstores(tempDrugStoreList);
-                //setting DrugStores to local list
-                drugStoreList = drugStoreDao.getAllDrugStores();
                 return true;
             } else {
                 //just setting DrugStores to local list

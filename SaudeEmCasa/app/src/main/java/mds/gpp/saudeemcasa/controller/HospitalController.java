@@ -13,6 +13,7 @@ import api.Dao.HospitalDao;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.model.Hospital;
+import mds.gpp.saudeemcasa.view.HospitalList;
 
 /**
  * Created by freemanpivo on 9/20/15.
@@ -22,10 +23,11 @@ public class HospitalController {
     private static HospitalController instance = null;
     private static Hospital hospital;
     private static List<Hospital> hospitalList = new ArrayList<Hospital>();
-
     private static HospitalDao hospitalDao;
+    private static Context context;
 
     private HospitalController(Context context) {
+        this.context = context;
         hospitalDao = HospitalDao.getInstance(context);
     }
 
@@ -41,6 +43,21 @@ public class HospitalController {
         HospitalController.hospital = hospital;
     }
 
+    public void updateHospital(String json){
+        JSONHelper jsonParser = new JSONHelper();
+        List<Hospital> tempHospitalList = null;
+        try {
+            tempHospitalList = jsonParser.hospitalListFromJSON(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //insert in DB
+        Log.e("I did it!", String.valueOf(hospitalList.size()));
+
+        HospitalDao.getInstance(context).insertAllHospitals(tempHospitalList);
+        hospitalList = hospitalDao.getAllHospitals();
+
+    }
     public List<Hospital> getAllHospitals(){
         return hospitalList;
     }
@@ -48,19 +65,11 @@ public class HospitalController {
     public boolean initControllerHospital() throws IOException, JSONException {
         try {
             if (hospitalDao.isDbEmpty()) {
-                String JsonList = null;
-                JsonList = HttpConnection.request(HttpConnection.getResponseHandler(),"http://159.203.95.153:8000/habilitados");
-                Log.e(JsonList," Aqui caralho");
-                //getJSON
-                //readFile("/home/lucas/git/melhoremcasa/SaudeEmCasa/app/src/main/java/mds/gpp/saudeemcasa/controller/hp");
-                //Create JSON helper
-                JSONHelper jsonParser = new JSONHelper();
-                //PARSE JSON to object
-                List<Hospital> tempHospitalList = jsonParser.hospitalListFromJSON(JsonList);
-                //insert in DB
-                hospitalDao.insertAllHospitals(tempHospitalList);
-                //setting hospitals to local list
-                hospitalList = hospitalDao.getAllHospitals();
+                //creating
+                HttpConnection httpConnection = new HttpConnection(context);
+                //requesting
+                httpConnection.execute("http://159.203.95.153:8000/habilitados");
+
                 return true;
             } else {
                 //just setting hospitals to local list
