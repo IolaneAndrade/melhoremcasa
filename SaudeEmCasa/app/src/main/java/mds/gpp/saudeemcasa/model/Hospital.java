@@ -1,8 +1,6 @@
 package mds.gpp.saudeemcasa.model;
 
-/**
- * Created by freemanpivo on 9/20/15.
- */
+
 public class Hospital extends Stablishment {
     //empty contructor
     public Hospital() {
