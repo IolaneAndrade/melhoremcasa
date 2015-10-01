@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.adapter.DrugStoreAdapter;
-import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
