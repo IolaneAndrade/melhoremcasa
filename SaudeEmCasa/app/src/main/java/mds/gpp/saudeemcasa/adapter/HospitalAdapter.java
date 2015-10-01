@@ -34,22 +34,22 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
 
         // Override method to get view
         Hospital hospitalPosition = this.lista.get(position);
-        convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
+        convertView = LayoutInflater.from(this.context).inflate(R.layout.item_list_hospital, null);
 
         // Setting image view of list item
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView1istaHospital);
         imageView.setImageResource(R.mipmap.melhor_em_casa);
 
         // Setting name of hospital on list item
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
+        TextView textView = (TextView) convertView.findViewById(R.id.tvNameHospital);
         textView.setText((CharSequence) hospitalPosition.getName());
 
         // Setting phone of hospital on list item
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
+        TextView textView1 = (TextView) convertView.findViewById(R.id.tvPhoneHospital);
         textView1.setText((CharSequence) hospitalPosition.getTelephone());
 
         // Setting distance of hospital on list item
-        TextView textView2 = (TextView) convertView.findViewById(R.id.textView4_item);
+        TextView textView2 = (TextView) convertView.findViewById(R.id.tvDistance);
         textView2.setText("3KM");
 
         return convertView;

@@ -25,40 +25,55 @@
     </LinearLayout>
     <!-- Rightend Arrow -->
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imageView1istaHospital"
         android:contentDescription="@string/program_hospital"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@mipmap/arrow_right"
-        android:layout_alignTop="@+id/tvCity"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/tvPhoneHospital"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="false"
+        android:scrollIndicators="right" />
     <!-- City-->
     <TextView
-        android:id="@+id/tvCity"
+        android:id="@+id/tvNameHospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginLeft="75dip"
-        android:paddingBottom ="10dip"
-        android:text="Drogaria Rosário"
+        android:paddingBottom ="2dip"
+        android:text="Name"
         android:textColor="#040404"
         android:textSize="25dip"
         android:textStyle="bold"
         android:typeface="sans"
-        android:layout_alignTop="@+id/thumbnail"
-        android:layout_centerHorizontal="true" />
+        android:singleLine="true"
+        android:paddingRight="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/tvDistance"
+        android:layout_alignStart="@+id/tvPhoneHospital"
+        android:layout_alignParentLeft="true" />
 
     <!-- Weather Information-->
     <TextView
-        android:id="@+id/tvCondition"
+        android:id="@+id/tvPhoneHospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvCity"
-        android:layout_alignLeft="@+id/tvCity"
         android:paddingTop="5dip"
-        android:layout_centerHorizontal="true"
         android:text="Endereço"
         android:textColor="#343434"
-        android:textSize="15dip" />
+        android:textSize="15dip"
+        android:layout_alignBottom="@+id/tvDistance"
+        android:layout_toEndOf="@+id/thumbnail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Distance"
+        android:id="@+id/tvDistance"
+        android:layout_below="@+id/tvNameHospital"
+        android:layout_toStartOf="@+id/imageView1istaHospital"
+        android:layout_marginEnd="14dp" />
 
 </RelativeLayout>
