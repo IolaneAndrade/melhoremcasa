@@ -7,8 +7,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 import mds.gpp.saudeemcasa.MainActivity;
 import mds.gpp.saudeemcasa.R;
+import mds.gpp.saudeemcasa.controller.HospitalController;
 
 /**
  * Created by freemanpivo on 9/25/15.
@@ -20,6 +25,15 @@ public class LoadingScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
+
+        HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
+        try {
+            hospitalController.initControllerHospital();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa_logo);
         final ImageView spinner = (ImageView) findViewById(R.id.spinner);

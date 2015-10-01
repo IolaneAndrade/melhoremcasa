@@ -5,14 +5,13 @@ import android.util.Log;
 
 import org.json.JSONException;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import api.Dao.HospitalDao;
 import api.Helper.JSONHelper;
+import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.model.Hospital;
 
 /**
@@ -49,8 +48,10 @@ public class HospitalController {
     public boolean initControllerHospital() throws IOException, JSONException {
         try {
             if (hospitalDao.isDbEmpty()) {
+                String JsonList = null;
+                new HttpConnection().execute();;
                 //getJSON
-                String JsonList = jsonInput;//readFile("/home/lucas/git/melhoremcasa/SaudeEmCasa/app/src/main/java/mds/gpp/saudeemcasa/controller/hp");
+                //readFile("/home/lucas/git/melhoremcasa/SaudeEmCasa/app/src/main/java/mds/gpp/saudeemcasa/controller/hp");
                 //Create JSON helper
                 JSONHelper jsonParser = new JSONHelper();
                 //PARSE JSON to object

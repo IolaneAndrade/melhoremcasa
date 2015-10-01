@@ -1,5 +1,6 @@
-/*package api.Request;
+package api.Request;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -14,11 +15,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-*//**
+/*
  * Created by lucas on 9/28/15.
- *//*
+ */
 
-public class HttpConnection {
+public class HttpConnection extends AsyncTask {
 
     public final static ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
         public String handleResponse( HttpResponse response ) throws IOException {
@@ -59,4 +60,16 @@ public class HttpConnection {
 
         return json;
     }
-}*/
+
+    @Override
+    protected Object doInBackground(Object[] params) {
+        try {
+            Log.e(request(responseHandler,"http://159.203.95.153:8000/farmacia_popular_conveniada"),"");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+}

@@ -22,7 +22,6 @@ public class HospitalDao extends Dao{
 
     private static String tableColumns[]={"latitude","longitude","city","address","state","rate","district","telephone","name","type","number"};
 
-
     private static String tableName = "Hospital";
 
     private HospitalDao( Context context ) {
