@@ -19,7 +19,6 @@ import mds.gpp.saudeemcasa.model.Hospital;
 public class HospitalList extends Activity {
 
 //    GPSTracker gps;
-//    Button show;
     ListView listView;
 
     @Override
