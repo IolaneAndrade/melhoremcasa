@@ -11,7 +11,7 @@ import java.util.List;
 import api.Dao.DrugStoreDao;
 import api.Helper.JSONHelper;
 import mds.gpp.saudeemcasa.model.DrugStore;
-import mds.gpp.saudeemcasa.model.DrugStore;
+
 
 /**
  * Created by freemanpivo on 9/20/15.
@@ -56,8 +56,10 @@ public class DrugStoreController {
                 //PARSE JSON to object
                 //TODO there should be two different methods and list for public and private drugstore
                 List<DrugStore> tempDrugStoreList = jsonParser.drugstorePrivateListFromJSON(JsonList);
+
                 //insert private drugstores
                 drugStoreDao.insertAllDrogstores(tempDrugStoreList);
+                JsonList = jsonInput2;
                 //Parse public list
                 tempDrugStoreList = jsonParser.drugstorePublicListFromJSON(JsonList);
                 //insert public drugstores
@@ -75,5 +77,7 @@ public class DrugStoreController {
         }
 
     }
-private static String jsonInput = "";
+    private static String jsonInput = "";
+    private static String jsonInput2 = "";
+
 }
