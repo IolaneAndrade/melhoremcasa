@@ -10,6 +10,8 @@ import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
+import mds.gpp.saudeemcasa.adapter.HospitalAdapterWithoutGPS;
+import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.Hospital;
 
@@ -18,55 +20,37 @@ import mds.gpp.saudeemcasa.model.Hospital;
  */
 public class HospitalList extends Activity {
 
-//    GPSTracker gps;
-//    Button show;
     ListView listView;
+    List<Hospital> listAdapter;
+    ArrayList<Hospital> list;
+    float[] distances;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_list_screen);
 
-        // Initializing fake hospitals
-        Hospital h1 = new Hospital("Hospital Maria Auxiadora de Sao Jose", "(61) 3321-8181");
-        Hospital h2 = new Hospital("Hospital Santa Luzia", "(61) 3321-8080");
-        Hospital h3 = new Hospital("Hospital do Coracao do Brasil", "(61) 3321-8000");
-        Hospital h4 = new Hospital("Hospital Veiculado", "(61) 3321-5151");
-        Hospital h5 = new Hospital("Hospital Polemica", "(61) 3321-0000");
+        // Initialize and fill list of hospital
+        listAdapter = HospitalController.getAllHospitals();
+        list = (ArrayList<Hospital>)listAdapter;
+        distances = HospitalController.getDistance(this,list);
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
 
-        // Initialize and fill list of hospital
-        ArrayList<Hospital> lista = new ArrayList<Hospital>();
-        lista.add(h1);
-        lista.add(h2);
-        lista.add(h3);
-        lista.add(h4);
-        lista.add(h5);
 
         // Initializing new HospitalAdapter with list of hospitals
-        HospitalAdapter adapter = new HospitalAdapter(this,lista);
+        if(distances != null) {
+            HospitalAdapter adapter = new HospitalAdapter(this, list, distances);
+            // Setting adapter to listView
+            listView.setAdapter(adapter);
+        }else {
+            HospitalAdapterWithoutGPS adapter = new HospitalAdapterWithoutGPS(this,list);
+            listView.setAdapter(adapter);
+        }
 
-        // Setting adapter to listView
-        listView.setAdapter(adapter);
 
-        // Tirei o botao para nao dar confusao, ele nao sera usado, mas deixe o codigo para usarmos
-        // de colinha
 
-//        show = (Button) findViewById(R.id.show_location);
-//        show.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gps = new GPSTracker(HospitalList.this);
-//
-//                if(gps.canGetLocation()){
-//                    double latitude = gps.getLatitude();
-//                    double longitude = gps.getLongitude();
-//
-//                    Toast.makeText(HospitalList.this,"Seu local é \nLONG:"+longitude+"\nLAT:"+latitude,Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
     }
 }

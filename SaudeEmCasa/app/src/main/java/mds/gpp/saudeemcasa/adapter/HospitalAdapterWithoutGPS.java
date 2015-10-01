@@ -13,19 +13,17 @@ import java.util.ArrayList;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.model.Hospital;
 
-public class HospitalAdapter extends ArrayAdapter<Hospital>   {
+public class HospitalAdapterWithoutGPS extends ArrayAdapter<Hospital> {
 
     private Context context;
     private ArrayList<Hospital> lista;
-    private float[] distance;
 
-    public HospitalAdapter(Context context, ArrayList<Hospital> lista, float[] distance){
+    public HospitalAdapterWithoutGPS(Context context, ArrayList<Hospital> lista) {
 
         // Setting HospitalAdapter constructor
         super(context, 0, lista);
         this.context = context;
         this.lista = lista;
-        this.distance = distance;
     }
 
     @Override
@@ -47,27 +45,9 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
         TextView textViewPhone = (TextView) convertView.findViewById(R.id.tvPhoneHospital);
         textViewPhone.setText((CharSequence) hospitalPosition.getTelephone());
 
-        if(this.distance[position] < 1f) {
-            // Setting distance of hospital on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.tvDistance);
-            textViewDistance.setText(this.distance.toString()+" m");
-        }else {
-            // Setting distance of hospital on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.tvDistance);
-            textViewDistance.setText(convertToKM(this.distance[position]).toString() + " Km");
-        }
+        TextView textViewDistance = (TextView) convertView.findViewById(R.id.tvDistance);
+        textViewDistance.setText(" ");
+
         return convertView;
-    }
-
-    public float[] getDistance() {
-        return distance;
-    }
-
-    public void setDistance(float[] distance) {
-        this.distance = distance;
-    }
-    private Float convertToKM(Float distance){
-        return distance/1000;
-
     }
 }
