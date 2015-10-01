@@ -29,7 +29,7 @@
         android:layout_height="65dp"
         android:text="Farmácia Popular"
         android:id="@+id/farm_popular_button"
-        android:layout_marginBottom="119dp"
+        android:layout_marginBottom="85dp"
         android:textColor="#ffffff"
         android:background="#2585ff"
         android:layout_alignParentBottom="true"
@@ -52,5 +52,14 @@
         android:src="@mipmap/farmacia_popular"
         android:layout_alignBottom="@+id/farm_popular_button"
         android:layout_alignEnd="@+id/melhoremcasalogo"/>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:src="@mipmap/saude_em_casa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/melhor_em_casa_button"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
