@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,7 +23,7 @@ public class HospitalDao extends Dao{
     private static String tableColumns[]={"latitude","longitude","city","address","state","rate","district","telephone","name","type","number"};
 
 
-    private static String tableName = "Drugstore";
+    private static String tableName = "Hospital";
 
     private HospitalDao( Context context ) {
         HospitalDao.database = new DatabaseHelper( context );
@@ -92,21 +93,19 @@ public class HospitalDao extends Dao{
         sqliteDatabase = database.getReadableDatabase();
 
         String query = "SELECT * FROM " + tableName;
-
+        Log.e("i am","fine");
         Cursor cursor = sqliteDatabase.rawQuery( query, null );
-
+        Log.e("i am","fine");
         List<Hospital> listHospitals = new ArrayList<Hospital>();
-
+        Log.e("i am","fine");
         while( cursor.moveToNext() ) {
-
+            Log.e("i am","fine");
             Hospital hospital = new Hospital();
 
 
 
             hospital.setId(cursor.getInt(cursor
-                    .getColumnIndex("drugstoreId")));
-
-
+                    .getColumnIndex("hospitalId")));
 
             hospital.setLatitude(cursor.getString(cursor
                     .getColumnIndex(tableColumns[0])));

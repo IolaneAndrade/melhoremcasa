@@ -7,17 +7,49 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/melhor_em_casa"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.default"></category>
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".view.LoadingScreen">
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+
+
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.ChooseScreen">
+            <action android:name="android.intent.action.MAIN"></action>
+            <category android:name="android.intent.category.default"></category>
+
+        </activity>
+
+        <activity android:name=".view.DrugStoreList">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
+        <activity android:name=".view.HospitalList">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 </manifest>
