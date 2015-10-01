@@ -22,6 +22,11 @@ package mds.gpp.saudeemcasa.model;
     public Stablishment() {
     }
 
+    public Stablishment(String name, String telephone) {
+        this.name = name;
+        this.telephone = telephone;
+    }
+
     public int getId() {
         return id;
     }

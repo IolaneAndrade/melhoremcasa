@@ -6,6 +6,10 @@ public class Hospital extends Stablishment {
     public Hospital() {
     }
 
+    public Hospital(String name, String telephone) {
+        super(name, telephone);
+    }
+
     protected String number = "";
     protected String district = "";
 
