@@ -115,4 +115,8 @@ package mds.gpp.saudeemcasa.model;
     public void setDistance(float distance) {
         this.distance = distance;
     }
+
+    public float getdistance() {
+        return distance;
+    }
 }
