@@ -28,7 +28,7 @@ public class LoadingScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
 
-        /*HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
+        HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
         try {
             hospitalController.initControllerHospital();
         } catch (IOException e) {
@@ -43,7 +43,7 @@ public class LoadingScreen extends Activity {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
 
 
         final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa_logo);

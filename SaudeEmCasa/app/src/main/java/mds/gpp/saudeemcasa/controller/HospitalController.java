@@ -1,6 +1,7 @@
 package mds.gpp.saudeemcasa.controller;
 
 import android.content.Context;
+import android.location.Location;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -12,7 +13,9 @@ import java.util.List;
 import api.Dao.HospitalDao;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
+import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.Hospital;
+
 
 /**
  * Created by freemanpivo on 9/20/15.
@@ -57,7 +60,8 @@ public class HospitalController {
         hospitalList = hospitalDao.getAllHospitals();
 
     }
-    public List<Hospital> getAllHospitals(){
+    public static List<Hospital> getAllHospitals(){
+
         return hospitalList;
     }
 
@@ -80,7 +84,29 @@ public class HospitalController {
         }
 
     }
+    public static float[] setDistance(Context context,ArrayList<Hospital> list) {
+        float[] results = new float[list.size()];
+        GPSTracker gps = new GPSTracker(context);
+        if(gps.canGetLocation()) {
+            double userLongitude = gps.getLongitude();
+            double userLatitude = gps.getLatitude();
 
+            for (int i = 0; i < list.size(); i++) {
+                String auxLatitude = list.get(i).getLatitude();
+                String auxLongitude = list.get(i).getLongitude();
+                float resultsadapter[] = new float[1];
+                Double.parseDouble(auxLongitude);
+                Location.distanceBetween(Double.parseDouble(list.get(i).getLatitude()),
+                        Double.parseDouble(list.get(i).getLongitude()),
+                        userLatitude,userLongitude,resultsadapter);
+                list.get(i).setDistance(resultsadapter[0]);
+            }
+            return results;
+        }else {
+            return null;
+        }
+
+    }
 }
 
 

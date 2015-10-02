@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONException;
-
+import android.location.Location;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,9 @@ import java.util.List;
 import api.Dao.DrugStoreDao;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
+import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
-
-/**
- * Created by freemanpivo on 9/20/15.
- */
 
 public class DrugStoreController {
 
@@ -91,7 +88,28 @@ public class DrugStoreController {
         }
 
     }
-    private static String jsonInput = "";
-    private static String jsonInput2 = "";
 
+    public static float[] setDistance(Context context,ArrayList<DrugStore> list) {
+        float[] results = new float[list.size()];
+        GPSTracker gps = new GPSTracker(context);
+        if(gps.canGetLocation()) {
+            double userLongitude = gps.getLongitude();
+            double userLatitude = gps.getLatitude();
+
+            for (int i = 0; i < list.size(); i++) {
+                String auxLatitude = list.get(i).getLatitude();
+                String auxLongitude = list.get(i).getLongitude();
+                float resultsadapter[] = new float[1];
+                Double.parseDouble(auxLongitude);
+                Location.distanceBetween(Double.parseDouble(list.get(i).getLatitude()),
+                        Double.parseDouble(list.get(i).getLongitude()),
+                        userLatitude, userLongitude, resultsadapter);
+                list.get(i).setDistance(resultsadapter[0]);
+            }
+            return results;
+        }else {
+            return null;
+        }
+
+    }
 }

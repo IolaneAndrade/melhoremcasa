@@ -18,6 +18,9 @@ package mds.gpp.saudeemcasa.model;
     protected String state = "";
     protected float rate = 0;
     protected int id;
+    protected float distance = 0;
+
+
 
     public Stablishment() {
     }
@@ -104,5 +107,12 @@ package mds.gpp.saudeemcasa.model;
 
     public void setType(String type) {
         this.type = type;
+    }
+    public float getDistance() {
+        return distance;
+    }
+
+    public void setDistance(float distance) {
+        this.distance = distance;
     }
 }

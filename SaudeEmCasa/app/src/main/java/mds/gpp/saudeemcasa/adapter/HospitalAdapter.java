@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.model.Hospital;
 
-/**
- * Created by gabriel on 30/09/15.
- */
 public class HospitalAdapter extends ArrayAdapter<Hospital>   {
 
     private Context context;
@@ -24,7 +21,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
     public HospitalAdapter(Context context, ArrayList<Hospital> lista){
 
         // Setting HospitalAdapter constructor
-        super(context,0,lista);
+        super(context, 0, lista);
         this.context = context;
         this.lista = lista;
     }
@@ -48,10 +45,20 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
         TextView textViewPhone = (TextView) convertView.findViewById(R.id.textView3_item);
         textViewPhone.setText((CharSequence) hospitalPosition.getTelephone());
 
-        // Setting distance of hospital on list item
-        TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
-        textViewDistance.setText("7 Km");
-
+        if(this.lista.get(position).getDistance() < 1f) {
+            // Setting distance of hospital on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            textViewDistance.setText(this.lista.get(position).getDistance()+" m");
+        }else {
+            // Setting distance of hospital on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
+        }
         return convertView;
+    }
+
+    private Float convertToKM(Float distance){
+        return distance/1000;
+
     }
 }

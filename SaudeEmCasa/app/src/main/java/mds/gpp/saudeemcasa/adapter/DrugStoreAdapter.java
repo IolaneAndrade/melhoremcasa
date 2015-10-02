@@ -22,7 +22,7 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
 
     public DrugStoreAdapter(Context context, ArrayList<DrugStore> lista){
 
-        // Setting HospitalAdapter constructor
+        // Setting DrugStoreAdapter constructor
         super(context,0,lista);
         this.context = context;
         this.lista = lista;
@@ -47,10 +47,20 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
         TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
         textView1.setText((CharSequence) drugStorePosition.getTelephone());
 
-        // Setting distance of drugstore on list item
-        TextView textView2 = (TextView) convertView.findViewById(R.id.textView4_item);
-        textView2.setText("3KM");
+        if(this.lista.get(position).getDistance() < 1f) {
+            // Setting distance of drugstore on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            textViewDistance.setText(this.lista.get(position).getDistance()+" m");
+        }else {
+            // Setting distance of drugstore on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
+        }
 
         return convertView;
+    }
+    private Float convertToKM(Float distance){
+        return distance/1000;
+
     }
 }
