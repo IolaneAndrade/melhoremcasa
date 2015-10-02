@@ -7,6 +7,7 @@ import org.json.JSONException;
 import android.location.Location;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import api.Dao.DrugStoreDao;
@@ -14,6 +15,9 @@ import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.DrugStore;
+import mds.gpp.saudeemcasa.model.Stablishment;
+
+import static java.util.Collections.sort;
 
 
 public class DrugStoreController {
@@ -89,8 +93,8 @@ public class DrugStoreController {
 
     }
 
-    public static float[] setDistance(Context context,ArrayList<DrugStore> list) {
-        float[] results = new float[list.size()];
+    public static int[] setDistance(Context context,ArrayList<DrugStore> list) {
+        int[] results = new int[list.size()];
         GPSTracker gps = new GPSTracker(context);
         if(gps.canGetLocation()) {
             double userLongitude = gps.getLongitude();
@@ -106,9 +110,20 @@ public class DrugStoreController {
                         userLatitude, userLongitude, resultsadapter);
                 list.get(i).setDistance(resultsadapter[0]);
             }
+            sort(list, new DistanceComparator());
             return results;
         }else {
             return null;
+        }
+
+    }
+
+    public static class DistanceComparator implements Comparator<Stablishment>
+    {
+
+
+        public int compare(Stablishment stablishment1, Stablishment stablishment2) {
+            return stablishment1.getDistance()<(stablishment2.getDistance())? -1 : 1;
         }
 
     }
