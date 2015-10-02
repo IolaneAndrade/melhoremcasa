@@ -36,6 +36,7 @@ public class LoadingScreen extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         DrugStoreController drugstoreController = DrugStoreController.getInstance(getApplicationContext());
         try {
             drugstoreController.initControllerDrugstore();
