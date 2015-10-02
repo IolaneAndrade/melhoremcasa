@@ -29,6 +29,21 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
     }
 
     @Override
+    public int getCount() {
+        return 15;
+    }
+
+    @Override
+    public DrugStore getItem(int position) {
+        return lista.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Override method to get view
@@ -59,6 +74,7 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
 
         return convertView;
     }
+
     private Float convertToKM(Float distance){
         return distance/1000;
 
