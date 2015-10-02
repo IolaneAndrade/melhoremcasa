@@ -41,16 +41,16 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
         imageView.setImageResource(R.mipmap.melhor_em_casa);
 
         // Setting name of hospital on list item
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
-        textView.setText((CharSequence) hospitalPosition.getName());
+        TextView textViewName = (TextView) convertView.findViewById(R.id.textView2_item);
+        textViewName.setText((CharSequence) hospitalPosition.getName());
 
         // Setting phone of hospital on list item
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
-        textView1.setText((CharSequence) hospitalPosition.getTelephone());
+        TextView textViewPhone = (TextView) convertView.findViewById(R.id.textView3_item);
+        textViewPhone.setText((CharSequence) hospitalPosition.getTelephone());
 
         // Setting distance of hospital on list item
-        TextView textView2 = (TextView) convertView.findViewById(R.id.textView4_item);
-        textView2.setText("3KM");
+        TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+        textViewDistance.setText("7 Km");
 
         return convertView;
     }

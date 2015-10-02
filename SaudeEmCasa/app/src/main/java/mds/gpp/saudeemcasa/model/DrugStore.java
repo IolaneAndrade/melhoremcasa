@@ -16,4 +16,10 @@ public class DrugStore extends Stablishment {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
+
+    public DrugStore(String nameDrugStore, String telephoneDrugStore) {
+        super(nameDrugStore, telephoneDrugStore);
+    }
+
+   
 }

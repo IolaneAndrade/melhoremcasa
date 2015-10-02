@@ -60,4 +60,14 @@
         android:text="Endereço"
         android:textColor="#343434"
         android:textSize="15dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Distance"
+        android:id="@+id/tvDistance"
+        android:layout_alignBottom="@+id/tvCondition"
+        android:layout_toEndOf="@+id/tvCity" />
+
 </RelativeLayout>
