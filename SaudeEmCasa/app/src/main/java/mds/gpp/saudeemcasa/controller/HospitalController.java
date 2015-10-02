@@ -88,6 +88,7 @@ public class HospitalController {
         }
 
     }
+
     public int[] setDistance(Context context, ArrayList<Hospital> list) {
         int[] results = new int[list.size()];
         GPSTracker gps = new GPSTracker(context);

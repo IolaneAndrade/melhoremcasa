@@ -25,7 +25,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
         this.context = context;
         this.lista = lista;
     }
-
+    //Set the number of objects to show on list
     @Override
     public int getCount() {
         return 15;
