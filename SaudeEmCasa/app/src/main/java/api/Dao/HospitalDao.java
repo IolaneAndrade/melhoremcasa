@@ -92,16 +92,14 @@ public class HospitalDao extends Dao{
         sqliteDatabase = database.getReadableDatabase();
 
         String query = "SELECT * FROM " + tableName;
-        Log.e("i am","fine");
+
         Cursor cursor = sqliteDatabase.rawQuery( query, null );
-        Log.e("i am","fine");
+
         List<Hospital> listHospitals = new ArrayList<Hospital>();
-        Log.e("i am","fine");
+
         while( cursor.moveToNext() ) {
-            Log.e("i am","fine");
+
             Hospital hospital = new Hospital();
-
-
 
             hospital.setId(cursor.getInt(cursor
                     .getColumnIndex("hospitalId")));

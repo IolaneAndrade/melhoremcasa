@@ -1,6 +1,7 @@
 package mds.gpp.saudeemcasa.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONException;
 
@@ -43,18 +44,25 @@ public class DrugStoreController {
         DrugStoreController.drugStore = drugStore;
     }
 
-    public void updateDruStores(String json){
+    public void updateDruStores(String json,int type){
+        Log.e("JSON: ", json);
         //JSON
         JSONHelper jsonParser = new JSONHelper();
         //PARSE JSON to object
         List<DrugStore> tempDrugStoreList = null;
-
-        try {
-            tempDrugStoreList = jsonParser.drugstorePrivateListFromJSON(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(type == 0 ) {
+            try {
+                tempDrugStoreList = jsonParser.drugstorePrivateListFromJSON(json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                tempDrugStoreList = jsonParser.drugstorePublicListFromJSON(json);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-
         //insert private drugstores
         drugStoreDao.insertAllDrogstores(tempDrugStoreList);
         //setting DrugStores to local list
@@ -68,9 +76,9 @@ public class DrugStoreController {
         try {
             if (drugStoreDao.isDbEmpty()) {
                 //creating
-                HttpConnection httpConnection = new HttpConnection(context);
+                HttpConnection httpConnection = new HttpConnection(context,"drugstore");
                 //requesting
-                httpConnection.execute("159.203.95.153:8000/farmacia_popular","159.203.95.153:8000/farmacia_popular_conveniada");
+                httpConnection.execute("http://159.203.95.153:3000/farmacia_popular","http://159.203.95.153:3000/farmacia_popular_conveniada");
 
                 return true;
             } else {

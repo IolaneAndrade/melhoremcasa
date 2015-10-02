@@ -29,8 +29,8 @@ public class JSONHelper {
     * @throws JSONException
     * */
     public static List<Hospital> hospitalListFromJSON(String hospitalJsonList )throws JSONException {
-
-        JSONObject jsonObj = new JSONObject(hospitalJsonList);
+        JSONArray tmp = new JSONArray(hospitalJsonList);
+        JSONObject jsonObj = tmp.getJSONObject(0);
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
@@ -82,7 +82,8 @@ public class JSONHelper {
     public static List<DrugStore> drugstorePublicListFromJSON(String drugstoreJsonList )throws JSONException {
         drugstoreList.clear();
 
-        JSONObject jsonObj = new JSONObject(drugstoreJsonList);
+        JSONArray tmp = new JSONArray(drugstoreJsonList);
+        JSONObject jsonObj = tmp.getJSONObject(0);
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
@@ -128,14 +129,15 @@ public class JSONHelper {
     * */
     public static List<DrugStore> drugstorePrivateListFromJSON(String drugstoreJsonList )throws JSONException {
         drugstoreList.clear();
-        JSONObject jsonObj = new JSONObject(drugstoreJsonList);
+        JSONArray tmp = new JSONArray(drugstoreJsonList);
+        JSONObject jsonObj = tmp.getJSONObject(0);
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
-            DrugStore drugStore = null;
+            DrugStore drugStore;
 
             for( int index = 0; index < jArray.length(); index++ ) {
-
+                Log.e("im in","");
                 drugStore = new DrugStore();
 
                 drugStore.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));

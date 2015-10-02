@@ -12,11 +12,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "saudeEmCasaManager";
     private static final int DATABASE_VERSION = 7;
     //tables
-    private static final String USER_TABLE = "[User]";
-    private static final String STABLISHMENT_TABLE = "[Stablishment]";
+//   private static final String USER_TABLE = "[User]";
+//    private static final String STABLISHMENT_TABLE = "[Stablishment]";
     private static final String DRUGSTORE_TABLE = "[Drugstore]";
     private static final String HOSPITAL_TABLE = "[Hospital]";
-    private static final String COMMENT_TABLE = "[Comment]";
+//    private static final String COMMENT_TABLE = "[Comment]";
     //USER
 //    private static final String USER_ID = "[userId]";
 //    private static final String USER_EMAIL = "[emailUser]";
@@ -107,6 +107,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {/*Do nothing*/}
 }
