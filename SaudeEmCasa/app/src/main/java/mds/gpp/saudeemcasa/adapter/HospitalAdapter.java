@@ -27,6 +27,21 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
     }
 
     @Override
+    public int getCount() {
+        return 15;
+    }
+
+    @Override
+    public Hospital getItem(int position) {
+        return lista.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         // Override method to get view
