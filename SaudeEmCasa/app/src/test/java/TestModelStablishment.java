@@ -1,5 +1,4 @@
 import junit.framework.TestCase;
-import junit.framework.TestResult;
 
 import org.junit.Test;
 
@@ -65,4 +64,80 @@ public class TestModelStablishment extends TestCase{
         stablishment.setType("SUS");
         assertEquals(stablishment.getType(), "SUS");
     }
+
+    @Test
+    public void testSetTelephone(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setTelephone("(11)1111-2222");
+        assertTrue(stablishment.getTelephone() == "(11)1111-2222");
+    }
+
+    @Test
+    public void testGetTelephone(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setTelephone("(11)1111-2222");
+        assertEquals(stablishment.getTelephone(), "(11)1111-2222");
+    }
+
+    @Test
+    public void testSetName(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setName("STABLISHMENT");
+        assertTrue(stablishment.getName() == "STABLISHMENT");
+    }
+
+    @Test
+    public void testGetName(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setName("STABLISHMENT");
+        assertEquals(stablishment.getName(), "STABLISHMENT");
+    }
+
+    @Test
+    public void testSetCity(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setCity("CITY");
+        assertTrue(stablishment.getCity() == "CITY");
+    }
+
+    @Test
+    public void testGetCity() {
+        Stablishment stablishment = new Stablishment();
+        stablishment.setCity("CITY");
+        assertEquals(stablishment.getCity(), "CITY");
+    }
+
+    @Test
+    public void testSetAddress(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setAddress("ADDRESS");
+        assertTrue(stablishment.getAddress() == "ADDRESS");
+    }
+
+    @Test
+    public void testGetAddress(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setAddress("ADDRESS");
+        assertEquals(stablishment.getAddress(), "ADDRESS");
+    }
+
+    @Test
+    public void testSetState(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setState("DF");
+        assertTrue(stablishment.getState() == "DF");
+    }
+
+    @Test
+    public void testGetState(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setState("DF");
+        assertEquals(stablishment.getState(), "DF");
+    }
+
+    @Test
+    public void testSetRate(){
+
+    }
+    //rate distance FLOAT
 }
