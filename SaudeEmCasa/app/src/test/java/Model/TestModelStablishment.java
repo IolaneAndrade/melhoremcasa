@@ -173,5 +173,5 @@ public class TestModelStablishment extends TestCase{
             assertTrue(true);
 
     }
-    //rate distance FLOAT
+
 }
