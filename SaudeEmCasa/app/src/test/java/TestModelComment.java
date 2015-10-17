@@ -20,4 +20,18 @@ public class TestModelComment extends TestCase{
         assertEquals(67890, comment.getIdComment());
     }
 
+    @Test
+    public void testSetTextComment(){
+        Comment comment = new Comment();
+        comment.setTextComment("Good job!");
+        assertTrue(comment.getTextComment() == "Good job!" );
+    }
+
+    @Test
+    public void testGetTextComment(){
+        Comment comment = new Comment();
+        comment.setTextComment("Nice job!");
+        assertEquals("Nice job!", comment.getTextComment());
+    }
+
 }
