@@ -1,3 +1,5 @@
+package Model;
+
 import junit.framework.TestCase;
 
 import java.util.Date;
