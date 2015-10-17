@@ -1,3 +1,5 @@
+package Model;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -11,8 +13,7 @@ public class TestModelStablishment extends TestCase{
     @Test
     public void testSetLatitude(){
         Stablishment stablishment = new Stablishment();
-        String latitude = "10";
-        stablishment.setLatitude(latitude);
+        stablishment.setLatitude("10");
         assertEquals(stablishment.getLatitude(), "10");
     }
 
@@ -137,7 +138,40 @@ public class TestModelStablishment extends TestCase{
 
     @Test
     public void testSetRate(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setRate(2.1f);
+        assertTrue(stablishment.getRate() == 2.1f);
+    }
+
+    @Test
+    public void testGetRate(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setRate(2.1f);
+        assertEquals(stablishment.getRate(), 2.1f);
+    }
+
+    @Test
+    public void testSetDistance(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setDistance(100.01f);
+        assertTrue(stablishment.getDistance() == 100.01f);
+    }
+
+    @Test
+    public void testGetDistance(){
+        Stablishment stablishment = new Stablishment();
+        stablishment.setDistance(100.01f);
+        assertEquals(stablishment.getDistance(), 100.01f);
+    }
+
+    @Test
+    public void testStablishment(){
+        Stablishment stablishment = new Stablishment();
+        if (stablishment == null)
+            assertTrue(false);
+        else
+            assertTrue(true);
 
     }
-    //rate distance FLOAT
+
 }
