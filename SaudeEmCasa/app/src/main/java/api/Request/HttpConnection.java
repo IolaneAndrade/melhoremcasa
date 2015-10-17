@@ -38,85 +38,55 @@ public class HttpConnection extends AsyncTask<String, Integer, String > {
         this.context = context;
         this.op = op;
     }
-/*
-
-    public final static ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-        public String handleResponse( HttpResponse response ) throws IOException {
-            String result;
-
-            HttpEntity entity = response.getEntity();
-
-            BufferedReader buffer = new BufferedReader( new InputStreamReader(
-                    entity.getContent() ) );
-
-            StringBuilder builder = new StringBuilder();
-            String line = null;
-
-            while( ( line = buffer.readLine() ) != null ) {
-
-                builder.append( line + "\n" );
-            }
-
-            buffer.close();
-            result = builder.toString();
-
-            return result;
-        }
-    };
-
-    public synchronized static ResponseHandler<String> getResponseHandler() {
-        return responseHandler;
-    }
-*/
 
     @Override
     protected String doInBackground(String... params) {
-        HttpResponse response = null;
         String json = "";
 
         try {
 
-
             if(op.equals("hospital")){
+
                 Log.e("hospital","init");
+
                 HttpGet httpGet = new HttpGet(params[0]);
-               //hospitals
+
                 HttpClient client = new DefaultHttpClient();
 
-                ResponseHandler<String> responseHandler=new BasicResponseHandler();
-                //String responseBody = client.execute(get, responseHandler);
-                json = client.execute(httpGet, responseHandler);
+                json = Request(httpGet,client);
 
                 HospitalController.getInstance(context).updateHospital(json);
-                Log.e("hospital", "done");
+
+                Log.e("Resquest complete", params[0]);
             }else if(op.equals("drugstore")){
 
-                Log.e("drugstore","init");
+                Log.e("Request ","init");
+
                 HttpGet httpGet = new HttpGet(params[0]);
 
                 HttpClient client = new DefaultHttpClient();
 
-                ResponseHandler<String> responseHandler=new BasicResponseHandler();
+                json = Request(httpGet,client);
 
-                json = client.execute(httpGet,responseHandler);
+                DrugStoreController.getInstance(context).updateDruStores(json, 1);
 
-                DrugStoreController.getInstance(context).updateDruStores(json,1);
-                Log.e("I did it!", "drugstore");
+                Log.e("Request Complete", params[0]);
                 //public
                 httpGet = new HttpGet(params[1]);
 
                 client = new DefaultHttpClient();
 
-                json = client.execute(httpGet,responseHandler);
+                json = Request(httpGet,client);
 
                 DrugStoreController.getInstance(context).updateDruStores(json,0);
-                Log.e("I did it!", "drugstore 1");
+
+                Log.e("Resquest complete", params[1]);
             }
 
         } catch (ClientProtocolException e) {
-            Log.e("I did it!","nopsc");
+            Log.e("ClientProtocol"," Exception");
         } catch (IOException e) {
-            Log.e("I did it!","nops");
+            Log.e("IO ","Exception");
         }
 
         return json;
@@ -125,4 +95,10 @@ public class HttpConnection extends AsyncTask<String, Integer, String > {
     @Override
     protected void onPostExecute(String json){/*do nothing*/}
 
+    public String Request(HttpGet httpGet ,HttpClient client) throws IOException {
+
+        ResponseHandler<String> responseHandler=new BasicResponseHandler();
+
+        return client.execute(httpGet,responseHandler);
+    }
 }
