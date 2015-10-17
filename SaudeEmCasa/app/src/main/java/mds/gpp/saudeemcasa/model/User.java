@@ -11,6 +11,10 @@ public class User {
     protected String emailUser;
     protected Date birthDateUser;
 
+    public User(){
+
+    }
+
     public User(String nameUser, String emailUser, Date birthDateUser) {
         this.nameUser = nameUser;
         this.emailUser = emailUser;

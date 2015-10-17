@@ -24,6 +24,34 @@ public class TestModelUser extends TestCase{
     }
 
     @Test
+    public void testSetNameUser(){
+        User user = new User();
+        user.setNameUser("Amy Lee");
+        assertTrue(user.getNameUser() == "Amy Lee");
+    }
+
+    @Test
+    public void testGetNameUser(){
+        User user = new User();
+        user.setNameUser("Lzy Hale");
+        assertEquals("Lzy Hale", user.getNameUser());
+    }
+
+    @Test
+    public void testSetEmailUser(){
+        User user = new User();
+        user.setEmailUser("AmyLee@gmail.com");
+        assertTrue(user.getEmailUser() == "AmyLee@gmail.com");
+    }
+
+    @Test
+    public void testGetEmailUser(){
+        User user = new User();
+        user.setEmailUser("LzyHale@gmail.com");
+        assertEquals("LzyHale@gmail.com", user.getEmailUser());
+    }
+
+    @Test
     public void testUser(){
         User user = new User();
         if(user == null){
