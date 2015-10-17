@@ -36,6 +36,15 @@ public class TestModelHospital extends TestCase {
         assertEquals("9", hospital.getDistrict());
     }
 
+    @Test
+    public void testHospital(){
+        Hospital hospital = new Hospital();
+        if(hospital == null){
+            assertTrue(false);
+        }else {
+            assertTrue(true);
+        }
+    }
 
 
 }

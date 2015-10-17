@@ -1,5 +1,7 @@
 import junit.framework.TestCase;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import mds.gpp.saudeemcasa.model.Comment;
@@ -24,7 +26,7 @@ public class TestModelComment extends TestCase{
     public void testSetTextComment(){
         Comment comment = new Comment();
         comment.setTextComment("Good job!");
-        assertTrue(comment.getTextComment() == "Good job!" );
+        assertTrue(comment.getTextComment() == "Good job!");
     }
 
     @Test
@@ -34,4 +36,13 @@ public class TestModelComment extends TestCase{
         assertEquals("Nice job!", comment.getTextComment());
     }
 
+    @Test
+    public void testComment(){
+        Comment comment = new Comment();
+        if(comment == null){
+            assertTrue(false);
+        }else {
+            assertTrue(true);
+        }
+    }
 }
