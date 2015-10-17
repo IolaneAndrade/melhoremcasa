@@ -116,7 +116,4 @@ package mds.gpp.saudeemcasa.model;
         this.distance = distance;
     }
 
-    public float getdistance() {
-        return distance;
-    }
 }
