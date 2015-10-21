@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,4 +12,34 @@
     android:background="#F5F5F5"
     android:contextClickable="false">
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Telephone"
+        android:id="@+id/textViewDrugTel"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/textViewAddress"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="drugstoreName"
+        android:id="@+id/textViewDrugName"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Address"
+        android:id="@+id/textViewAddress"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/textViewDrugName"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

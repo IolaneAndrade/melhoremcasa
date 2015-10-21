@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -71,12 +72,28 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
             textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
         }
-
+        convertView.setOnClickListener(new OnItemClickListener(position));
         return convertView;
+
     }
 
+    private class OnItemClickListener implements View.OnClickListener {
+        private int mPosition;
+
+        OnItemClickListener(int position) {
+            mPosition = position;
+        }
+
+        public void onClick(View v) {
+
+            System.out.println(mPosition);
+
+        }
+    }
     private Float convertToKM(Float distance){
         return distance/1000;
 
     }
+
+
 }
