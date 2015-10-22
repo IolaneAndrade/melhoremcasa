@@ -57,7 +57,7 @@ public class DrugStoreList extends Activity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position,
                                     long id) {
-                System.out.println(position);
+                drugStoreController.setDrugStore(list.get(position));
                 Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
 
                 startActivity(intent);

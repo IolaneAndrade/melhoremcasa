@@ -44,6 +44,9 @@ public class DrugStoreController {
     public void setDrugStore( DrugStore drugStore ) {
         DrugStoreController.drugStore = drugStore;
     }
+    public DrugStore getDrugstore() {
+        return drugStore;
+    }
 
     public void updateDruStores(String json,int type){
         Log.e("JSON: ", json);
