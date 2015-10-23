@@ -24,18 +24,25 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
  */
 
 public class LoadingScreen extends Activity {
+    HospitalController hospitalController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
         final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa_logo);
+        //------//
+        hospitalController = HospitalController.getInstance(getApplicationContext());
+        //---------//
+        requestHospital();
+    }
+
+    public void requestHospital() {
         //DIALOG
-        final ProgressDialog progress = new ProgressDialog( this );
+        final ProgressDialog progress = new ProgressDialog(this);
         progress.setMessage("Carregando dados...");
         progress.show();
-        //------//
-
+        //-----//
         new Thread() {
 
             public void run() {
@@ -59,8 +66,32 @@ public class LoadingScreen extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }
+                runOnUiThread(new Runnable() {
 
+                    @Override
+                    public void run() {
+                        progress.setMessage("Dados carregados");
+
+                        if (false) {
+                            toListScreen();
+                        } else {
+                            /* ! Nothing To Do. */
+                        }
+
+                        progress.dismiss();
+                        Looper.loop();
+                    }
+                });
+            }
+        }.start();
+    }
+
+    private void toListScreen() {
+        finish();
+        Intent nextScreen = new Intent(getBaseContext(), ChooseScreen.class);
+        startActivity(nextScreen);
+    }
+}
         /*final ImageView spinner = (ImageView) findViewById(R.id.spinner);
 
         final Animation spinnerAnimation = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
@@ -89,5 +120,4 @@ public class LoadingScreen extends Activity {
             }
         });
     }*/
-    }
-}
+
