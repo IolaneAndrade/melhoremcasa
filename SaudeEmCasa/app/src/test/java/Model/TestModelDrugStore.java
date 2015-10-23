@@ -1,3 +1,5 @@
+package Model;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -20,4 +22,13 @@ public class TestModelDrugStore extends TestCase {
         assertEquals("2034", drugStore.getPostalCode());
     }
 
+    @Test
+    public void testDrugStore(){
+        DrugStore drugStore = new DrugStore();
+        if(drugStore == null){
+            assertTrue(false);
+        }else {
+            assertTrue(true);
+        }
+    }
 }
