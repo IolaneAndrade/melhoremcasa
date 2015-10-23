@@ -11,7 +11,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-import mds.gpp.saudeemcasa.MainActivity;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
