@@ -28,7 +28,7 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
 /*
  * Created by lucas on 9/28/15.
  */
-public class HttpConnection extends AsyncTask<String, Integer, String > {
+public class HttpConnection /*extends AsyncTask<String, Integer, String >*/ {
 
     private Context context;
     protected String op;
@@ -38,8 +38,59 @@ public class HttpConnection extends AsyncTask<String, Integer, String > {
         this.context = context;
         this.op = op;
     }
+    public String Request(String... params){
+        String json = "";
 
-    @Override
+        try {
+
+            if(op.equals("hospital")){
+
+                Log.e("hospital","init");
+
+                HttpGet httpGet = new HttpGet(params[0]);
+
+                HttpClient client = new DefaultHttpClient();
+
+                json = Request(httpGet,client);
+
+                HospitalController.getInstance(context).updateHospital(json);
+
+                Log.e("Resquest complete", params[0]);
+            }else if(op.equals("drugstore")){
+
+                Log.e("Request ","init");
+
+                HttpGet httpGet = new HttpGet(params[0]);
+
+                HttpClient client = new DefaultHttpClient();
+
+                json = Request(httpGet,client);
+
+                DrugStoreController.getInstance(context).updateDruStores(json, 1);
+
+                Log.e("Request Complete", params[0]);
+                //public
+                httpGet = new HttpGet(params[1]);
+
+                client = new DefaultHttpClient();
+
+                json = Request(httpGet,client);
+
+                DrugStoreController.getInstance(context).updateDruStores(json,0);
+
+                Log.e("Resquest complete", params[1]);
+            }
+
+        } catch (ClientProtocolException e) {
+            Log.e("ClientProtocol"," Exception");
+        } catch (IOException e) {
+            Log.e("IO ","Exception");
+        }
+
+        return json;
+    }
+
+    /*@Override
     protected String doInBackground(String... params) {
         String json = "";
 
@@ -91,9 +142,9 @@ public class HttpConnection extends AsyncTask<String, Integer, String > {
 
         return json;
 
-    }
-    @Override
-    protected void onPostExecute(String json){/*do nothing*/}
+    }*/
+//    @Override
+//    protected void onPostExecute(String json){/*do nothing*/}
 
     public String Request(HttpGet httpGet ,HttpClient client) throws IOException {
 

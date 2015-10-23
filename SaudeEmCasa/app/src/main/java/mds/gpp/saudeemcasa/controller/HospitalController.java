@@ -70,12 +70,12 @@ public class HospitalController {
     }
 
     public boolean initControllerHospital() throws IOException, JSONException {
-        try {
+
             if (hospitalDao.isDbEmpty()) {
                 //creating
                 HttpConnection httpConnection = new HttpConnection(context,"hospital");
                 //requesting
-                    httpConnection.execute("http://159.203.95.153:3000/habilitados");
+                    httpConnection.Request("http://159.203.95.153:3000/habilitados");
 
                 return true;
             } else {
@@ -83,9 +83,6 @@ public class HospitalController {
                 hospitalList = hospitalDao.getAllHospitals();
                 return true;
             }
-        }catch (Exception e){
-            return false;
-        }
 
     }
 

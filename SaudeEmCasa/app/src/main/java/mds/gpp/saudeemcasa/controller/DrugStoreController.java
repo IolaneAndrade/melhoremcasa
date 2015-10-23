@@ -74,12 +74,12 @@ public class DrugStoreController {
     }
 
     public boolean initControllerDrugstore() throws IOException, JSONException {
-        try {
+
             if (drugStoreDao.isDbEmpty()) {
                 //creating
                 HttpConnection httpConnection = new HttpConnection(context,"drugstore");
                 //requesting
-                httpConnection.execute("http://159.203.95.153:3000/farmacia_popular","http://159.203.95.153:3000/farmacia_popular_conveniada");
+                httpConnection.Request("http://159.203.95.153:3000/farmacia_popular","http://159.203.95.153:3000/farmacia_popular_conveniada");
 
                 return true;
             } else {
@@ -87,9 +87,7 @@ public class DrugStoreController {
                 drugStoreList = drugStoreDao.getAllDrugStores();
                 return true;
             }
-        }catch (Exception e){
-            return false;
-        }
+
 
     }
 
