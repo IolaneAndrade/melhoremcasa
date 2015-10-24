@@ -90,13 +90,13 @@ public class LoadingScreen extends Activity {
                     public void run() {
                         progress.setMessage("Dados carregados");
 
-                        if (false) {
+                        if (!messageFailedConnection.isShowing()) {
                             toListScreen();
                         } else {
                             /* ! Nothing To Do. */
                         }
 
-                        progress.dismiss();
+
                         Looper.loop();
                     }
                 });

@@ -47,7 +47,7 @@ public class DrugStoreController {
     }
 
     public void updateDruStores(String json,int type){
-        Log.e("JSON: ", json);
+        /*Log.e("JSON: ", json);
         //JSON
         JSONHelper jsonParser = new JSONHelper();
         //PARSE JSON to object
@@ -68,7 +68,7 @@ public class DrugStoreController {
         //insert private drugstores
         drugStoreDao.insertAllDrogstores(tempDrugStoreList);
         //setting DrugStores to local list
-        drugStoreList = drugStoreDao.getAllDrugStores();
+        drugStoreList = drugStoreDao.getAllDrugStores();*/
     }
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
@@ -76,20 +76,23 @@ public class DrugStoreController {
 
     public boolean initControllerDrugstore() throws IOException, JSONException,ConnectionErrorException {
 
-            if (drugStoreDao.isDbEmpty()) {
+           /* if (drugStoreDao.isDbEmpty()) {
                 //creating
-                HttpConnection httpConnection = new HttpConnection(context,"drugstore");
-                //requesting
-                httpConnection.Request("http://159.203.95.153:3000/farmacia_popular","http://159.203.95.153:3000/farmacia_popular_conveniada");
 
+                //requesting
+                String jsonPublic = HttpConnection.Request("http://159.203.95.153:3000/farmacia_popular");
+
+                HttpConnection httpConnectionPrivate = new HttpConnection(context);
+                //requesting
+                String jsonPrivate = httpConnectionPrivate.Request("http://159.203.95.153:3000/farmacia_popular_conveniada");
                 return true;
             } else {
                 //just setting DrugStores to local list
                 drugStoreList = drugStoreDao.getAllDrugStores();
                 return true;
-            }
+            }*/
 
-
+        return true;
     }
 
     public static int[] setDistance(Context context,ArrayList<DrugStore> list) {
