@@ -21,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import api.Exception.ConnectionErrorException;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 
@@ -38,7 +39,7 @@ public class HttpConnection /*extends AsyncTask<String, Integer, String >*/ {
         this.context = context;
         this.op = op;
     }
-    public String Request(String... params){
+    public String Request(String... params) throws ConnectionErrorException{
         String json = "";
 
         try {
@@ -82,9 +83,9 @@ public class HttpConnection /*extends AsyncTask<String, Integer, String >*/ {
             }
 
         } catch (ClientProtocolException e) {
-            Log.e("ClientProtocol"," Exception");
+            throw new ConnectionErrorException();
         } catch (IOException e) {
-            Log.e("IO ","Exception");
+            throw new ConnectionErrorException();
         }
 
         return json;

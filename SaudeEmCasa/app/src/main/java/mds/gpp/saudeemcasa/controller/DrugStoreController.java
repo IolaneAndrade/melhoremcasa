@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import api.Dao.DrugStoreDao;
+import api.Exception.ConnectionErrorException;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
@@ -73,7 +74,7 @@ public class DrugStoreController {
         return drugStoreList;
     }
 
-    public boolean initControllerDrugstore() throws IOException, JSONException {
+    public boolean initControllerDrugstore() throws IOException, JSONException,ConnectionErrorException {
 
             if (drugStoreDao.isDbEmpty()) {
                 //creating

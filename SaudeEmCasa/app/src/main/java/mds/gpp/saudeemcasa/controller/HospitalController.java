@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import api.Dao.HospitalDao;
+import api.Exception.ConnectionErrorException;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
@@ -69,7 +70,7 @@ public class HospitalController {
         return hospitalList;
     }
 
-    public boolean initControllerHospital() throws IOException, JSONException {
+    public boolean initControllerHospital() throws IOException, JSONException, ConnectionErrorException {
 
             if (hospitalDao.isDbEmpty()) {
                 //creating
