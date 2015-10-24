@@ -46,51 +46,28 @@ public class DrugStoreController {
         DrugStoreController.drugStore = drugStore;
     }
 
-    /*public void updateDruStores(String json,int type){
-        Log.e("JSON: ", json);
-        //JSON
-        JSONHelper jsonParser = new JSONHelper();
-        //PARSE JSON to object
-        List<DrugStore> tempDrugStoreList = null;
-        if(type == 0 ) {
-            try {
-                tempDrugStoreList = jsonParser.drugstorePrivateListFromJSON(json);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }else{
-            try {
-                tempDrugStoreList = jsonParser.drugstorePublicListFromJSON(json);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        //insert private drugstores
-        drugStoreDao.insertAllDrogstores(tempDrugStoreList);
-        //setting DrugStores to local list
-        drugStoreList = drugStoreDao.getAllDrugStores();
-    }*/
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
     }
 
-    public boolean initControllerDrugstore() throws IOException, JSONException,ConnectionErrorException {
+    //this is the main method for all backend work
+    public void initControllerDrugstore() throws IOException, JSONException,ConnectionErrorException {
 
             if (drugStoreDao.isDbEmpty()) {
 
                 HttpConnection httpConnectionPublic = new HttpConnection(context);
-                //requesting
+                //requesting public drugstore
                 String jsonPublic = httpConnectionPublic.Request("http://159.203.95.153:3000/farmacia_popular");
 
                 HttpConnection httpConnectionPrivate = new HttpConnection(context);
-                //requesting
+                //requesting private drugstore
                 String jsonPrivate = httpConnectionPrivate.Request("http://159.203.95.153:3000/farmacia_popular_conveniada");
-
+                //if both were  sucessful
                 if(jsonPublic != null && jsonPrivate !=null){
-                    //JSON
-                    JSONHelper jsonParser = new JSONHelper(context);
-                    //PARSE JSON to object
 
+                    JSONHelper jsonParser = new JSONHelper(context);
+                    //Json parser and database insert
+                    //this way there is no more error of memory stack
                     if(jsonParser.drugstorePublicListFromJSON(jsonPublic) && jsonParser.drugstorePrivateListFromJSON(jsonPrivate)){
                         drugStoreList = drugStoreDao.getAllDrugStores();
                     }else{/*error introducing to database*/}
@@ -99,10 +76,7 @@ public class DrugStoreController {
             } else {
                 //just setting DrugStores to local list
                 drugStoreList = drugStoreDao.getAllDrugStores();
-                return true;
             }
-
-        return true;
     }
 
     public static int[] setDistance(Context context,ArrayList<DrugStore> list) {

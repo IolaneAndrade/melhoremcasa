@@ -50,39 +50,32 @@ public class HospitalController {
         HospitalController.hospital = hospital;
     }
 
-    public void updateHospital(String json){
-        JSONHelper jsonParser = new JSONHelper();
-        List<Hospital> tempHospitalList = null;
-        try {
-            tempHospitalList = jsonParser.hospitalListFromJSON(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //insert in DB
-        Log.e("I did it!", String.valueOf(hospitalList.size()));
-
-        HospitalDao.getInstance(context).insertAllHospitals(tempHospitalList);
-        hospitalList = hospitalDao.getAllHospitals();
-
-    }
     public static List<Hospital> getAllHospitals(){
 
         return hospitalList;
     }
 
-    public boolean initControllerHospital() throws IOException, JSONException, ConnectionErrorException {
+    public void initControllerHospital() throws IOException, JSONException, ConnectionErrorException {
 
             if (hospitalDao.isDbEmpty()) {
                 //creating
-                HttpConnection httpConnection = new HttpConnection(context,"hospital");
+                HttpConnection httpConnection = new HttpConnection(context);
                 //requesting
-                    httpConnection.Request("http://159.203.95.153:3000/habilitados");
+                String jsonHospital = httpConnection.Request("http://159.203.95.153:3000/habilitados");
 
-                return true;
+                JSONHelper jsonParser = new JSONHelper(context);
+
+                if(jsonHospital !=null){
+                    if(jsonParser.hospitalListFromJSON(jsonHospital)){
+                        hospitalList = hospitalDao.getAllHospitals();
+                    }else{/*error introducing to database*/}
+                }else {/*error on connection*/}
+
+
             } else {
                 //just setting hospitals to local list
                 hospitalList = hospitalDao.getAllHospitals();
-                return true;
+
             }
 
     }
