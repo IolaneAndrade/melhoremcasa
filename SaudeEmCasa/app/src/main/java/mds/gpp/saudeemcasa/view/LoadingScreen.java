@@ -64,7 +64,7 @@ public class LoadingScreen extends Activity {
 
                 HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
 
-                try {
+                /*try {
                     hospitalController.initControllerHospital();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -72,7 +72,7 @@ public class LoadingScreen extends Activity {
                     e.printStackTrace();
                 } catch (ConnectionErrorException e) {
                     showMessageOnThread( messageFailedConnection, messageHandler);
-                }
+                }*/
 
                 DrugStoreController drugstoreController = DrugStoreController.getInstance(getApplicationContext());
                 try {

@@ -1,5 +1,6 @@
 package api.Helper;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -9,6 +10,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import api.Dao.DrugStoreDao;
+import api.Dao.HospitalDao;
 import mds.gpp.saudeemcasa.model.DrugStore;
 import mds.gpp.saudeemcasa.model.Hospital;
 
@@ -17,8 +20,15 @@ import mds.gpp.saudeemcasa.model.Hospital;
  */
 public class JSONHelper {
 
+
+
+
+    public JSONHelper(Context context){
+        drugStoreDao = DrugStoreDao.getInstance(context);
+        hospitalDao =HospitalDao.getInstance(context);
+    }
     //list of hospitals to be populated
-    private static List<Hospital> hospitalList = new ArrayList<Hospital>();
+    HospitalDao hospitalDao;
 
     /*
     * @param hospitalJsonList
@@ -28,7 +38,7 @@ public class JSONHelper {
     *
     * @throws JSONException
     * */
-    public static List<Hospital> hospitalListFromJSON(String hospitalJsonList )throws JSONException {
+    public boolean hospitalListFromJSON(String hospitalJsonList )throws JSONException {
         JSONArray tmp = new JSONArray(hospitalJsonList);
         JSONObject jsonObj = tmp.getJSONObject(0);
         JSONArray jArray = jsonObj.getJSONArray("features");
@@ -60,16 +70,18 @@ public class JSONHelper {
 
                 hospital.setName(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(8).getString("no_fantasia"));
 
-                hospitalList.add(hospital);
+                hospitalDao.insertHospital(hospital);
+
+                System.out.println("hospital inserted");
             }
 
-        } catch( NullPointerException npe ) {}
+        } catch( NullPointerException npe ) {return false;}
 
-        return hospitalList;
+        return true;
     }
 
     //list of hospitals to be populated
-    private static List<DrugStore> drugstoreList = new ArrayList<DrugStore>();
+    DrugStoreDao drugStoreDao;
 
     /*
     * @param drugstoreList
@@ -79,15 +91,14 @@ public class JSONHelper {
     *
     * @throws JSONException
     * */
-    public static List<DrugStore> drugstorePublicListFromJSON(String drugstoreJsonList )throws JSONException {
-        drugstoreList.clear();
+    public boolean drugstorePublicListFromJSON(String drugstoreJsonList )throws JSONException {
 
         JSONArray tmp = new JSONArray(drugstoreJsonList);
         JSONObject jsonObj = tmp.getJSONObject(0);
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
-            DrugStore drugStore = null;
+            DrugStore drugStore;
 
             for( int index = 0; index < jArray.length(); index++ ) {
 
@@ -110,13 +121,18 @@ public class JSONHelper {
                 drugStore.setName("Farmácia popular do Brasil");
 
                 drugStore.setType("FARMACIAPOPULAR");
-                Log.e("POSTALCODE: ", drugStore.getPostalCode());
-                drugstoreList.add(drugStore);
+
+                drugStoreDao.insertDrugstore(drugStore);
+
+                System.out.println("drugstore inserted");
+
             }
 
-        } catch( NullPointerException npe ) {}
+        } catch( NullPointerException npe ) {
+            return false;
+        }
 
-        return drugstoreList;
+        return true;
     }
 
     /*
@@ -127,8 +143,8 @@ public class JSONHelper {
     *
     * @throws JSONException
     * */
-    public static List<DrugStore> drugstorePrivateListFromJSON(String drugstoreJsonList )throws JSONException {
-        drugstoreList.clear();
+    public boolean drugstorePrivateListFromJSON(String drugstoreJsonList )throws JSONException {
+
         JSONArray tmp = new JSONArray(drugstoreJsonList);
         JSONObject jsonObj = tmp.getJSONObject(0);
         JSONArray jArray = jsonObj.getJSONArray("features");
@@ -158,13 +174,17 @@ public class JSONHelper {
                 drugStore.setState(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(9).getString("uf"));
 
                 drugStore.setType("AQUITEMFARMACIAPOPULAR");
-                Log.e("POSTALCODE: ", drugStore.getPostalCode());
-                drugstoreList.add(drugStore);
+
+                drugStoreDao.insertDrugstore(drugStore);
+
+                System.out.println("drugstore inserted");
             }
 
-        } catch( NullPointerException npe ) {}
+        } catch( NullPointerException npe ) {
+            return false;
+        }
 
-        return drugstoreList;
+        return true;
     }
 }
 

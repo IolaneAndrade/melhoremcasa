@@ -46,8 +46,8 @@ public class DrugStoreController {
         DrugStoreController.drugStore = drugStore;
     }
 
-    public void updateDruStores(String json,int type){
-        /*Log.e("JSON: ", json);
+    /*public void updateDruStores(String json,int type){
+        Log.e("JSON: ", json);
         //JSON
         JSONHelper jsonParser = new JSONHelper();
         //PARSE JSON to object
@@ -68,29 +68,39 @@ public class DrugStoreController {
         //insert private drugstores
         drugStoreDao.insertAllDrogstores(tempDrugStoreList);
         //setting DrugStores to local list
-        drugStoreList = drugStoreDao.getAllDrugStores();*/
-    }
+        drugStoreList = drugStoreDao.getAllDrugStores();
+    }*/
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
     }
 
     public boolean initControllerDrugstore() throws IOException, JSONException,ConnectionErrorException {
 
-           /* if (drugStoreDao.isDbEmpty()) {
-                //creating
+            if (drugStoreDao.isDbEmpty()) {
 
+                HttpConnection httpConnectionPublic = new HttpConnection(context);
                 //requesting
-                String jsonPublic = HttpConnection.Request("http://159.203.95.153:3000/farmacia_popular");
+                String jsonPublic = httpConnectionPublic.Request("http://159.203.95.153:3000/farmacia_popular");
 
                 HttpConnection httpConnectionPrivate = new HttpConnection(context);
                 //requesting
                 String jsonPrivate = httpConnectionPrivate.Request("http://159.203.95.153:3000/farmacia_popular_conveniada");
-                return true;
+
+                if(jsonPublic != null && jsonPrivate !=null){
+                    //JSON
+                    JSONHelper jsonParser = new JSONHelper(context);
+                    //PARSE JSON to object
+
+                    if(jsonParser.drugstorePublicListFromJSON(jsonPublic) && jsonParser.drugstorePrivateListFromJSON(jsonPrivate)){
+                        drugStoreList = drugStoreDao.getAllDrugStores();
+                    }else{/*error introducing to database*/}
+                }else {/*error on connection*/}
+
             } else {
                 //just setting DrugStores to local list
                 drugStoreList = drugStoreDao.getAllDrugStores();
                 return true;
-            }*/
+            }
 
         return true;
     }
