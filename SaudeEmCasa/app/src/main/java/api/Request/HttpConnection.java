@@ -40,6 +40,7 @@ public class HttpConnection{
     public String Request(String ipAddress) throws ConnectionErrorException{
         String json;
         try{
+            System.out.println("Starting connection with " + ipAddress);
             HttpGet httpGet = new HttpGet(ipAddress);
 
             HttpClient client = new DefaultHttpClient();

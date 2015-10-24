@@ -40,10 +40,10 @@ public class LoadingScreen extends Activity {
         //------//
         hospitalController = HospitalController.getInstance(getApplicationContext());
         //---------//
-        requestHospital();
+        requestStablishment();
     }
 
-    public void requestHospital() {
+    public void requestStablishment() {
         final AlertDialog.Builder msgNeutralBuilder =
                 new AlertDialog.Builder( this )
                         .setNeutralButton( "Retry", new RetryButtonListener() );
@@ -62,7 +62,7 @@ public class LoadingScreen extends Activity {
             public void run() {
                 Looper.prepare();
 
-                HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
+                final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
 
                 try {
                     hospitalController.initControllerHospital();
@@ -70,11 +70,11 @@ public class LoadingScreen extends Activity {
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                } catch (ConnectionErrorException e) {
-                    showMessageOnThread( messageFailedConnection, messageHandler);
+                } catch (ConnectionErrorException cee) {
+                    showMessageOnThread(messageFailedConnection, messageHandler);
                 }
 
-                DrugStoreController drugstoreController = DrugStoreController.getInstance(getApplicationContext());
+                final DrugStoreController drugstoreController = DrugStoreController.getInstance(getApplicationContext());
                 try {
                     drugstoreController.initControllerDrugstore();
                 } catch (IOException e) {
@@ -82,7 +82,7 @@ public class LoadingScreen extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }catch (ConnectionErrorException cee){
-                    showMessageOnThread( messageFailedConnection, messageHandler);
+                    showMessageOnThread(messageFailedConnection, messageHandler);
                 }
                 runOnUiThread(new Runnable() {
 
@@ -90,19 +90,21 @@ public class LoadingScreen extends Activity {
                     public void run() {
                         progress.setMessage("Dados carregados");
 
-                        if (!messageFailedConnection.isShowing()) {
+                        if (drugstoreController.getAllDrugstores().size()>0 && hospitalController.getAllHospitals().size()>0) {
                             toListScreen();
                         } else {
                             /* ! Nothing To Do. */
                         }
 
 
+                        progress.dismiss();
                         Looper.loop();
                     }
                 });
             }
         }.start();
     }
+
     private void showMessageOnThread( final AlertDialog message,
                                       Handler messageHandler ) {
 
@@ -121,7 +123,7 @@ public class LoadingScreen extends Activity {
         @Override
         public void onClick( DialogInterface dialog, int which ) {
             dialog.dismiss();
-            
+
         }
     }
 }
