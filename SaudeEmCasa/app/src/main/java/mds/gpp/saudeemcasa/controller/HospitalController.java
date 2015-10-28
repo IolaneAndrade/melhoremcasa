@@ -2,7 +2,6 @@ package mds.gpp.saudeemcasa.controller;
 
 import android.content.Context;
 import android.location.Location;
-import android.util.Log;
 
 import org.json.JSONException;
 
@@ -59,9 +58,9 @@ public class HospitalController {
 
             if (hospitalDao.isDbEmpty()) {
                 //creating
-                HttpConnection httpConnection = new HttpConnection(context);
+                HttpConnection httpConnection = new HttpConnection();
                 //requesting
-                String jsonHospital = httpConnection.Request("http://159.203.95.153:3000/habilitados");
+                String jsonHospital = httpConnection.newRequest("http://159.203.95.153:3000/habilitados");
 
                 JSONHelper jsonParser = new JSONHelper(context);
 

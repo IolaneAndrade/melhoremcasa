@@ -1,7 +1,6 @@
 package mds.gpp.saudeemcasa.controller;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.json.JSONException;
 import android.location.Location;
@@ -55,13 +54,13 @@ public class DrugStoreController {
 
             if (drugStoreDao.isDbEmpty()) {
 
-                HttpConnection httpConnectionPublic = new HttpConnection(context);
+                HttpConnection httpConnectionPublic = new HttpConnection();
                 //requesting public drugstore
-                String jsonPublic = httpConnectionPublic.Request("http://159.203.95.153:3000/farmacia_popular");
+                String jsonPublic = httpConnectionPublic.newRequest("http://159.203.95.153:3000/farmacia_popular");
 
-                HttpConnection httpConnectionPrivate = new HttpConnection(context);
+                HttpConnection httpConnectionPrivate = new HttpConnection();
                 //requesting private drugstore
-                String jsonPrivate = httpConnectionPrivate.Request("http://159.203.95.153:3000/farmacia_popular_conveniada");
+                String jsonPrivate = httpConnectionPrivate.newRequest("http://159.203.95.153:3000/farmacia_popular_conveniada");
                 //if both were  sucessful
                 if(jsonPublic != null && jsonPrivate !=null){
 

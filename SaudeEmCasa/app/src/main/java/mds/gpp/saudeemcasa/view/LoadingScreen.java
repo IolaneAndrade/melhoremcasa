@@ -7,19 +7,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.os.Handler;
 
-import org.apache.http.client.ResponseHandler;
 import org.json.JSONException;
 
 import java.io.IOException;
 
 
 import api.Exception.ConnectionErrorException;
-import api.Request.HttpConnection;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
@@ -44,13 +40,12 @@ public class LoadingScreen extends Activity {
     }
 
     public void requestStablishment() {
-        final AlertDialog.Builder msgNeutralBuilder =
-                new AlertDialog.Builder( this )
-                        .setNeutralButton( "Retry", new RetryButtonListener() );
+        final AlertDialog.Builder msgNeutralBuilder = new AlertDialog.Builder( this );
 
-        msgNeutralBuilder
-                .setTitle( "Falha na Conexão" )
-                .setMessage("Não foi possível baixar os dados do servidor.");
+        msgNeutralBuilder.setTitle("Falha na Conexão").setMessage("Não foi possível baixar os dados do servidor.");
+        msgNeutralBuilder.setPositiveButton("Retry", new RetryButtonListener());
+        msgNeutralBuilder.setNegativeButton("Cancel", new CancelButtonListener());
+
         final AlertDialog messageFailedConnection = msgNeutralBuilder.create();
         //DIALOG
         final ProgressDialog progress = new ProgressDialog(this);
@@ -75,6 +70,7 @@ public class LoadingScreen extends Activity {
                 }
 
                 final DrugStoreController drugstoreController = DrugStoreController.getInstance(getApplicationContext());
+
                 try {
                     drugstoreController.initControllerDrugstore();
                 } catch (IOException e) {
@@ -122,37 +118,21 @@ public class LoadingScreen extends Activity {
     private class RetryButtonListener implements DialogInterface.OnClickListener {
         @Override
         public void onClick( DialogInterface dialog, int which ) {
-            dialog.dismiss();
+                dialog.dismiss();
 
+                Intent myAction = new Intent(LoadingScreen.this, LoadingScreen.class);
+
+                LoadingScreen.this.startActivity(myAction);
+                LoadingScreen.this.finish();
         }
     }
+    private class CancelButtonListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick( DialogInterface dialog, int which ) {
+            dialog.dismiss();
+
+            LoadingScreen.this.finish();
+        }
+
+    }
 }
-        /*final ImageView spinner = (ImageView) findViewById(R.id.spinner);
-
-        final Animation spinnerAnimation = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
-        final Animation fadeOutEffect = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
-
-        spinner.startAnimation(spinnerAnimation);
-        spinnerAnimation.setAnimationListener(new Animation.AnimationListener(){
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                spinner.startAnimation(fadeOutEffect);
-
-                finish();
-                Intent nextScreen = new Intent(getBaseContext(), ChooseScreen.class);
-                startActivity(nextScreen);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }*/
-
