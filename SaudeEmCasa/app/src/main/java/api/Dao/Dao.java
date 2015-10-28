@@ -14,12 +14,15 @@ public class Dao {
     protected static SQLiteDatabase sqliteDatabase;
     protected static Context context;
 
-    protected long insertAndClose( SQLiteDatabase sqliteDatabase, String table,
-                                   ContentValues values ) {
+    protected long insertAndClose(SQLiteDatabase sqLiteDatabase, String table, ContentValues values ) {
+        sqliteDatabase = database.open();
 
-        long resultInsert = sqliteDatabase.insert( table, null, values );
+        System.out.print("sqlite: "+ sqLiteDatabase);
+        //System.out.println(database;
+        sqLiteDatabase.insert(table, null, values);
+        long resultInsert = 1;
 
-        sqliteDatabase.close();
+        sqLiteDatabase.close();
 
         return resultInsert;
     }

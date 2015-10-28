@@ -4,10 +4,15 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.sql.SQLException;
+
 /**
  * Created by lucas on 9/22/15.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
+
+    private DatabaseHelper dbHelper;
+    private SQLiteDatabase sqLiteDatabase;
 
     private static final String DATABASE_NAME = "saudeEmCasaManager";
     private static final int DATABASE_VERSION = 7;
@@ -93,7 +98,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //            "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES " + STABLISHMENT_TABLE + "(" + STABLISHMENT_ID + "));";
 //
     //CONSTRUCTOR
-    public DatabaseHelper(Context ctx) {
+    //public DatabaseAdapter(Context ctx) {
+      //  dbHelper = new DatabaseHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+    //}
+
+    public DatabaseHelper(Context ctx, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -104,8 +113,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_DRUGSTORE);
         db.execSQL(CREATE_HOSPITAL);
 //        db.execSQL(CREATE_COMMENT);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {/*Do nothing*/}
+
+    public DatabaseHelper open() throws SQLException {
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+        return this;
+    }
 }

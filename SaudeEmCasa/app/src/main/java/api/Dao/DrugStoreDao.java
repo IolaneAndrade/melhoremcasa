@@ -28,7 +28,7 @@ public class DrugStoreDao extends Dao{
     private static String tableName = "Drugstore";
 
     private DrugStoreDao( Context context ) {
-        DrugStoreDao.database = new DatabaseHelper( context );
+        DrugStoreDao.database = new DatabaseHelper(context);
     }
 
     public static DrugStoreDao getInstance( Context context ) {

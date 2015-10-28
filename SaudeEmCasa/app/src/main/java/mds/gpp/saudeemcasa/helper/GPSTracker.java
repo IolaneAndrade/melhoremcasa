@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import api.Helper.DatabaseHelper;
+
 /**
  * Created by gabriel on 29/09/15.
  */
@@ -37,8 +39,10 @@ public class GPSTracker extends Service implements LocationListener{
 
     public Location getLocation() {
 
+
         try {
             locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
+            System.out.println("locationManager: "+ locationManager);
             isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             if(!isGPSEnable && !isNetworkEnable) {
