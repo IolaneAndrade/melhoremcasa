@@ -15,7 +15,7 @@ public class Dao {
     protected static Context context;
 
     protected long insertAndClose(SQLiteDatabase sqLiteDatabase, String table, ContentValues values ) {
-        sqliteDatabase = database.open();
+
 
         System.out.print("sqlite: "+ sqLiteDatabase);
         //System.out.println(database;

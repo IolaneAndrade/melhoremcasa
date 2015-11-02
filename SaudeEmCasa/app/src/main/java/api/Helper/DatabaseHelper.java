@@ -98,11 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //            "[idStablishment] INT NOT NULL CONSTRAINT [idStablishment] REFERENCES " + STABLISHMENT_TABLE + "(" + STABLISHMENT_ID + "));";
 //
     //CONSTRUCTOR
-    //public DatabaseAdapter(Context ctx) {
-      //  dbHelper = new DatabaseHelper(ctx, DATABASE_NAME, null, DATABASE_VERSION);
-    //}
-
-    public DatabaseHelper(Context ctx, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public DatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
