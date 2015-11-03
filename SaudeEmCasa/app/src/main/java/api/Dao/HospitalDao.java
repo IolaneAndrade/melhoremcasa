@@ -83,10 +83,11 @@ public class HospitalDao extends Dao{
         values.put(tableColumns[9], hospital.getType());
         values.put(tableColumns[10], hospital.getNumber());
 
-
         boolean result = insertAndClose(sqLiteDatabase,tableName, values)>0;
         return result;
     }
+
+    //Método para pegar os dados de todos os hospitais cadastrados
     public List<Hospital> getAllHospitals() {
 
         sqliteDatabase = database.getReadableDatabase();
@@ -152,6 +153,8 @@ public class HospitalDao extends Dao{
 
         return listHospitals;
     }
+
+    //Método para inserir uma lista de farmácias
     public boolean insertAllHospitals( List<Hospital> hospitalList ) {
         Iterator<Hospital> index = hospitalList.iterator();
 
@@ -160,8 +163,13 @@ public class HospitalDao extends Dao{
         while( index.hasNext() ) {
             result = insertHospital( index.next() );
         }
-
         return result;
+    }
+
+    //Método para deletar banco local
+    public void deleteAllHospitals() {
+        deleteAndClose(sqliteDatabase, tableName);
+
     }
 
 }
