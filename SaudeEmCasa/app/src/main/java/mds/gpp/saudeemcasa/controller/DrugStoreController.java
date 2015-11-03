@@ -65,7 +65,7 @@ public class DrugStoreController {
             }
         }
         //insert private drugstores
-        drugStoreDao.insertAllDrogstores(tempDrugStoreList);
+        drugStoreDao.insertAllDrugStores(tempDrugStoreList);
         //setting DrugStores to local list
         drugStoreList = drugStoreDao.getAllDrugStores();
     }

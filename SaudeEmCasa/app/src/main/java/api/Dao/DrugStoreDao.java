@@ -96,7 +96,7 @@ public class DrugStoreDao extends Dao{
 
         String query = "SELECT * FROM " + tableName;
 
-        Cursor cursor = sqliteDatabase.rawQuery( query, null );
+        Cursor cursor = sqliteDatabase.rawQuery(query, null);
 
         List<DrugStore> listDrugstores = new ArrayList<DrugStore>();
 
@@ -137,7 +137,7 @@ public class DrugStoreDao extends Dao{
         return listDrugstores;
     }
 
-    public boolean insertAllDrogstores( List<DrugStore> drugStoresList ) {
+    public boolean insertAllDrugStores(List<DrugStore> drugStoresList) {
         Iterator<DrugStore> index = drugStoresList.iterator();
 
         boolean result = true;
@@ -145,6 +145,14 @@ public class DrugStoreDao extends Dao{
         while( index.hasNext() ) {
             result = insertDrugstore(index.next());
         }
+
+        return result;
+    }
+
+    public long deleteAllDrugStores() {
+        long result;
+
+        result = deleteAndClose(sqliteDatabase, tableName);
 
         return result;
     }

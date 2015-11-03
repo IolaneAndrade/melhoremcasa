@@ -14,13 +14,25 @@ public class Dao {
     protected static SQLiteDatabase sqliteDatabase;
     protected static Context context;
 
-    protected long insertAndClose( SQLiteDatabase sqliteDatabase, String table,
-                                   ContentValues values ) {
+    //Método para inserir no banco local
+    protected long insertAndClose(SQLiteDatabase sqLiteDatabase, String table, ContentValues values ) {
 
-        long resultInsert = sqliteDatabase.insert( table, null, values );
+        sqLiteDatabase.insert(table, null, values);
+        long resultInsert = 1;
 
-        sqliteDatabase.close();
+        sqLiteDatabase.close();
 
         return resultInsert;
+    }
+
+    //Metodo para deletar o banco local
+    protected long deleteAndClose(SQLiteDatabase sqLiteDatabase, String table) {
+        int delete;
+
+        delete = sqLiteDatabase.delete(table, null, null);
+
+        sqLiteDatabase.close();
+
+        return delete;
     }
 }
