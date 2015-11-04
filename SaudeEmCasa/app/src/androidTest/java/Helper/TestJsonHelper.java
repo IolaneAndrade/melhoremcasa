@@ -12,7 +12,10 @@ import java.io.InputStream;
 import api.Dao.DrugStoreDao;
 import api.Dao.HospitalDao;
 import api.Helper.JSONHelper;
+import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.view.LoadingScreen;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Created by lucas on 10/29/15.
@@ -34,7 +37,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
     }
 
     public void testHospitalListFromJSON(){
-
+        //onView(withId(R.id.melhor_em_casa_button))
         HospitalDao hospitalDao = HospitalDao.getInstance(myActivity.getApplicationContext());
 
         try {
@@ -54,6 +57,21 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
 
         try {
             jsonHelper.drugstorePublicListFromJSON(loadJSONFromAsset("json_drugstore_test_data.json"));
+        } catch (JSONException e) {
+            assertTrue(false);
+        }
+        if(drugStoreDao.getAllDrugStores().size()>0){
+            assertTrue(true);
+        }else{
+            assertTrue(false);
+        }
+        myActivity.finish();
+    }
+    public void testDrugstorePrivateListFromJSON(){
+        DrugStoreDao drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
+
+        try {
+            jsonHelper.drugstorePrivateListFromJSON(loadJSONFromAsset("json_drugstore_test_data_2.json"));
         } catch (JSONException e) {
             assertTrue(false);
         }

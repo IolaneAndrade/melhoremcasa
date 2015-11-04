@@ -43,4 +43,10 @@ dependencies {
     compile files('src/main/java/Libs/google-api-client-1.4.1-beta.jar')
     compile files('src/main/java/Libs/commons-logging-1.1.2.jar')
     androidTestCompile 'junit:junit:4.12'
+    // App's dependencies, including test
+    compile 'com.android.support:support-annotations:23.0.1'
+
+    // Testing-only dependencies
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }
