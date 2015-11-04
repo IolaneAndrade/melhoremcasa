@@ -58,9 +58,14 @@ public class DrugStoreController {
                 //requesting public drugstore
                 String jsonPublic = httpConnectionPublic.newRequest("http://159.203.95.153:3000/farmacia_popular");
 
-                HttpConnection httpConnectionPrivate = new HttpConnection();
-                //requesting private drugstore
-                String jsonPrivate = httpConnectionPrivate.newRequest("http://159.203.95.153:3000/farmacia_popular_conveniada");
+                //HttpConnection httpConnectionPrivate = new HttpConnection();
+
+                //String jsonPrivate = httpConnectionPrivate.newRequest("http://159.203.95.153:3000/farmacia_popular_conveniada");
+                String jsonPrivate = "[{\"_id\":{\"_str\":\"563158a273ca72bc1dfa5fc7\"},\"type\":\"FeatureCollection\",\"featu" +
+                        "res\":[{\"type\":\"Feature\",\"properties\":[{\"lat\":\"-26.6659946\"},{\"long\":\"-48.987147" +
+                        "9\"},{\"nu_ddd_farmacia\":\"47\"},{\"nu_telefone_farmacia\":\"33791009\"},{\"nu_cep_farmacia\":\"89108000\"},{\"no_bairro_farmacia\":\"CENTRO\"}," +
+                        "{\"ds_endereco_farmacia\":\"AVENIDA SETE DE SETEMBRO, NÂº 1093\"},{\"no_farmacia\":\"FARMACIA BIBI LTDA EPP\"},{\"no_cidade\":\"MASSARA" +
+                        "NDUBA\"},{\"uf\":\"SC\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-48.9871479,-26.6659946]}}]}]"; //temporary
                 //if both were  sucessful
                 if(jsonPublic != null && jsonPrivate !=null){
 
