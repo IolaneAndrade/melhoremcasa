@@ -37,7 +37,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
     }
 
     public void testHospitalListFromJSON(){
-        //onView(withId(R.id.melhor_em_casa_button))
+
         HospitalDao hospitalDao = HospitalDao.getInstance(myActivity.getApplicationContext());
 
         try {
@@ -50,6 +50,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
         }else{
             assertTrue(false);
         }
+        hospitalDao.deleteAllHospitals();
         myActivity.finish();
     }
     public void testDrugstorePublicListFromJSON(){
@@ -65,6 +66,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
         }else{
             assertTrue(false);
         }
+        drugStoreDao.deleteAllDrugStores();
         myActivity.finish();
     }
     public void testDrugstorePrivateListFromJSON(){
@@ -80,6 +82,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
         }else{
             assertTrue(false);
         }
+        drugStoreDao.deleteAllDrugStores();
         myActivity.finish();
     }
 
