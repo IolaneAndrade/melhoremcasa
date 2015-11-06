@@ -4,10 +4,6 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/DEPENDENCIES'
@@ -22,6 +18,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+
         defaultConfig {
             applicationId "mds.gpp.saudeemcasa"
             minSdkVersion 19
@@ -48,5 +48,4 @@ dependencies {
 
     compile files('src/main/java/Libs/google-api-client-1.4.1-beta.jar')
     compile files('src/main/java/Libs/commons-logging-1.1.2.jar')
-
 }

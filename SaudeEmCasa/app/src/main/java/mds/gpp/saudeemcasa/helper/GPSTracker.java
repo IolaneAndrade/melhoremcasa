@@ -39,11 +39,8 @@ public class GPSTracker extends Service implements LocationListener{
 
     public Location getLocation() {
 
-
         try {
-            System.out.print(context);
             locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-            System.out.println("locationManager: "+ locationManager);
             isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             if(!isGPSEnable && !isNetworkEnable) {
@@ -95,11 +92,11 @@ public class GPSTracker extends Service implements LocationListener{
         return location;
     }
 
-    public void stopUsingGPS() {
+    /*public void stopUsingGPS() {
         if(locationManager != null) {
             locationManager.removeUpdates(GPSTracker.this);
         }
-    }
+    }*/
 
     public double getLatitude() {
         if(location != null) {
@@ -139,7 +136,6 @@ public class GPSTracker extends Service implements LocationListener{
 
     }
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
