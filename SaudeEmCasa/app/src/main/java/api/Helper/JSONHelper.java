@@ -44,11 +44,9 @@ public class JSONHelper {
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
-            Hospital hospital = null;
+            Hospital hospital = new Hospital();
 
             for( int index = 0; index < jArray.length(); index++ ) {
-
-                hospital = new Hospital();
 
                 hospital.setLatitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(1));
 
@@ -98,11 +96,10 @@ public class JSONHelper {
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
-            DrugStore drugStore;
+
+            DrugStore drugStore = new DrugStore();
 
             for( int index = 0; index < jArray.length(); index++ ) {
-
-                drugStore = new DrugStore();
 
                 drugStore.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));
 
@@ -150,11 +147,9 @@ public class JSONHelper {
         JSONArray jArray = jsonObj.getJSONArray("features");
 
         try {
-            DrugStore drugStore;
+            DrugStore drugStore = new DrugStore();;
 
             for( int index = 0; index < jArray.length(); index++ ) {
-                Log.e("im in","");
-                drugStore = new DrugStore();
 
                 drugStore.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));
 
@@ -187,28 +182,3 @@ public class JSONHelper {
         return true;
     }
 }
-
-// for future use in tests
-/*
-        String input ="{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":[{\"gid\":\"2001063\"},{\"tipo_sus\":\"SUS\"},{\"uf\":\"AC\"},{\"cidade\":\"Rio Branco\"},{\"no_logradouro\":\"TRAVESSA IPASE\"},{\"nu_endereco\":\"77\"},{\"no_bairro\":\"CENTRO\"},{\"nu_telefone\":\"(68)3224 3693\"},{\"no_fantasia\":\"CENTRO DE CONTROLE DE ONCOLOGIA DO ACRE\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-67.81423,-9.96876]}}]}";
-        Log.e("IN = ", input);
-        try {
-            hospitalListFromJSON(input);
-        } catch (JSONException e) {
-            Log.e("ERROR","JSON");
-        }*/
-        /*String input ="{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":[{\"gid\":\"17\"},{\"lat\":\"-3.0206756\"},{\"long\":\"-59.9768139\"},{\"ano_farm_pop\":\"2014\"},{\"mes_farm_pop\":\"2\"},{\"ds_endereco_farmacia\":\"AVENIDA NOEL NUTELS N\\u00ba 811\"},{\"nu_cep_farmacia\":\"69095000\"},{\"uf\":\"AM\"},{\"cidade\":\"Manaus\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-59.9768139,-3.0206756]}},{\"type\":\"Feature\",\"properties\":[{\"gid\":\"444\"},{\"lat\":\"-10.9128701\"},{\"long\":\"-37.0738442\"},{\"ano_farm_pop\":\"2014\"},{\"mes_farm_pop\":\"2\"},{\"ds_endereco_farmacia\":\"RUA CARLOS CORREIA, 528\"},{\"nu_cep_farmacia\":\"49075120\"},{\"uf\":\"SE\"},{\"cidade\":\"Aracaju\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-37.0738442,-10.9128701]}}]}";
-        Log.e("IN = ", input);
-        try {
-            drugstorePublicListFromJSON(input);
-        } catch (JSONException e) {
-            Log.e("ERROR","JSON");
-        }*/
-        /*String input = "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":[{\"lat\":\"-25.8970182\"},{\"long\":\"-53.0714448\"},{\"nu_ddd_farmacia\":\"46\"},{\"nu_telefone_farmacia\":\"35361015\"},{\"nu_cep_farmacia\":\"85660000\"},{\"no_bairro_farmacia\":\"CENTRO\"},{\"ds_endereco_farmacia\":\"TRAV. DR. ARNALDO BUSATO, N\\u00ba 48\"},{\"no_farmacia\":\"CARNIELETTO & COLFERAI LTDA ME\"},{\"no_cidade\":\"DOIS VIZINHOS\"},{\"uf\":\"PR\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-53.0714448,-25.8970182]}},{\"type\":\"Feature\",\"properties\":[{\"lat\":\"-26.2758084\"},{\"long\":\"-48.8447711\"},{\"nu_ddd_farmacia\":\"47\"},{\"nu_telefone_farmacia\":\"34330357\"},{\"nu_cep_farmacia\":\"89221500\"},{\"no_bairro_farmacia\":\"AMERICA\"},{\"ds_endereco_farmacia\":\"RUA ARACAJU N\\u00ba 305\"},{\"no_farmacia\":\"DROGARIA E FARMACIA CATARINENSE S\\/A\"},{\"no_cidade\":\"JOINVILLE\"},{\"uf\":\"SC\"}],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-48.8447711,-26.2758084]}}]}";
-        Log.e("IN = ", input);
-        try {
-            drugstorePrivateListFromJSON(input);
-        } catch (JSONException e) {
-            Log.e("ERROR","JSON");
-        }
-        */

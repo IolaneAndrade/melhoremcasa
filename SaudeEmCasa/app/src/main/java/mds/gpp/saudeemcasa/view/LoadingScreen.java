@@ -16,7 +16,6 @@ import java.io.IOException;
 
 
 import api.Exception.ConnectionErrorException;
-
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
