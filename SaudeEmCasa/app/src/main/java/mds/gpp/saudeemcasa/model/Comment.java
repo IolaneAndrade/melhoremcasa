@@ -12,6 +12,10 @@ public class Comment {
     protected User userComment;
     protected Stablishment stablishment;
 
+    public Comment(){
+
+    }
+
     public Comment(int idComment, String textComment, Date dateComment, User userComment, Stablishment stablishment) {
         this.idComment = idComment;
         this.textComment = textComment;
