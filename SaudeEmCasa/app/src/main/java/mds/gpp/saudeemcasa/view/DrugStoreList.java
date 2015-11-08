@@ -1,6 +1,5 @@
 package mds.gpp.saudeemcasa.view;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
@@ -11,12 +10,9 @@ import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.adapter.DrugStoreAdapter;
-import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.DrugStore;
-import mds.gpp.saudeemcasa.model.Hospital;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
-import mds.gpp.saudeemcasa.model.DrugStore;
 
 
 public class DrugStoreList extends Activity {
@@ -42,8 +38,8 @@ public class DrugStoreList extends Activity {
         // Initialize and fill list of drugstore
         list = (ArrayList<DrugStore>) drugStoreController.getAllDrugstores();
 
-        if (gps.canGetLocation()) {
-            drugStoreController.setDistance(this, list);
+        if(gps.canGetLocation()) {
+            drugStoreController.oganizeListDrugStoreForDistance();
             // Initializing new DrugStoreAdapter with list of drugstore
             final DrugStoreAdapter adapter = new DrugStoreAdapter(this, list);
 

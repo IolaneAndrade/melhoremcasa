@@ -1,28 +1,14 @@
 package Controller;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-import junit.framework.TestResult;
-
 import android.app.Instrumentation;
-import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 
-import api.Exception.ConnectionErrorException;
-import mds.gpp.saudeemcasa.helper.GPSTracker;
-import mds.gpp.saudeemcasa.model.DrugStore;
-import mds.gpp.saudeemcasa.model.Stablishment;
-import mds.gpp.saudeemcasa.controller.DrugStoreController;
-import mds.gpp.saudeemcasa.view.LoadingScreen;
-
-
-import org.json.JSONException;
-import org.junit.Test;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+
+import mds.gpp.saudeemcasa.controller.DrugStoreController;
+import mds.gpp.saudeemcasa.model.Stablishment;
+import mds.gpp.saudeemcasa.view.LoadingScreen;
 
 /**
  * Created by iolane on 30/10/15.
@@ -45,7 +31,6 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
         drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
     }
 
-        @Test
         public void testInitControllerDrugStore() throws Exception {
 
             DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
@@ -55,6 +40,39 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
             myActivity.finish();
 
         }
+/*
+        public void testDistanceComparator() throws Exception{
+            DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
+            drugStoreController.DistanceComparator();
+
+            List<Stablishment> drugStoreList = new ArrayList<Stablishment>();
+
+            Stablishment drugStore1 = new Stablishment("Rosario", "3385-9790", 3.5);
+            Stablishment drugStore2= new Stablishment("Pague Menos", "3332-1232", 7.8);
+            Stablishment drugStore3 = new Stablishment("Pacheco", "35556767");
+            Stablishment drugStore4 = new Stablishment("Posto nº 06", "3234-0001", 9.75);
+            Stablishment drugStore5 = new Stablishment("Drogasil", "35569480", 2.55);
+
+            drugStoreList.add(drugStore1);
+            drugStoreList.add(drugStore2);
+            drugStoreList.add(drugStore3);
+            drugStoreList.add(drugStore4);
+            drugStoreList.add(drugStore5);
+
+            myActivity.finish();
+        }
+
+        public void  testSetDistanceControllerDrugStore() throws Exception {
+            DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
+
+            drugStoreController.oganizeListDrugStoreForDistance();
+            myActivity.finish();
+
+
+        }
+        */
+
+
 
     }
 

@@ -89,24 +89,24 @@ public class DrugStoreController {
             }
     }
 
-    public static int[] setDistance(Context context,ArrayList<DrugStore> list) {
-        int[] results = new int[list.size()];
+    public static int[] oganizeListDrugStoreForDistance() {
+        int[] results = new int[drugStoreList.size()];
         GPSTracker gps = new GPSTracker(context);
         if(gps.canGetLocation()) {
             double userLongitude = gps.getLongitude();
             double userLatitude = gps.getLatitude();
 
-            for (int i = 0; i < list.size(); i++) {
-                String auxLatitude = list.get(i).getLatitude();
-                String auxLongitude = list.get(i).getLongitude();
+            for (int i = 0; i < drugStoreList.size(); i++) {
+                String auxLatitude = drugStoreList.get(i).getLatitude();
+                String auxLongitude = drugStoreList.get(i).getLongitude();
                 float resultsadapter[] = new float[1];
                 Double.parseDouble(auxLongitude);
-                Location.distanceBetween(Double.parseDouble(list.get(i).getLatitude()),
-                        Double.parseDouble(list.get(i).getLongitude()),
+                Location.distanceBetween(Double.parseDouble(drugStoreList.get(i).getLatitude()),
+                        Double.parseDouble(drugStoreList.get(i).getLongitude()),
                         userLatitude, userLongitude, resultsadapter);
-                list.get(i).setDistance(resultsadapter[0]);
+                drugStoreList.get(i).setDistance(resultsadapter[0]);
             }
-            sort(list, new DistanceComparator());
+            sort(drugStoreList, new DistanceComparator());
             return results;
         }else {
             return null;
@@ -130,12 +130,12 @@ public class DrugStoreController {
 
         return json;
     }
-    public static class DistanceComparator implements Comparator<Stablishment>
-    {
-
+    public static class DistanceComparator implements Comparator<Stablishment> {
 
         public int compare(Stablishment stablishment1, Stablishment stablishment2) {
+
             return stablishment1.getDistance()<(stablishment2.getDistance())? -1 : 1;
+
         }
 
     }
