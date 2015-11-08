@@ -46,20 +46,13 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
     }
 
         @Test
-        public void testInitControllerDrugStore() {
+        public void testInitControllerDrugStore() throws Exception {
 
             DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
-            try {
-                drugStoreController.initControllerDrugstore();
-                assertTrue(drugStoreController.getAllDrugstores().size() > 0);
-            } catch (IOException e) {
-                fail();
-            } catch (JSONException e) {
-                fail();
-            } catch (ConnectionErrorException e) {
-                fail();
-            }
-            assertTrue(true);
+
+            drugStoreController.initControllerDrugstore();
+            assertTrue(drugStoreController.getAllDrugstores().size() > 0);
+            myActivity.finish();
 
         }
 
