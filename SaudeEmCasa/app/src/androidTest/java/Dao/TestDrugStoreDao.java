@@ -34,7 +34,7 @@ public class TestDrugStoreDao extends ActivityInstrumentationTestCase2<LoadingSc
         assertNotNull(drugStoreDao);
     }
 
-    //Test method to insert a drugstore list
+    //Test to insert a list of drugstores
     public void testInsertAllDrugStore() throws Exception {
 
         drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
@@ -62,11 +62,10 @@ public class TestDrugStoreDao extends ActivityInstrumentationTestCase2<LoadingSc
 
         assertEquals(beforeInsert + 5, drugStoreDao.getAllDrugStores().size());
 
-        //Method call to delete the existent local bank
+        //Calling the method to delete the existing local bank
         drugStoreDao.deleteAllDrugStores();
     }
-
-    //Test method to verify that the local bank is empty.
+    //Test to verify if the local bank is empty.
     public void testIsDbEmpty() throws Exception {
         drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
         assertTrue(drugStoreDao.isDbEmpty());
