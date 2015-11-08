@@ -4,6 +4,9 @@ import android.content.Context;
 
 import org.json.JSONException;
 import android.location.Location;
+
+import junit.framework.TestCase;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
