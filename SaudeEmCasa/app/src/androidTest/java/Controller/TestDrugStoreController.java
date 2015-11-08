@@ -3,6 +3,8 @@ package Controller;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
+
+import android.app.Instrumentation;
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -26,48 +28,26 @@ import java.util.List;
  * Created by iolane on 30/10/15.
  */
 public class TestDrugStoreController extends ActivityInstrumentationTestCase2<LoadingScreen> {
-    private LoadingScreen myActivity;
 
-    public TestDrugStoreController(Class<LoadingScreen> activityClass) {
-        super(activityClass);
+    private LoadingScreen myActivity;
+    private Instrumentation myInstrumentation;
+    DrugStoreController drugStoreController;
+
+    public TestDrugStoreController() {
+        super(LoadingScreen.class);
     }
 
+    protected void setUp() throws Exception {
+        super.setUp();
+        this.myActivity = getActivity();
+        this.myActivity = getActivity();
+        this.myInstrumentation = getInstrumentation();
+        drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
+    }
 
-//    @Test
-//    public void testDistance() {}
-
-        /*
-        GPSTracker gps = new GPSTracker();
-
-        DrugStoreController phone = new DrugStoreController();
-        double userLatitude = gps.getLatitude();
-        double userLongitude = gps.getLongitude();
-        */
-
-
-        //haversine_km2
-        //Stablishment distances = new Stablishment(42.124891, -71.062251);
-        //double distance = distances.getDistance(phone.getLatitude(), phone.getLongitude());
-/*
         @Test
-        public void testDistanceList () {}
-
-            public static <DrugStore> boolean areEqualIgnoringOrder
-            (List < DrugStore > listDistancesDrugStoreOrigin, List < DrugStore > listDistancesDrugStoreCompare, Comparator< ? super
-                        DrugStore > comparator){
-
-                List<DrugStore> listDistancesDrugStoreOrigin = new ArrayList<>(listDistancesDrugStoreOrigin);
-                List<DrugStore> listDistancesDrugStoreCompare = new ArrayList<>(listDistancesDrugStoreCompare);
-
-            }
-
-            @Test
-            public void testListDrugStore () {
-
-            }
-    */
-
         public void testInitControllerDrugStore() {
+
             DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
             try {
                 drugStoreController.initControllerDrugstore();
@@ -83,6 +63,6 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
 
         }
 
-
     }
+
 
