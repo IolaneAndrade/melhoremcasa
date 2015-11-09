@@ -5,9 +5,7 @@ package mds.gpp.saudeemcasa.model;
  */
 public class DrugStore extends Stablishment {
 
-    public DrugStore() {
-
-    }
+    public DrugStore() {}
 
     public DrugStore(String nameDrugStore, String telephoneDrugStore) {
         super(nameDrugStore, telephoneDrugStore);
