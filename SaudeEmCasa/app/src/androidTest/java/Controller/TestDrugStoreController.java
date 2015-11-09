@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
+import mds.gpp.saudeemcasa.helper.GPSTracker;
+import mds.gpp.saudeemcasa.model.DrugStore;
 import mds.gpp.saudeemcasa.model.Stablishment;
+import mds.gpp.saudeemcasa.view.DrugStoreList;
 import mds.gpp.saudeemcasa.view.LoadingScreen;
 
 /**
@@ -40,18 +43,17 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
             myActivity.finish();
 
         }
-/*
+
         public void testDistanceComparator() throws Exception{
             DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
-            drugStoreController.DistanceComparator();
 
             List<Stablishment> drugStoreList = new ArrayList<Stablishment>();
 
-            Stablishment drugStore1 = new Stablishment("Rosario", "3385-9790", 3.5);
-            Stablishment drugStore2= new Stablishment("Pague Menos", "3332-1232", 7.8);
-            Stablishment drugStore3 = new Stablishment("Pacheco", "35556767");
-            Stablishment drugStore4 = new Stablishment("Posto nº 06", "3234-0001", 9.75);
-            Stablishment drugStore5 = new Stablishment("Drogasil", "35569480", 2.55);
+            Stablishment drugStore1 = new Stablishment("Farmacia Pague Menos", 33);
+            Stablishment drugStore2 = new Stablishment("Farmacia Globo", 25);
+            Stablishment drugStore3 = new Stablishment("Farmacia São Bernardo", 50);
+            Stablishment drugStore4 = new Stablishment("Farmacia Lene", 14);
+            Stablishment drugStore5 = new Stablishment("Farmacia Oliveira", 7);
 
             drugStoreList.add(drugStore1);
             drugStoreList.add(drugStore2);
@@ -59,18 +61,33 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
             drugStoreList.add(drugStore4);
             drugStoreList.add(drugStore5);
 
+            drugStoreList = drugStoreController.DistanceComparator(drugStoreList);
+
+            List<Stablishment> drugStoreListToCompare = new ArrayList<Stablishment>();
+
+            drugStoreListToCompare.add(drugStore5);
+            drugStoreListToCompare.add(drugStore4);
+            drugStoreListToCompare.add(drugStore2);
+            drugStoreListToCompare.add(drugStore1);
+            drugStoreListToCompare.add(drugStore3);
+
+
+            assertSame(drugStoreList, drugStoreListToCompare);
+
             myActivity.finish();
         }
 
-        public void  testSetDistanceControllerDrugStore() throws Exception {
-            DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
 
+       /* public void  testSetDistanceControllerDrugStore() throws Exception {
+            DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
+            GPSTracker gps = new GPSTracker(this);
+            ArrayList<DrugStore> listTest;
+            listTest = drugStoreController.getAllDrugstores();
             drugStoreController.oganizeListDrugStoreForDistance();
             myActivity.finish();
 
 
-        }
-        */
+        }*/
 
 
 
