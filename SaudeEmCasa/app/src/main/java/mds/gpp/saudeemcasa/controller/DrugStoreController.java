@@ -37,6 +37,10 @@ public class DrugStoreController {
         drugStoreDao = DrugStoreDao.getInstance(context);
     }
 
+    public DrugStoreDao getDrugStoreDao() {
+        return drugStoreDao;
+    }
+
     public static DrugStoreController getInstance(Context context) {
         if (instance == null) {
             instance = new DrugStoreController(context);

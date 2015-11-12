@@ -39,7 +39,12 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
 
     }
 
-        public void testInitControllerDrugStore() {
+    public void tearDown(){
+        drugStoreController.getDrugStoreDao().deleteAllDrugStores();
+
+    }
+
+   /*     public void testInitControllerDrugStore() {
 
             try {
                 drugStoreController.initControllerDrugstore();
@@ -53,7 +58,7 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
             assertTrue(drugStoreController.getAllDrugstores().size() > 0);
             myActivity.finish();
 
-        }
+        }*/
 
         public void testDistanceComparator() throws Exception{
             DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
@@ -98,7 +103,7 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
             myActivity.finish();
 
         }
-    
+
     }
 
 
