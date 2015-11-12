@@ -16,13 +16,12 @@ import mds.gpp.saudeemcasa.model.Hospital;
 
 
 public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
-
     private Context context;
     private ArrayList<DrugStore> lista;
+    public static final int COUNT = 15;
 
+    // Setting DrugStoreAdapter constructor
     public DrugStoreAdapter(Context context, ArrayList<DrugStore> lista){
-
-        // Setting DrugStoreAdapter constructor
         super(context,0,lista);
         this.context = context;
         this.lista = lista;
@@ -30,7 +29,7 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
 
     @Override
     public int getCount() {
-        return 15;
+        return COUNT;
     }
 
     @Override
@@ -46,6 +45,14 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        return populateAdapter(convertView,position);
+    }
+
+    private Float convertToKM(Float distance){
+        return distance/1000;
+
+    }
+    public View populateAdapter(View convertView, int position){
         // Override method to get view
         DrugStore drugStorePosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
@@ -62,21 +69,22 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
         TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
         textView1.setText((CharSequence) drugStorePosition.getTelephone());
 
-        if(this.lista.get(position).getDistance() < 1f) {
-            // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
-            textViewDistance.setText(this.lista.get(position).getDistance()+" m");
-        }else {
-            // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
-            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
-        }
+        setDistance(convertView, position);
 
         return convertView;
     }
 
-    private Float convertToKM(Float distance){
-        return distance/1000;
-
+    public void setDistance(View convertView, int position) {
+        if (this.lista.get(position).getDistance() < 1f) {
+            // Setting distance of drugstore on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            textViewDistance.setText(this.lista.get(position).getDistance() + " m");
+        } else {
+            // Setting distance of drugstore on list item
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
+        }
     }
+
+
 }
