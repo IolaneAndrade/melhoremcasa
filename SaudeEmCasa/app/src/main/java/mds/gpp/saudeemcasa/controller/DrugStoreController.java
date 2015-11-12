@@ -45,6 +45,13 @@ public class DrugStoreController {
         }
         return instance;
     }
+
+    public void setDrugStoreList(ArrayList<DrugStore> drugStoreList) {
+       this.drugStoreList =(ArrayList<DrugStore>) drugStoreList;
+
+    }
+
+
     public void setDrugStore( DrugStore drugStore ) {
         DrugStoreController.drugStore = drugStore;
     }
@@ -89,7 +96,7 @@ public class DrugStoreController {
             }
     }
 
-    public static int[] oganizeListDrugStoreForDistance() {
+    public int[] oganizeListDrugStoreForDistance() {
         int[] results = new int[drugStoreList.size()];
         GPSTracker gps = new GPSTracker(context);
         if(gps.canGetLocation()) {
