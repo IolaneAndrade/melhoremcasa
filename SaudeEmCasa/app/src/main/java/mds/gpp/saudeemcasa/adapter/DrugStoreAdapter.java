@@ -27,6 +27,7 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
         this.lista = lista;
     }
 
+    //Set the number of objects to show on list
     @Override
     public int getCount() {
         return COUNT;

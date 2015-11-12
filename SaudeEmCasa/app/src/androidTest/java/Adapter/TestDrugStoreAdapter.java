@@ -4,9 +4,6 @@ import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -24,8 +21,9 @@ public class TestDrugStoreAdapter extends ActivityInstrumentationTestCase2<Loadi
 
     private DrugStoreAdapter drugStoreAdapter;
     private Context context;
-    DrugStore drugStore1;
-    //Posição da lista utilizada para teste
+    DrugStore drugStore1, drugStore2;
+
+    //List position used for testing
     static final int POSITION = 0;
 
     public TestDrugStoreAdapter() {
@@ -37,14 +35,14 @@ public class TestDrugStoreAdapter extends ActivityInstrumentationTestCase2<Loadi
         super.setUp();
         this.myActivity = getActivity();
         context = myActivity.getApplicationContext();
+
         lista = new ArrayList<DrugStore>();
-        drugStore1 = new DrugStore("Rosario", "3385-9790");
-        DrugStore drugStore2= new DrugStore("Pague Menos", "3332-1232");
+        drugStore1 = new DrugStore("DrugStore Plus", "3385-9790");
+        drugStore2 = new DrugStore("DrugStore Healthy", "3332-1232");
         lista.add(drugStore1);
         lista.add(drugStore2);
-        drugStoreAdapter = new DrugStoreAdapter(context,lista);
-        View  convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
+        drugStoreAdapter = new DrugStoreAdapter(context,lista);
     }
 
     public void testGetCount() {
@@ -53,15 +51,14 @@ public class TestDrugStoreAdapter extends ActivityInstrumentationTestCase2<Loadi
     }
 
     public void testGetItem() {
-        assertNotNull(drugStoreAdapter);
         assertEquals(drugStoreAdapter.getItem(POSITION), lista.get(POSITION));
     }
 
     public void testGetItemId() {
-        assertNotNull(drugStoreAdapter);
         assertEquals(drugStoreAdapter.getItemId(POSITION), POSITION);
     }
 
+    //Testing method that populates the layout
     public void testPopulateAdapter() throws Exception {
         View view =  drugStoreAdapter.populateAdapter(myActivity.findViewById(R.id.listView), 0);
         View  convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
@@ -69,12 +66,11 @@ public class TestDrugStoreAdapter extends ActivityInstrumentationTestCase2<Loadi
 
         lista.get(POSITION).setDistance(3);
         drugStoreAdapter.setDistance(convertView, POSITION);
-
     }
 
-    /*public void testGetView() throws Exception {
-        ViewGroup parent;
-        View view =  drugStoreAdapter.getView(POSITION, myActivity.findViewById(R.id.listView), parent);
+    //Test method that transforms a View in the xml containing the list item layout
+    public void testGetView() throws Exception {
+        View view =  drugStoreAdapter.getView(POSITION, myActivity.findViewById(R.id.listView), null);
         assertNotNull(view);
-    }  */
+    }
 }
