@@ -73,4 +73,10 @@ public class TestDrugStoreAdapter extends ActivityInstrumentationTestCase2<Loadi
         View view =  drugStoreAdapter.getView(POSITION, myActivity.findViewById(R.id.listView), null);
         assertNotNull(view);
     }
+
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
+
+    }
 }

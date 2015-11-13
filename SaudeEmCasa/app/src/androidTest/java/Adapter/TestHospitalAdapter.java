@@ -55,6 +55,7 @@ public class TestHospitalAdapter extends ActivityInstrumentationTestCase2<Loadin
     }
 
     public void testGetItemId() {
+
         assertEquals(hospitalAdapter.getItemId(POSITION), POSITION);
     }
 
@@ -72,6 +73,11 @@ public class TestHospitalAdapter extends ActivityInstrumentationTestCase2<Loadin
     public void testGetView() throws Exception {
         View view =  hospitalAdapter.getView(POSITION, myActivity.findViewById(R.id.listView), null);
         assertNotNull(view);
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
     }
 }
 

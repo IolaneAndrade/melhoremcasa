@@ -60,11 +60,11 @@ public class TestDrugStoreDao extends ActivityInstrumentationTestCase2<LoadingSc
         assertEquals("Rosario", drugStore1.getName());
         assertEquals(drugStoreList.size(), 5);
 
-        assertEquals(beforeInsert+5, drugStoreDao.getAllDrugStores().size());
+        assertEquals(beforeInsert + 5, drugStoreDao.getAllDrugStores().size());
 
         //Method call to delete the existent local bank
         drugStoreDao.deleteAllDrugStores();
-        myActivity.finish();
+
 
     }
 
@@ -72,7 +72,10 @@ public class TestDrugStoreDao extends ActivityInstrumentationTestCase2<LoadingSc
     public void testIsDbEmpty() throws Exception {
         drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
         assertTrue(drugStoreDao.isDbEmpty());
-        myActivity.finish();
+    }
 
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
     }
 }

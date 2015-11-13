@@ -59,16 +59,21 @@ public class TestHospitalDao extends ActivityInstrumentationTestCase2<LoadingScr
         assertEquals("Santa Luzia", hospital3.getName());
         assertEquals(hospitalList.size(), 5);
 
-        assertEquals(beforeInsert+5, hospitalDao.getAllHospitals().size());
+        assertEquals(beforeInsert + 5, hospitalDao.getAllHospitals().size());
 
         //Method call to delete the existent local bank
         hospitalDao.deleteAllHospitals();
-        myActivity.finish();
+
     }
 
     //Test method to verify that the local bank is empty.
     public void testIsDbEmpty() throws Exception {
         hospitalDao = HospitalDao.getInstance(myActivity.getApplicationContext());
         assertTrue(hospitalDao.isDbEmpty());
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        super.tearDown();
     }
 }

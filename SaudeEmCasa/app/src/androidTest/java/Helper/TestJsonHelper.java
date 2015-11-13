@@ -51,7 +51,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
             assertTrue(false);
         }
         hospitalDao.deleteAllHospitals();
-        myActivity.finish();
+
     }
     public void testDrugstorePublicListFromJSON(){
         DrugStoreDao drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
@@ -67,7 +67,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
             assertTrue(false);
         }
         drugStoreDao.deleteAllDrugStores();
-        myActivity.finish();
+
     }
     public void testDrugstorePrivateListFromJSON(){
         DrugStoreDao drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
@@ -83,7 +83,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
             assertTrue(false);
         }
         drugStoreDao.deleteAllDrugStores();
-        myActivity.finish();
+
     }
 
     public String loadJSONFromAsset(String jsonfile) {

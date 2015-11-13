@@ -18,6 +18,11 @@ android {
     }
 
     buildTypes {
+
+        debug {
+            testCoverageEnabled = true
+        }
+
         defaultConfig {
             applicationId "mds.gpp.saudeemcasa"
             minSdkVersion 19
