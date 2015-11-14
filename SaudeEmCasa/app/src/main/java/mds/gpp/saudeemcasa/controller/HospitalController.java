@@ -115,6 +115,8 @@ public class HospitalController {
 
     public static class DistanceComparator implements Comparator<Stablishment>
     {
+
+
         public int compare(Stablishment stablishment1, Stablishment stablishment2) {
             return stablishment1.getDistance()<(stablishment2.getDistance())? -1 : 1;
         }

@@ -25,7 +25,7 @@ public class HospitalList extends Activity {
     ListView listView;
     ArrayList<Hospital> list;
     GPSTracker gps;
-
+    int hospital = -1;
 
 
     @Override
@@ -38,10 +38,12 @@ public class HospitalList extends Activity {
 
         gps = new GPSTracker(this);
 
+        // Instancing controller
         final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
 
         // Initialize and fill list of hospital
-        list = (ArrayList<Hospital>)hospitalController.getAllHospitals();
+        list = (ArrayList<Hospital>) HospitalController.getAllHospitals();
+
         if(gps.canGetLocation()) {
 
             hospitalController.setDistance(this, list);
@@ -50,7 +52,7 @@ public class HospitalList extends Activity {
             // Setting adapter to listView
             listView.setAdapter(adapter);
         }else {
-            Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Concecte-se para prosseguir.",Toast.LENGTH_LONG);
+            Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Conececte-se para prosseguir.",Toast.LENGTH_LONG);
 
         }
 
