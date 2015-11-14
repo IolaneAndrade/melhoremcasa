@@ -1,7 +1,9 @@
 package mds.gpp.saudeemcasa.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
 
 import org.json.JSONException;
@@ -36,7 +38,7 @@ public class HospitalList extends Activity {
 
         gps = new GPSTracker(this);
 
-        HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
+        final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
 
         // Initialize and fill list of hospital
         list = (ArrayList<Hospital>)hospitalController.getAllHospitals();
@@ -52,6 +54,16 @@ public class HospitalList extends Activity {
 
         }
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int position,
+                                    long id) {
+                hospitalController.setHospital(list.get(position));
+                Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
+
+                startActivity(intent);
+            }
+        });
     }
  }
 

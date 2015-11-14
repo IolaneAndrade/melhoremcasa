@@ -83,7 +83,7 @@ public class TestJsonHelper extends ActivityInstrumentationTestCase2<LoadingScre
             assertTrue(false);
         }
         drugStoreDao.deleteAllDrugStores();
-        myActivity.finish();
+
     }
 
     public String loadJSONFromAsset(String jsonfile) {

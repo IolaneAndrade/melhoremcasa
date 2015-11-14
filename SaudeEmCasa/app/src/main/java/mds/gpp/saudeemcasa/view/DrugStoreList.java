@@ -2,6 +2,7 @@ package mds.gpp.saudeemcasa.view;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class DrugStoreList extends Activity {
     ListView listView;
     ArrayList<DrugStore> list;
     GPSTracker gps;
+    int drugstore = -1;
 
 
     @Override
@@ -35,21 +37,34 @@ public class DrugStoreList extends Activity {
         gps = new GPSTracker(this);
 
         // Instancing controller
-        DrugStoreController drugStoreController = DrugStoreController.getInstance(this);
+        final DrugStoreController drugStoreController = DrugStoreController.getInstance(this);
 
         // Initialize and fill list of drugstore
         list = (ArrayList<DrugStore>) drugStoreController.getAllDrugstores();
 
-        if(gps.canGetLocation()) {
+        if (gps.canGetLocation()) {
             drugStoreController.setDistance(this, list);
             // Initializing new DrugStoreAdapter with list of drugstore
-            DrugStoreAdapter adapter = new DrugStoreAdapter(this, list);
+            final DrugStoreAdapter adapter = new DrugStoreAdapter(this, list);
 
             // Setting adapter to listView
             listView.setAdapter(adapter);
-        }else {
-            Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Concecte-se para prosseguir.",Toast.LENGTH_LONG);
-        }
 
+        } else {
+            Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Concecte-se para prosseguir.", Toast.LENGTH_LONG).show();
+        }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int position,
+                                    long id) {
+                drugStoreController.setDrugStore(list.get(position));
+                Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
+
+                startActivity(intent);
+            }
+        });
     }
+
+
+
 }

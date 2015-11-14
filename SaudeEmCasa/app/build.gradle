@@ -25,7 +25,9 @@ android {
             versionCode 1
             versionName "1.0"
         }
-
+        debug{
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

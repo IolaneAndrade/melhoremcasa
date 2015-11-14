@@ -46,6 +46,11 @@ public class DrugStoreController {
         DrugStoreController.drugStore = drugStore;
     }
 
+    public DrugStore getDrugstore() {
+        return drugStore;
+    }
+
+
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
     }
