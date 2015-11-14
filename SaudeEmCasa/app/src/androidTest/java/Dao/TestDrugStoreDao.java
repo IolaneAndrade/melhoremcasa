@@ -72,6 +72,7 @@ public class TestDrugStoreDao extends ActivityInstrumentationTestCase2<LoadingSc
     public void testIsDbEmpty() throws Exception {
         drugStoreDao = DrugStoreDao.getInstance(myActivity.getApplicationContext());
         assertTrue(drugStoreDao.isDbEmpty());
+
     }
 
     @Override
