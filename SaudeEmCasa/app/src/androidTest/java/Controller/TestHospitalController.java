@@ -21,7 +21,7 @@ public class TestHospitalController extends ActivityInstrumentationTestCase2<Loa
 
         private LoadingScreen myActivity;
         private Instrumentation myInstrumentation;
-        DrugStoreController hospitalController;
+        HospitalController hospitalController;
 
         public TestHospitalController() {
             super(LoadingScreen.class);
@@ -37,14 +37,13 @@ public class TestHospitalController extends ActivityInstrumentationTestCase2<Loa
         }
 
         public void tearDown(){
-           hospitalController.getDrugStoreDao().deleteAllDrugStores();
-
+            hospitalController.getAllHospitals().deleteAllHospitals();
         }
 
         public void testInitControllerHospital() {
 
             try {
-                hospitalController.initControllerDrugstore();
+                hospitalController.initControllerHospital();
             } catch (IOException e) {
                 fail();
             } catch (JSONException e) {
@@ -52,7 +51,7 @@ public class TestHospitalController extends ActivityInstrumentationTestCase2<Loa
             } catch (ConnectionErrorException e) {
                 fail();
             }
-            assertTrue(hospitalController.getAllDrugstores().size() > 0);
+            assertTrue(hospitalController.getAllHospitals().size() > 0);
             myActivity.finish();
 
         }
