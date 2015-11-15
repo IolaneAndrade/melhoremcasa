@@ -45,6 +45,9 @@ public class DrugStoreController {
     public void setDrugStore( DrugStore drugStore ) {
         DrugStoreController.drugStore = drugStore;
     }
+    public DrugStore getDrugstore() {
+        return drugStore;
+    }
 
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
