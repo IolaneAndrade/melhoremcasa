@@ -164,4 +164,11 @@ public class HospitalDao extends Dao{
         return result;
     }
 
+    public long deleteAllHospitals() {
+        long result;
+
+        result = deleteAndClose(sqliteDatabase, tableName);
+
+        return result;
+    }
 }

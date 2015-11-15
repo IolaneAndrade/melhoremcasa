@@ -4,7 +4,13 @@ package mds.gpp.saudeemcasa.model;
  * Created by freemanpivo on 9/20/15.
  */
 public class DrugStore extends Stablishment {
+
     public DrugStore() {
+
+    }
+
+    public DrugStore(String nameDrugStore, String telephoneDrugStore) {
+        super(nameDrugStore, telephoneDrugStore);
     }
 
     protected String postalCode = "";
@@ -17,9 +23,7 @@ public class DrugStore extends Stablishment {
         this.postalCode = postalCode;
     }
 
-    public DrugStore(String nameDrugStore, String telephoneDrugStore) {
-        super(nameDrugStore, telephoneDrugStore);
-    }
+
 
    
 }
