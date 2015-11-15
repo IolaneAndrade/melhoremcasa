@@ -9,9 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import api.Exception.ConnectionErrorException;
-import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
-import mds.gpp.saudeemcasa.model.DrugStore;
 import mds.gpp.saudeemcasa.model.Hospital;
 import mds.gpp.saudeemcasa.view.LoadingScreen;
 
@@ -99,7 +97,5 @@ public class TestHospitalController extends ActivityInstrumentationTestCase2<Loa
         myActivity.finish();
 
     }
-
-
-
+    
 }
