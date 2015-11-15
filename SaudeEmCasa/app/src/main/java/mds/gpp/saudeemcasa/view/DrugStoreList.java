@@ -64,7 +64,5 @@ public class DrugStoreList extends Activity {
             }
         });
     }
-
-
-
 }
+

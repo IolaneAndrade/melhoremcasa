@@ -49,6 +49,11 @@ public class HospitalController {
         HospitalController.hospital = hospital;
     }
 
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+
     public static List<Hospital> getAllHospitals(){
 
         return hospitalList;
