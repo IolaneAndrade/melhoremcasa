@@ -45,6 +45,12 @@ public class HospitalController {
         }
         return instance;
     }
+
+    public void setHospitalList(ArrayList<Hospital> hospitalList) {
+        this.hospitalList =(ArrayList<Hospital>) hospitalList;
+
+    }
+
     public void setHospital( Hospital hospital ) {
         HospitalController.hospital = hospital;
     }
@@ -79,7 +85,7 @@ public class HospitalController {
 
     }
 
-    public int[] setDistance(Context context, ArrayList<Hospital> list) {
+    public int[] oganizeListHospitalForDistance(Context context, ArrayList<Hospital> list) {
         int[] results = new int[list.size()];
         GPSTracker gps = new GPSTracker(context);
 

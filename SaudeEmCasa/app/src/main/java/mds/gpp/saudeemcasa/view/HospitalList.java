@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.*;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
@@ -42,7 +39,7 @@ public class HospitalList extends Activity {
         list = (ArrayList<Hospital>)hospitalController.getAllHospitals();
         if(gps.canGetLocation()) {
 
-            hospitalController.setDistance(this, list);
+            hospitalController.oganizeListHospitalForDistance(this, list);
             // Initializing new HospitalAdapter with list of hospitals
             HospitalAdapter adapter = new HospitalAdapter(this, list);
             // Setting adapter to listView

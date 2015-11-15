@@ -60,8 +60,7 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
 
         }
 
-        public void testDistanceComparator() throws Exception{
-            DrugStoreController drugStoreController = DrugStoreController.getInstance(myActivity.getApplicationContext());
+        public void testOrganizeListDrugStoreForDistance() throws Exception{
 
             ArrayList<DrugStore> drugStoreList = new ArrayList<DrugStore>();
 
