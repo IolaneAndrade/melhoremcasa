@@ -26,5 +26,5 @@ public class MapToHospital extends ActionBarActivity {
 
     SupportMapFragment fragment = (SupportMapFragment)
             getSupportFragmentManager().findFragmentById(R.id.hospital_map);
-    googleMapController = fragment.getMap();
+    //googleMapController = fragment.getMap();
 }

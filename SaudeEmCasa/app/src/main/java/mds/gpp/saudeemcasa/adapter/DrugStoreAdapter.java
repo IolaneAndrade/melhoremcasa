@@ -86,19 +86,9 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
             textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
         }
-<<<<<<< HEAD
-=======
-       // convertView.setOnClickListener(new OnItemClickListener(position));
-        return convertView;
 
->>>>>>> 9d283006e04b78eaf75e0912363f94d4a6d236d2
+        //convertView.setOnClickListener(new OnItemClickListener(position));
+        //return convertView;
     }
 
-
-<<<<<<< HEAD
-=======
-    }
-
-
->>>>>>> 9d283006e04b78eaf75e0912363f94d4a6d236d2
 }

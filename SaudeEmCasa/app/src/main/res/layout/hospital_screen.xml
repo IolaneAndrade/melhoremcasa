@@ -28,7 +28,7 @@ android:contextClickable="false">
     android:text="Address"
     android:id="@+id/textViewAddressHosp"
     android:layout_gravity="center_vertical"
-    android:layout_marginTop="63dp"
+    android:layout_marginTop="33dp"
     android:layout_below="@+id/textViewHospName"
     android:layout_toStartOf="@+id/textViewHospName" />
 
@@ -40,6 +40,6 @@ android:contextClickable="false">
     android:id="@+id/textViewHospTel"
     android:layout_below="@+id/textViewAddressHosp"
     android:layout_alignStart="@+id/textViewAddressHosp"
-    android:layout_marginTop="53dp" />
+    android:layout_marginTop="32dp" />
 
 </RelativeLayout>
