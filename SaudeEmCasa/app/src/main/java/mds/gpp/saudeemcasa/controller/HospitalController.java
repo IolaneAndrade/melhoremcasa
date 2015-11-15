@@ -37,6 +37,10 @@ public class HospitalController {
         hospitalDao = HospitalDao.getInstance(context);
     }
 
+    public HospitalDao getHospitalDao() {
+        return hospitalDao;
+    }
+
     public static HospitalController getInstance(Context context) {
         if (instance == null) {
             instance = new HospitalController(context);
