@@ -43,4 +43,7 @@ dependencies {
     testCompile 'org.mockito:mockito-core:1.9.5'
     compile files('src/main/java/Libs/google-api-client-1.4.1-beta.jar')
     compile files('src/main/java/Libs/commons-logging-1.1.2.jar')
+
+    //Google Maps
+    compile 'com.google.android.gms:play-services-maps:8.3.0'
 }

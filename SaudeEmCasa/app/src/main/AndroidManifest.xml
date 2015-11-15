@@ -4,6 +4,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    //api to map cache
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //access google services
+    <uses-permission android:name="com.google.providers.gsf.permission.READ_GSERVICES" />
+    //access mobile location with wi-fi
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    //access mobile location with GPS
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -37,8 +45,13 @@
             <action android:name="android.intent.category.default"></action>
         </activity>
 
-    </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        //API Key
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAQ_NWy2UPVWiZlKv6bDjiQo_Xv_EXxq_w" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+    </application>
 </manifest>
