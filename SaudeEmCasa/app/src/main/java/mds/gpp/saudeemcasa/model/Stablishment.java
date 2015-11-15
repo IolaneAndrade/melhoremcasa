@@ -25,11 +25,6 @@ package mds.gpp.saudeemcasa.model;
     public Stablishment() {
     }
 
-    public Stablishment(String name, float distance) {
-        this.name = name;
-        this.distance = distance;
-    }
-
     public Stablishment(String name, String telephone) {
         this.name = name;
         this.telephone = telephone;
