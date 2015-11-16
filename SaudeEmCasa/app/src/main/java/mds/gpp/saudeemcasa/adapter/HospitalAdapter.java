@@ -58,7 +58,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
 
         // Setting image view of list item
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
-        imageView.setImageResource(R.mipmap.farm_popular);
+        imageView.setImageResource(R.mipmap.melhor_em_casa);
 
         // Setting name of drugstore on list item
         TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
