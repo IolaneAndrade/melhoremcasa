@@ -2,6 +2,8 @@ package mds.gpp.saudeemcasa.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.widget.TextView;
 
@@ -12,7 +14,7 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
 /**
  * Created by freemanpivo on 11/14/15.
  */
-public class HospitalScreen extends Activity {
+public class HospitalScreen extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,30 +1,20 @@
 package mds.gpp.saudeemcasa.view;
 
-
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-
-import com.google.android.gms.maps.SupportMapFragment;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import mds.gpp.saudeemcasa.R;
-import mds.gpp.saudeemcasa.controller.GoogleMapController;
-import mds.gpp.saudeemcasa.model.Hospital;
 
-/**
- * Created by iolane on 15/11/15.
- */
-public class MapToHospital extends ActionBarActivity {
-
-    GoogleMapController googleMapController;
-    Hospital hospital; //lat and long
+public class MapToHospital extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstaceState) {
-        super.onCreate(savedInstaceState);
-        setContentView(R.layout.hospital_map);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+
+        View view = inflater.inflate(R.layout.hospital_map, null);
+
+        return(view);
     }
 
-    SupportMapFragment fragment = (SupportMapFragment)
-            getSupportFragmentManager().findFragmentById(R.id.hospital_map);
-    //googleMapController = fragment.getMap();
 }
