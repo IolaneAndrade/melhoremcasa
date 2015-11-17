@@ -108,6 +108,10 @@ public class HospitalController {
 
     }
 
+    public Hospital getHospital() {
+        return hospital;
+    }
+
     public static class DistanceComparator implements Comparator<Stablishment>
     {
 

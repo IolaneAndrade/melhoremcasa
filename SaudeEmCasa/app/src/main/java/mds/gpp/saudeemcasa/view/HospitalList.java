@@ -1,7 +1,9 @@
 package mds.gpp.saudeemcasa.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
 
 import org.json.JSONException;
@@ -36,22 +38,34 @@ public class HospitalList extends Activity {
 
         gps = new GPSTracker(this);
 
-        HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
+        final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
 
         // Initialize and fill list of hospital
         list = (ArrayList<Hospital>)hospitalController.getAllHospitals();
+        System.out.println("SAOKSAOKSAOAOKSAOKSAOKOKSASAOK"+ list.size());
         if(gps.canGetLocation()) {
 
             hospitalController.setDistance(this, list);
             // Initializing new HospitalAdapter with list of hospitals
             HospitalAdapter adapter = new HospitalAdapter(this, list);
+            System.out.println("SAOKSAOKSAOAOKSAOKSAOKOKSASAOK"+ adapter.getCount());
             // Setting adapter to listView
             listView.setAdapter(adapter);
         }else {
             Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Concecte-se para prosseguir.",Toast.LENGTH_LONG);
 
         }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int position,
+                                    long id) {
+                hospitalController.setHospital(list.get(position));
+                Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
 
+                startActivity(intent);
+            }
+        });
     }
+
  }
 

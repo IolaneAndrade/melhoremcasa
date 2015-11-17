@@ -122,6 +122,11 @@ public class DrugStoreController {
 
         return json;
     }
+
+    public DrugStore getDrugstore() {
+        return drugStore;
+    }
+
     public static class DistanceComparator implements Comparator<Stablishment>
     {
 

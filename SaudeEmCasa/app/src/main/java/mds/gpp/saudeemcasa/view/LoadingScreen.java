@@ -92,7 +92,6 @@ public class LoadingScreen extends Activity {
                             /* ! Nothing To Do. */
                         }
 
-
                         progress.dismiss();
                         Looper.loop();
                     }
