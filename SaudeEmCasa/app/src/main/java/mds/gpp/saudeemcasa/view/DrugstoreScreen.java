@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.Manifest;
 import android.app.Activity;
 
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,7 +24,6 @@ import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
-
 
 import android.widget.TextView;
 
@@ -38,6 +38,7 @@ import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
 import android.provider.Settings.Secure;
+import android.widget.Toast;
 
 import static java.security.AccessController.getContext;
 
@@ -67,6 +68,7 @@ public class DrugstoreScreen extends Fragment {
         * else
         *   
         * */
+
 
 
         final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
@@ -102,14 +104,10 @@ public class DrugstoreScreen extends Fragment {
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+
+                controller.updateRate(drugStore.getRate(),androidId,drugStore.getId());
             }
-
         });
-
-
-
-
 
 
             ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonDrugstore);

@@ -1,11 +1,17 @@
 package api.Request;
 
+<<<<<<< HEAD
 import android.content.Entity;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import android.util.Log;
+=======
+>>>>>>> creating methods for the http post for the update of the rate on the server. Refactoring DrugstoreScreen the minimize redudancy.
 
+import android.content.Entity;
+import android.util.Log;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;

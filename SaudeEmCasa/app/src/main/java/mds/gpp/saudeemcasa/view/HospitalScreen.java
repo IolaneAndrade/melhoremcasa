@@ -30,19 +30,23 @@ import android.widget.Toast;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
+import mds.gpp.saudeemcasa.model.Hospital;
 
 /**
  * Created by freemanpivo on 11/14/15.
  */
 public class HospitalScreen extends Fragment {
 
-    HospitalController controller = HospitalController.getInstance(this.getContext());
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
 
         View view = inflater.inflate(R.layout.hospital_screen, null);
 
+
+        HospitalController controller = HospitalController.getInstance(this.getContext());
+        
         // setting name
 
         TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
@@ -77,8 +81,10 @@ public class HospitalScreen extends Fragment {
         RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
         ratingBarFinal.setRating(controller.getHospital().getRate());
 
+
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingHospital);
         textViewRate.setText("" + controller.getHospital().getRate());
+
 
 
 
@@ -96,6 +102,7 @@ public class HospitalScreen extends Fragment {
             }
 
         });
+
 
 
 
