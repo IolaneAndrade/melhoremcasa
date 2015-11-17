@@ -13,6 +13,10 @@
     <!-- access mobile location with GPS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!--<uses-feature
+        android:glEsVersion="@integer/google_play_services_version"
+        android:required="true" /> -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -47,7 +51,7 @@
         <!-- API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAQ_NWy2UPVWiZlKv6bDjiQo_Xv_EXxq_w" />
+            android:value="AIzaSyBJ4Jrl5uLEBpeBl92vk5n4r2fFnU7G2Fc" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
