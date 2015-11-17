@@ -43,6 +43,7 @@ public class DrugstoreScreen extends Activity {
             setPhoneCallListenner(controller.getDrugstore().getTelephone());
         }
 
+
     }
 
     private void setPhoneCallListenner(final String telephone) {
@@ -57,6 +58,7 @@ public class DrugstoreScreen extends Activity {
 
             }
         });
+
 
     }
 }
