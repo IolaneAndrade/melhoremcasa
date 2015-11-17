@@ -10,6 +10,9 @@ import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
+
+import android.widget.RatingBar;
+
 import android.widget.TextView;
 
 import mds.gpp.saudeemcasa.R;
@@ -43,6 +46,12 @@ public class DrugstoreScreen extends Activity {
             setPhoneCallListenner(controller.getDrugstore().getTelephone());
         }
 
+        //set ratting for drugstore
+        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalDrugstore);
+        ratingBarFinal.setRating(controller.getDrugstore().getRate());
+
+        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingDrugstore);
+        textViewRate.setText(""+controller.getDrugstore().getRate());
 
     }
 
@@ -50,15 +59,16 @@ public class DrugstoreScreen extends Activity {
         ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonDrugstore);
         phoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) throws SecurityException{
+            public void onClick(View v) throws SecurityException {
 
                 Intent phoneCall = new Intent(Intent.ACTION_CALL);
-                phoneCall.setData(Uri.parse("tel:"+telephone));
+                phoneCall.setData(Uri.parse("tel:" + telephone));
                 startActivity(phoneCall);
 
             }
         });
-
-
     }
+
+
+
 }

@@ -8,14 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.text.Html;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import android.widget.RatingBar;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 import mds.gpp.saudeemcasa.R;
-import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 
 /**
@@ -36,7 +39,12 @@ public class HospitalScreen extends Activity {
         // setting telephone
         TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
         telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
+        //set ratting for drugstore
+        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
+        ratingBarFinal.setRating(controller.getHospital().getRate());
 
+        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
+        textViewRate.setText(""+controller.getHospital().getRate());
         setPhoneCallListenner(controller.getHospital().getTelephone());
     }
 
@@ -44,9 +52,9 @@ public class HospitalScreen extends Activity {
         ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonHospital);
         phoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) throws SecurityException{
+            public void onClick(View v) throws SecurityException {
 
-                Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+telephone));
+                Intent phoneCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + telephone));
 
 
                 startActivity(phoneCall);
@@ -54,5 +62,7 @@ public class HospitalScreen extends Activity {
             }
         });
 
+
     }
+
 }

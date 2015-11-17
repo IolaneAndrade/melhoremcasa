@@ -19,7 +19,11 @@
         android:text="CEP"
         android:id="@+id/textViewCep"
         android:layout_gravity="center_vertical"
+<<<<<<< HEAD
         android:layout_marginTop="19dp"
+=======
+        android:layout_marginTop="27dp"
+>>>>>>> Developing sets and layouts for rating
         android:layout_below="@+id/textViewAddress"
         android:layout_alignParentStart="true" />
 
@@ -65,29 +69,37 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBarUser"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/ratingBarUserDrugstore"
         android:numStars="5"
-        android:stepSize="1" />
+        android:stepSize="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Nota"
-        android:id="@+id/textViewRating"
-        android:layout_above="@+id/ratingBarUser"
-        android:layout_alignStart="@+id/ratingBarUser" />
+        android:id="@+id/textViewRatingDrugstore"
+        android:layout_above="@+id/ratingBarUserDrugstore"
+        android:layout_alignStart="@+id/ratingBarUserDrugstore" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?android:attr/ratingBarStyleSmall"
-        android:id="@+id/ratingBarFinal"
-        android:layout_above="@+id/ratingBarUser"
-        android:layout_toEndOf="@+id/textViewRating"
+        android:id="@+id/ratingBarFinalDrugstore"
         android:numStars="5"
-        android:stepSize="1" />
+        android:stepSize="0.1"
+        android:layout_above="@+id/ratingBarUserDrugstore"
+        android:layout_toEndOf="@+id/textViewRatingDrugstore" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/ratingBarUserDrugstore" />
 
 </RelativeLayout>
