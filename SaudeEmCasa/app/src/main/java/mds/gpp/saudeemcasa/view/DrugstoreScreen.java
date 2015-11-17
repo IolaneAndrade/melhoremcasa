@@ -3,6 +3,7 @@ package mds.gpp.saudeemcasa.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import mds.gpp.saudeemcasa.R;
@@ -34,7 +35,13 @@ public class DrugstoreScreen extends Activity {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
             telephoneTextView.setText("Tel: " + controller.getDrugstore().getTelephone());
         }
+
         //set ratting for drugstore
+        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalDrugstore);
+        ratingBarFinal.setRating(controller.getDrugstore().getRate());
+
+        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingDrugstore);
+        textViewRate.setText(""+controller.getDrugstore().getRate());
 
     }
 }

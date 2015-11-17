@@ -30,9 +30,9 @@ android:contextClickable="false">
     android:text="Address"
     android:id="@+id/textViewAddressHosp"
     android:layout_gravity="center_horizontal"
-    android:layout_marginTop="63dp"
     android:layout_below="@+id/textViewHospName"
-    android:layout_alignParentStart="true" />
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="22dp" />
 
 
 <TextView
@@ -43,4 +43,32 @@ android:contextClickable="false">
     android:id="@+id/textViewHospTel"
     android:layout_below="@+id/textViewAddressHosp"
     android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarUserHospital"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:numStars="5"
+        android:stepSize="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nota"
+        android:id="@+id/textViewRatingHospital"
+        android:layout_above="@+id/ratingBarUserHospital"
+        android:layout_alignStart="@+id/ratingBarUserHospital" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:id="@+id/ratingBarFinalHospital"
+        android:layout_above="@+id/ratingBarUserHospital"
+        android:layout_toEndOf="@+id/textViewRatingHospital"
+        android:numStars="5"
+        android:stepSize="1" />
 </RelativeLayout>

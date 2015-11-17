@@ -3,10 +3,10 @@ package mds.gpp.saudeemcasa.view;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import mds.gpp.saudeemcasa.R;
-import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 
 /**
@@ -28,5 +28,12 @@ public class HospitalScreen extends Activity {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
             telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
 
+        //set ratting for drugstore
+        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
+        ratingBarFinal.setRating(controller.getHospital().getRate());
+
+        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
+        textViewRate.setText(""+controller.getHospital().getRate());
     }
+
 }
