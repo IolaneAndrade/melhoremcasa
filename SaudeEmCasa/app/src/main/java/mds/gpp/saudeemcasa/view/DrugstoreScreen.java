@@ -12,11 +12,14 @@ import android.widget.RatingBar;
 
 import android.Manifest;
 import android.app.Activity;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
+
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,16 +27,24 @@ import android.widget.ImageButton;
 
 import android.widget.TextView;
 
+
 import java.util.ArrayList;
+
+import java.util.UUID;
+
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
+import android.provider.Settings.Secure;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by lucas on 10/21/15.
  */
+
 public class DrugstoreScreen extends Fragment {
 
     ArrayList<DrugStore> list;
@@ -47,7 +58,8 @@ public class DrugstoreScreen extends Fragment {
 
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
-        System.out.println("ANDROID ID >>> " + androidId);*/
+        System.out.println("ANDROID ID >>> " + androidId);
+
 
         /*
         * if (requestedId.equals(androidId)){
@@ -56,8 +68,10 @@ public class DrugstoreScreen extends Fragment {
         *   
         * */
 
+
         final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
         final DrugStore drugStore = controller.getDrugstore();
+
         // setting name
         TextView nameTextView = (TextView) view.findViewById(R.id.textViewDrugName);
         nameTextView.setText(drugStore.getName());
