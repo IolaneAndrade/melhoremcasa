@@ -53,4 +53,32 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="65dp" />
 
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarUser"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:numStars="5"
+        android:stepSize="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nota"
+        android:id="@+id/textViewRating"
+        android:layout_above="@+id/ratingBarUser"
+        android:layout_alignStart="@+id/ratingBarUser" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:id="@+id/ratingBarFinal"
+        android:layout_above="@+id/ratingBarUser"
+        android:layout_toEndOf="@+id/textViewRating"
+        android:numStars="5"
+        android:stepSize="1" />
+
 </RelativeLayout>

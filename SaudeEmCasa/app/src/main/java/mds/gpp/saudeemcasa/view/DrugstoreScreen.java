@@ -34,5 +34,7 @@ public class DrugstoreScreen extends Activity {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
             telephoneTextView.setText("Tel: " + controller.getDrugstore().getTelephone());
         }
+        //set ratting for drugstore
+
     }
 }
