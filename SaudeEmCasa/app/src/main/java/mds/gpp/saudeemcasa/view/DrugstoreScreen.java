@@ -2,11 +2,14 @@ package mds.gpp.saudeemcasa.view;
 
 import android.Manifest;
 import android.app.Activity;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
+
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,16 +18,34 @@ import android.widget.RatingBar;
 
 import android.widget.TextView;
 
+import java.util.UUID;
+
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 
+import android.provider.Settings.Secure;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by lucas on 10/21/15.
  */
 public class DrugstoreScreen extends Activity {
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        System.out.println("ANDROID ID >>> "+androidId);
+
+        /*
+        * if (requestedId.equals(androidId)){
+        *   print "VOCE JA VOTOU!"
+        * else
+        *   
+        * */
+
         setContentView(R.layout.drugstore_screen);
         DrugStoreController controller = DrugStoreController.getInstance(this);
         // setting name
