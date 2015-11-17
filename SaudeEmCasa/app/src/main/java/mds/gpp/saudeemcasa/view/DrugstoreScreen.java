@@ -75,6 +75,7 @@ public class DrugstoreScreen extends Fragment {
         }
 
 
+
         //set ratting for drugstore
         RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalDrugstore);
         ratingBarFinal.setRating(drugStore.getRate());
@@ -99,6 +100,7 @@ public class DrugstoreScreen extends Fragment {
                 @Override
                 public void onClick(View v) throws SecurityException{
 
+
                     Intent phoneCall = new Intent(Intent.ACTION_CALL);
                     phoneCall.setData(Uri.parse("tel:"+drugStore.getTelephone()));
                     startActivity(phoneCall);
@@ -108,6 +110,7 @@ public class DrugstoreScreen extends Fragment {
 
 
         return (view);
+
     }
 
 
