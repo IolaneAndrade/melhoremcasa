@@ -18,9 +18,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.text.Html;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import android.widget.RatingBar;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +65,7 @@ public class HospitalScreen extends Fragment {
 
         ));
         // setting telephone
+
         TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
         telephoneTextView.setText("Tel: " + controller.getHospital().
 
@@ -77,12 +82,13 @@ public class HospitalScreen extends Fragment {
 
 
 
+
         ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonHospital);
         phoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) throws SecurityException{
+            public void onClick(View v) throws SecurityException {
 
-                Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+telephone));
+                Intent phoneCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + telephone));
 
 
                 startActivity(phoneCall);
@@ -107,6 +113,7 @@ public class HospitalScreen extends Fragment {
 
     return view;
 }
+
 }
 
 

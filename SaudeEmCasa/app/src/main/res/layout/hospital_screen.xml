@@ -89,5 +89,8 @@ android:contextClickable="false"
         android:src="@mipmap/phonecall_icon"
         android:layout_alignBottom="@+id/textViewAddressHosp"
         android:layout_alignParentStart="true" />
+
+
+
 </RelativeLayout>
 

@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RatingBar;
 
 import android.Manifest;
@@ -19,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
+
 
 import android.widget.TextView;
 
@@ -43,7 +45,7 @@ public class DrugstoreScreen extends Fragment {
         View view = inflater.inflate(R.layout.drugstore_screen, null);
 
 
-        /*final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
         System.out.println("ANDROID ID >>> " + androidId);*/
 
@@ -75,7 +77,6 @@ public class DrugstoreScreen extends Fragment {
         }
 
 
-
         //set ratting for drugstore
         RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalDrugstore);
         ratingBarFinal.setRating(drugStore.getRate());
@@ -83,14 +84,16 @@ public class DrugstoreScreen extends Fragment {
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingDrugstore);
         textViewRate.setText("" + drugStore.getRate());
 
-        /*Button drugStoreButton = (Button) view.findViewById(R.id.buttonSaveRateDrugstore);
+        Button drugStoreButton = (Button) view.findViewById(R.id.buttonSaveRateDrugstore);
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
             }
-        });*/
+
+        });
+
+
 
 
 
@@ -114,6 +117,4 @@ public class DrugstoreScreen extends Fragment {
     }
 
 
-
 }
-

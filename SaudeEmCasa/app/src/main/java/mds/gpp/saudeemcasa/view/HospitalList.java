@@ -62,7 +62,9 @@ public class HospitalList extends Activity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position,
                                     long id) {
+
                 list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
+
                 hospitalController.setHospital(list.get(position));
                 Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
                 startActivity(intent);

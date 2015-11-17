@@ -56,10 +56,17 @@ public class DrugStoreList extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position, long id) {
+<<<<<<< HEAD
                 list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
                 drugStoreController.setDrugStore(list.get(position));
                 //request from server the rate and set to the drugstore
                 Intent intent = new Intent(getBaseContext(), GoogleMapDrugStore.class);
+=======
+                list.get(position).setRate((float) 3.3 );
+                drugStoreController.setDrugStore(list.get(position));
+                //request from server the rate and set to the drugstore
+                Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
+>>>>>>> Developing sets and layouts for rating
 
                 startActivity(intent);
             }
