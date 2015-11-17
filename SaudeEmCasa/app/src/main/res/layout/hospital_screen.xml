@@ -57,10 +57,10 @@ android:contextClickable="false">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBarUserHospital"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:numStars="5"
-        android:stepSize="1" />
+        android:stepSize="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/textViewHospName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,5 +80,16 @@ android:contextClickable="false">
         android:layout_toEndOf="@+id/textViewRatingHospital"
         android:numStars="5"
         android:stepSize="1" />
+<<<<<<< HEAD
 >>>>>>> Developing sets and layouts for rating
+=======
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/buttonSaveRateHostpital"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/ratingBarUserHospital" />
+>>>>>>> creating methods for the http post for the update of the rate on the server. Refactoring DrugstoreScreen the minimize redudancy.
 </RelativeLayout>

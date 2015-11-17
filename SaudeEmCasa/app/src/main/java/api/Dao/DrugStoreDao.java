@@ -128,7 +128,6 @@ public class DrugStoreDao extends Dao{
                     .getColumnIndex(tableColumns[8])));
             drugStore.setType(cursor.getString( cursor
                     .getColumnIndex( tableColumns[9])));
-
             listDrugstores.add(drugStore );
         }
 

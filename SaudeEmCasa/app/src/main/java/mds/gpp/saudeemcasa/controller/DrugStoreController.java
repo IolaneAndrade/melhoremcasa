@@ -3,6 +3,8 @@ package mds.gpp.saudeemcasa.controller;
 import android.content.Context;
 
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.location.Location;
 import java.io.IOException;
 import java.io.InputStream;
@@ -120,4 +122,20 @@ public class DrugStoreController {
         }
 
     }
+    public String updateRate(float rate,String androidId,int drugstoreId ){
+        JSONObject json = new JSONObject();
+        try{
+            json.put("rate", rate);
+            json.put("androidId", androidId);
+            json.put("drugstoreId",drugstoreId);
+        } catch (JSONException e) {
+            /*Handle exception*/
+        }
+        HttpConnection connection = new HttpConnection();
+
+        String response = connection.postRequest(json, "PUT THE IP HERE");
+
+        return response;
+    }
+
 }

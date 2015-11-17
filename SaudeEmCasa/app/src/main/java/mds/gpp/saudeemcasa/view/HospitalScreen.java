@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
+import mds.gpp.saudeemcasa.model.Hospital;
 
 /**
  * Created by freemanpivo on 11/14/15.
@@ -30,6 +31,7 @@ public class HospitalScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_screen);
         HospitalController controller = HospitalController.getInstance(this);
+        
         // setting name
         TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
         nameTextView.setText(controller.getHospital().getName());
@@ -45,6 +47,7 @@ public class HospitalScreen extends Activity {
 
         TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
         textViewRate.setText(""+controller.getHospital().getRate());
+
         setPhoneCallListenner(controller.getHospital().getTelephone());
     }
 
@@ -61,6 +64,7 @@ public class HospitalScreen extends Activity {
 
             }
         });
+
 
 
     }
