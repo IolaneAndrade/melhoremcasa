@@ -3,6 +3,7 @@ package mds.gpp.saudeemcasa.controller;
 import android.content.Context;
 import android.location.Location;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -148,29 +149,32 @@ public class HospitalController {
         return response;
     }
 
-
-
-    private void updateGoogleMap() {
+    public void updateGoogleMap() {
 
         GoogleMap googleMap = null;
-        LatLng originLocation = new LatLng(hospital.getLatitude(), hospital.getLongitude());
+        String latitude = hospital.getLatitude();
+        String longitude = hospital.getLongitude();
+        //convert string to double
+        LatLng originLocation = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.common_ic_googleplayservices);
+        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.common_ic_googleplayservices);
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions()
+        /*googleMap.addMarker(new MarkerOptions()
                 .position(originLocation)
-                .icon(icon)
+                //.icon(icon)
                 .title(hospital.getName())
-                .snippet(hospital.getCity());
+                .snippet(hospital.getCity()));*/
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(originLocation)
                 .zoom(17)
                 .bearing(90)
                 .tilt(45)
                 .build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        //googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        googleMap.moveCamera(cameraUpdate);
 
     }
-
 
 }

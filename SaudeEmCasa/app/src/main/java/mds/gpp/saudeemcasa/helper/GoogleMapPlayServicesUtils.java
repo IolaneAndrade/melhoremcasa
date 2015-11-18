@@ -15,7 +15,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 //verificar se o google play services está disponivel p/ o usuario, caso contrario, mostrar erro
 public class GoogleMapPlayServicesUtils {
 
-    public final static int REQUEST_CODE_PLAY_SEVICES = 9000;
+ /*   public final static int REQUEST_CODE_PLAY_SEVICES = 9000;
 
     public static boolean googlePlayServicesAvailable(FragmentActivity activity) {
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity);
@@ -36,5 +36,5 @@ public class GoogleMapPlayServicesUtils {
             errorFragment.setDialog(errorDialog);
             errorFragment.show(activity.getSupportFragmentManager(), "DIALOG_ERRO_PLAY_SERVICES");
         }
-    }
+    }*/
 }
