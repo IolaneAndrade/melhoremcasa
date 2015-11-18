@@ -55,9 +55,10 @@ public class DrugStoreList extends Activity {
         }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView adapterView, View view, int position,
-                                    long id) {
+            public void onItemClick(AdapterView adapterView, View view, int position, long id) {
+                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
                 drugStoreController.setDrugStore(list.get(position));
+                //request from server the rate and set to the drugstore
                 Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
 
                 startActivity(intent);

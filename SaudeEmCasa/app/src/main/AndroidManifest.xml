@@ -13,9 +13,7 @@
     <!-- access mobile location with GPS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!--<uses-feature
-        android:glEsVersion="@integer/google_play_services_version"
-        android:required="true" /> -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -67,4 +65,5 @@
         </activity>
 
     </application>
+
 </manifest>

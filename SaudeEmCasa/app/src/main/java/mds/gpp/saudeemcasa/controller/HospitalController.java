@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Location;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -121,6 +122,21 @@ public class HospitalController {
             return stablishment1.getDistance()<(stablishment2.getDistance())? -1 : 1;
         }
 
+    }
+    public String updateRate(float rate,String androidId,int drugstoreId ){
+        JSONObject json = new JSONObject();
+        try{
+            json.put("rate", rate);
+            json.put("androidId", androidId);
+            json.put("drugstoreId",drugstoreId);
+        } catch (JSONException e) {
+            /*Handle exception*/
+        }
+        HttpConnection connection = new HttpConnection();
+
+        String response = connection.postRequest(json, "PUT THE IP HERE");
+
+        return response;
     }
 
 }
