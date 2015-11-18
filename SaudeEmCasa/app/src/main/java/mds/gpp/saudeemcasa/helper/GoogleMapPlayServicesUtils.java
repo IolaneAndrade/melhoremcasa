@@ -1,6 +1,7 @@
 package mds.gpp.saudeemcasa.helper;
 
 import android.app.Dialog;
+import mds.gpp.saudeemcasa.helper.MessageDialogFragment;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;

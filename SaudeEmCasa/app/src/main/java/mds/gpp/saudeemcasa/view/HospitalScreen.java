@@ -8,10 +8,17 @@ import android.text.Html;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
@@ -23,11 +30,14 @@ import mds.gpp.saudeemcasa.model.Hospital;
 public class HospitalScreen extends FragmentActivity {
 
     GoogleMap googleMap;
+
     LatLng originLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         SupportMapFragment fragment = SupportMapFragment.newInstance();
                 getSupportFragmentManager().findFragmentById(R.id.hospital_map);
@@ -36,6 +46,7 @@ public class HospitalScreen extends FragmentActivity {
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         originLocation = new LatLng(-23.561706, -46.655981);
+
 
 
 
