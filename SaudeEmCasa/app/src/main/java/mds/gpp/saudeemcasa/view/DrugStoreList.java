@@ -51,7 +51,7 @@ public class DrugStoreList extends Activity {
             listView.setAdapter(adapter);
 
         } else {
-            Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Concecte-se para prosseguir.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Voce nao esta conectado ao gps ou a internet!\n Conecte-se para prosseguir.", Toast.LENGTH_LONG).show();
         }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
