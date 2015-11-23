@@ -56,9 +56,9 @@ android:contextClickable="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:name="mds.gpp.saudeemcasa.view.MapToHospital"
-            android:id="@+id/hospitaMapFragment"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true" />
+            android:id="@+id/fragment"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
     <!-- android:layout_alignParentStart="true" /> -->
@@ -101,5 +101,10 @@ android:contextClickable="false"
         android:id="@+id/buttonSaveRateHostpital"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/ratingBarUserHospital" />
+
+    <android.support.wearable.view.DismissOverlayView
+        android:id="@+id/dismiss_overlay"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
 
 </RelativeLayout>

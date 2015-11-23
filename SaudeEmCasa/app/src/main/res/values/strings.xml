@@ -6,4 +6,5 @@
 
     <string name="program_drug">Farmacia Popular</string>
     <string name="program_hospital">Melhor em Casa</string>
+    <string name="title_activity_hospital_maps">Map</string>
 </resources>

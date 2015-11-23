@@ -64,6 +64,10 @@
             <action android:name="android.intent.category.default"></action>
         </activity>
 
+
+        <activity android:name="mds.gpp.saudeemcasa.view.HospitalMapsActivity"
+            android:label="@string/title_activity_hospital_maps">
+        </activity>
     </application>
 
 </manifest>
