@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import mds.gpp.saudeemcasa.R;
@@ -20,10 +21,11 @@ public class ChooseScreen extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_screen);
+        setContentView(R.layout.test_choose_screen);
 
         Button hospitalButton = (Button) findViewById(R.id.melhor_em_casa_button);
         Button drugStoreButton = (Button) findViewById(R.id.farm_popular_button);
+        ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
         gps = new GPSTracker(this);
 
         hospitalButton.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,15 @@ public class ChooseScreen extends Activity{
                     Toast.makeText(getApplicationContext(),"Ligue seu GPS/Conecte-se a internet",Toast.LENGTH_LONG).show();
 
                 }
+            }
+        });
+
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent nextScreen = new Intent(getBaseContext(), InformationScreen.class);
+                    startActivity(nextScreen);
+
             }
         });
     }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewSaudeEmCasa"
+        android:src="@mipmap/logo_icon"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/textViewSaudeEmCasaInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Saúde em Casa"
+        android:layout_alignTop="@+id/imageViewSaudeEmCasa"
+        android:layout_toEndOf="@+id/imageViewSaudeEmCasa"
+        android:layout_marginStart="33dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view1"
+        android:layout_below="@+id/imageViewMelhorEmCasa"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:id="@+id/imageViewMelhorEmCasa"
+        android:src="@mipmap/melhor_em_casa"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_alignTop="@+id/textViewMelhorEmCasaInformation"
+        android:layout_toStartOf="@+id/textViewSaudeEmCasaInformation" />
+
+    <TextView
+        android:id="@+id/textViewMelhorEmCasaInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Melhor em Casa"
+        android:layout_below="@+id/view2"
+        android:layout_alignStart="@+id/textViewSaudeEmCasaInformation"
+        android:layout_marginTop="41dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/view2"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/imageViewSaudeEmCasa"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/imageViewFarmaciaPopular"
+        android:src="@mipmap/farm_popular"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/view1"
+        android:layout_alignEnd="@+id/imageViewMelhorEmCasa"
+        android:layout_marginTop="53dp" />
+
+    <TextView
+        android:id="@+id/textViewFarmaciaPopularInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Farmácia Popular"
+        android:layout_alignTop="@+id/imageViewFarmaciaPopular"
+        android:layout_alignStart="@+id/textViewMelhorEmCasaInformation" />
+
+</RelativeLayout>
