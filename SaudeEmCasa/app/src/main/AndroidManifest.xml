@@ -15,6 +15,7 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -49,7 +50,7 @@
         <!-- API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBJ4Jrl5uLEBpeBl92vk5n4r2fFnU7G2Fc" />
+            android:value="AIzaSyDiz3GLq_9mijorWyNPANDhziIfuioxrJY" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
@@ -65,9 +66,6 @@
         </activity>
 
 
-        <activity android:name="mds.gpp.saudeemcasa.view.HospitalMapsActivity"
-            android:label="@string/title_activity_hospital_maps">
-        </activity>
     </application>
 
 </manifest>

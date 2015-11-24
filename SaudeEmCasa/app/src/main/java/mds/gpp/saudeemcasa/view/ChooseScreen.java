@@ -1,8 +1,11 @@
 package mds.gpp.saudeemcasa.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,6 +19,13 @@ import mds.gpp.saudeemcasa.helper.GPSTracker;
 public class ChooseScreen extends Activity{
 
     GPSTracker gps;
+
+    // to solve ERRO _non-zero exit value 2_
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

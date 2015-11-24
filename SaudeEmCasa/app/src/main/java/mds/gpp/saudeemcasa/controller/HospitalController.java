@@ -56,6 +56,7 @@ public class HospitalController {
         }
         return instance;
     }
+
     public void setHospital( Hospital hospital ) {
         HospitalController.hospital = hospital;
     }
@@ -92,7 +93,6 @@ public class HospitalController {
                 hospitalList = hospitalDao.getAllHospitals();
 
             }
-
     }
 
     public int[] setDistance(Context context, ArrayList<Hospital> list) {
@@ -147,34 +147,6 @@ public class HospitalController {
         String response = connection.postRequest(json, "PUT THE IP HERE");
 
         return response;
-    }
-
-    public void updateGoogleMap() {
-
-        GoogleMap googleMap = null;
-        String latitude = hospital.getLatitude();
-        String longitude = hospital.getLongitude();
-        //convert string to double
-        LatLng originLocation = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
-
-        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.common_ic_googleplayservices);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        /*googleMap.addMarker(new MarkerOptions()
-                .position(originLocation)
-                //.icon(icon)
-                .title(hospital.getName())
-                .snippet(hospital.getCity()));*/
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(originLocation)
-                .zoom(17)
-                .bearing(90)
-                .tilt(45)
-                .build();
-        //googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-        googleMap.moveCamera(cameraUpdate);
-
     }
 
 }
