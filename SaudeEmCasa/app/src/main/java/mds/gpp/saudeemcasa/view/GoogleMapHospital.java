@@ -1,5 +1,6 @@
 package mds.gpp.saudeemcasa.view;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -15,7 +16,7 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
 /**
  * Created by iolane on 25/11/15.
  */
-public class GoogleMapHospital extends FragmentActivity{
+public class GoogleMapHospital extends FragmentActivity {
 
     private GoogleMap mMap;
     HospitalController controller = HospitalController.getInstance(this);

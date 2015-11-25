@@ -11,7 +11,7 @@ import android.widget.TextView;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 
-public class MapToHospital extends Fragment {
+public class MapToHospital extends Fragment {/*
 
     HospitalController controller = HospitalController.getInstance(this.getContext());
 
@@ -69,6 +69,6 @@ public class MapToHospital extends Fragment {
 
         return (view);
     }
-
+*/
 }
 
