@@ -94,8 +94,8 @@ public class HospitalController {
 
     }
 
-    public int[] oganizeListHospitalForDistance(Context context, ArrayList<Hospital> list) {
-        int[] results = new int[list.size()];
+    public int[] oganizeListHospitalForDistance() {
+        int[] results = new int[hospitalList.size()];
         GPSTracker gps = new GPSTracker(context);
 
 
@@ -104,18 +104,18 @@ public class HospitalController {
             double userLongitude = gps.getLongitude();
             double userLatitude = gps.getLatitude();
 
-            for (int i = 0; i < list.size(); i++) {
-                String auxLatitude = list.get(i).getLatitude();
-                String auxLongitude = list.get(i).getLongitude();
+            for (int i = 0; i < hospitalList.size(); i++) {
+                String auxLatitude = hospitalList.get(i).getLatitude();
+                String auxLongitude = hospitalList.get(i).getLongitude();
                 float resultsadapter[] = new float[1];
                 Double.parseDouble(auxLongitude);
-                Location.distanceBetween(Double.parseDouble(list.get(i).getLatitude()),
-                        Double.parseDouble(list.get(i).getLongitude()),
+                Location.distanceBetween(Double.parseDouble(hospitalList.get(i).getLatitude()),
+                        Double.parseDouble(hospitalList.get(i).getLongitude()),
                         userLatitude,userLongitude,resultsadapter);
-                list.get(i).setDistance(resultsadapter[0]);
+                hospitalList.get(i).setDistance(resultsadapter[0]);
             }
 
-            sort(list, new DistanceComparator());
+            sort(hospitalList, new DistanceComparator());
             return results;
         }else {
             return null;
