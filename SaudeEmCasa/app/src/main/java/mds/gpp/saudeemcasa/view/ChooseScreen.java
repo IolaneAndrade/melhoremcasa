@@ -20,13 +20,6 @@ public class ChooseScreen extends Activity{
 
     GPSTracker gps;
 
-    // to solve ERRO _non-zero exit value 2_
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

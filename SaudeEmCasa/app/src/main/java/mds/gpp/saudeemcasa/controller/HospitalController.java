@@ -28,6 +28,7 @@ import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.Hospital;
 import mds.gpp.saudeemcasa.model.Stablishment;
+import mds.gpp.saudeemcasa.view.MapToHospital;
 
 import static java.util.Collections.sort;
 

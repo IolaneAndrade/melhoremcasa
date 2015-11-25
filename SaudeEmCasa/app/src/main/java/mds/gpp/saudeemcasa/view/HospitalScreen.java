@@ -27,61 +27,19 @@ import mds.gpp.saudeemcasa.model.Hospital;
 public class HospitalScreen extends FragmentActivity /*implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener */{
 
     private GoogleMap mMap;
-    private Hospital hospital;
+    private Hospital hospital;/* = new Hospital();*/
+    HospitalController controller = HospitalController.getInstance(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.hospital_screen);
-        //setContentView(R.layout.activity_hospital_maps);
+        //setContentView(R.layout.hospital_screen);
+
+        setContentView(R.layout.activity_hospital_maps);
         setUpMap();
-        HospitalController controller = HospitalController.getInstance(this);
-
-
-        // setting name
-        TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
-        nameTextView.setText(controller.getHospital().getName());
-
-        // Address
-        TextView addressTextView = (TextView) findViewById(R.id.textViewAddressHosp);
-        addressTextView.setText(Html.fromHtml(controller.getHospital().
-
-                        getAddress()
-
-                        + " - " + controller.getHospital().
-
-                        getCity()
-
-                        + " - " + controller.getHospital().
-
-                        getState()
-
-        ));
-        // setting telephone
-        TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
-        telephoneTextView.setText("Tel: " + controller.getHospital().
-
-                        getTelephone()
-
-        );
-
-        //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar) findViewById(R.id.ratingBarFinalHospital);
-        ratingBarFinal.setRating(controller.getHospital().
-
-                        getRate()
-
-        );
-
-        TextView textViewRate = (TextView) findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText("" + controller.getHospital().
-
-                        getRate()
-
-        );
-
-
+     
     }
 
     @Override
@@ -110,13 +68,12 @@ public class HospitalScreen extends FragmentActivity /*implements OnMapReadyCall
 
     //Start the map on the right position
     private void oneLocationMap() {
-
-        String latitude = hospital.getLatitude();
-        String longitude = hospital.getLongitude();
-        //convert string to double
+        String nome = controller.getHospital().getName();
+        String latitude = controller.getHospital().getLatitude();
+        String longitude = controller.getHospital().getLongitude();
         LatLng hospitalLocation = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
-        mMap.addMarker(new MarkerOptions().position(hospitalLocation).title(hospital.getName()));
+        mMap.addMarker(new MarkerOptions().position(hospitalLocation).title(nome));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hospitalLocation, 10));
     }
 
