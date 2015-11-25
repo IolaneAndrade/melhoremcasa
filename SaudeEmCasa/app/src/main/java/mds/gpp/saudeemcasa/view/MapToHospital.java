@@ -11,9 +11,11 @@ import android.widget.TextView;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 
-public class MapToHospital extends Fragment {/*
+public class MapToHospital extends Fragment {
 
-    public MapToHospital() { }  // Required empty constructor
+    HospitalController controller = HospitalController.getInstance(this.getContext());
+
+    //public MapToHospital() { }  // Required empty constructor
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
@@ -21,11 +23,7 @@ public class MapToHospital extends Fragment {/*
         View view = inflater.inflate(R.layout.hospital_screen, null);
 
         //HospitalController controller = HospitalController.getInstance(this);
-        HospitalController controller = HospitalController.getInstance(this.getContext());
-        if(this.getContext() == null) {
 
-            System.out.println("DEU RUIM ");
-        }
 
         // setting name
         TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
@@ -70,7 +68,7 @@ public class MapToHospital extends Fragment {/*
         );
 
         return (view);
-    }*/
+    }
 
 }
 
