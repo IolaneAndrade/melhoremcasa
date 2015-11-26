@@ -1,6 +1,7 @@
 package mds.gpp.saudeemcasa.view;
 
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -8,7 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.text.Html;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
@@ -26,10 +40,12 @@ public class HospitalScreen extends Fragment {
         View view = inflater.inflate(R.layout.hospital_screen, null);
 
         // setting name
+
         TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
         nameTextView.setText(controller.getHospital().getName());
 
         // Address
+
         TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddressHosp);
         addressTextView.setText(Html.fromHtml(controller.getHospital().
 
@@ -57,11 +73,36 @@ public class HospitalScreen extends Fragment {
         ratingBarFinal.setRating(controller.getHospital().getRate());
 
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText("" + controller.getHospital().
+        textViewRate.setText("" + controller.getHospital().getRate());
 
-                        getRate()
 
-        );
+    private void setPhoneCallListenner(final String telephone) {
+        ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonHospital);
+        phoneCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent phoneCall = new Intent(Intent.ACTION_CALL);
+                phoneCall.setData(Uri.parse(telephone));
+                if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                startActivity(phoneCall);
+
+            }
+
+        });
+
+
+
+
 
         /*Button hospitalMapButton = (Button) findViewById(R.id.button_hospital_map);
 
@@ -74,6 +115,7 @@ public class HospitalScreen extends Fragment {
         });*/
         return (view);
     }
+}
 }
 
 
