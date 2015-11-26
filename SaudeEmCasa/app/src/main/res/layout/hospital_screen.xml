@@ -34,7 +34,6 @@ android:contextClickable="false"
     android:layout_alignParentStart="true"
     android:layout_marginTop="22dp" />
 
-
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -43,19 +42,15 @@ android:contextClickable="false"
     android:id="@+id/textViewHospTel"
     android:layout_alignBottom="@+id/textViewAddressHosp"/>
 
-    <!-- android:layout_alignParentStart="true" /> -->
-
-
-    android:layout_alignParentStart="true" />
-
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBarUserHospital"
         android:numStars="5"
         android:stepSize="1"
-        android:layout_above="@+id/button_hospital_map"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="144dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,14 +78,5 @@ android:contextClickable="false"
         android:id="@+id/buttonSaveRateHostpital"
         android:layout_alignBottom="@+id/ratingBarUserHospital"
         android:layout_toEndOf="@+id/textViewHospName" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Acessar mapa"
-        android:id="@+id/button_hospital_map"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="108dp" />
 
 </RelativeLayout>

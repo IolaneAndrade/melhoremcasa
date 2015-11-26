@@ -24,7 +24,7 @@ public class GoogleMapHospital extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_google_maps);
+        setContentView(R.layout.activity_google_maps_hospital);
         setUpMap();
     }
 

@@ -64,7 +64,7 @@ public class HospitalList extends Activity {
                                     long id) {
                 list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
                 hospitalController.setHospital(list.get(position));
-                Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
+                Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
                 startActivity(intent);
             }
         });

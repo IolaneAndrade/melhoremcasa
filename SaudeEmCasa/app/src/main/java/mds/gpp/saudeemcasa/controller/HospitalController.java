@@ -3,15 +3,6 @@ package mds.gpp.saudeemcasa.controller;
 import android.content.Context;
 import android.location.Location;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,11 +15,9 @@ import api.Dao.HospitalDao;
 import api.Exception.ConnectionErrorException;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
-import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.Hospital;
 import mds.gpp.saudeemcasa.model.Stablishment;
-import mds.gpp.saudeemcasa.view.MapToHospital;
 
 import static java.util.Collections.sort;
 

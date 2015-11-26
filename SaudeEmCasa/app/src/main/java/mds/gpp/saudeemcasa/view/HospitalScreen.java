@@ -1,37 +1,36 @@
 package mds.gpp.saudeemcasa.view;
 
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 
-
-
 /**
  * Created by freemanpivo on 11/14/15.
  */
-public class HospitalScreen extends FragmentActivity {
+public class HospitalScreen extends Fragment {
+
+    HospitalController controller = HospitalController.getInstance(this.getContext());
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.hospital_screen);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
 
-        final HospitalController controller = HospitalController.getInstance(this);
+        View view = inflater.inflate(R.layout.hospital_screen, null);
 
         // setting name
-        TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
+        TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
         nameTextView.setText(controller.getHospital().getName());
 
         // Address
-        TextView addressTextView = (TextView) findViewById(R.id.textViewAddressHosp);
+        TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddressHosp);
         addressTextView.setText(Html.fromHtml(controller.getHospital().
 
                         getAddress()
@@ -46,7 +45,7 @@ public class HospitalScreen extends FragmentActivity {
 
         ));
         // setting telephone
-        TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
+        TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
         telephoneTextView.setText("Tel: " + controller.getHospital().
 
                         getTelephone()
@@ -54,17 +53,17 @@ public class HospitalScreen extends FragmentActivity {
         );
 
         //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar) findViewById(R.id.ratingBarFinalHospital);
+        RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
         ratingBarFinal.setRating(controller.getHospital().getRate());
 
-        TextView textViewRate = (TextView) findViewById(R.id.textViewRatingHospital);
+        TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingHospital);
         textViewRate.setText("" + controller.getHospital().
 
                         getRate()
 
         );
 
-        Button hospitalMapButton = (Button) findViewById(R.id.button_hospital_map);
+        /*Button hospitalMapButton = (Button) findViewById(R.id.button_hospital_map);
 
         hospitalMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +71,8 @@ public class HospitalScreen extends FragmentActivity {
                 Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
                 startActivity(intent);
             }
-        });
+        });*/
+        return (view);
     }
 }
 
