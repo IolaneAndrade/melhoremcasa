@@ -10,15 +10,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import mds.gpp.saudeemcasa.R;
-import mds.gpp.saudeemcasa.controller.HospitalController;
+import mds.gpp.saudeemcasa.controller.DrugStoreController;
+
 
 /**
  * Created by iolane on 25/11/15.
  */
-public class GoogleMapHospital extends FragmentActivity {
+public class GoogleMapDrugStore extends FragmentActivity{
 
     private GoogleMap mMap;
-    HospitalController controller = HospitalController.getInstance(this);
+    DrugStoreController controller = DrugStoreController.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +54,13 @@ public class GoogleMapHospital extends FragmentActivity {
 
     //Start the map on the right position
     private void oneLocationMap() {
-        String nome = controller.getHospital().getName();
-        String latitude = controller.getHospital().getLatitude();
-        String longitude = controller.getHospital().getLongitude();
+        String nome = controller.getDrugstore().getName();
+        String latitude = controller.getDrugstore().getLatitude();
+        String longitude = controller.getDrugstore().getLongitude();
         LatLng hospitalLocation = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
 
         mMap.addMarker(new MarkerOptions().position(hospitalLocation).title(nome));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hospitalLocation, 10));
     }
 }
+
