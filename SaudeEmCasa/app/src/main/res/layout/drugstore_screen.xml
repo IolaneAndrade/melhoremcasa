@@ -51,6 +51,14 @@
         android:id="@+id/textViewDrugTel"
         android:layout_alignTop="@+id/textViewCep"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="65dp" />
+        android:layout_marginEnd="63dp" />
+
+    <ImageButton
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:id="@+id/phonecallButtonDrugstore"
+        android:src="@mipmap/phonecall_icon"
+        android:layout_alignBottom="@+id/textViewDrugTel"
+        android:layout_toStartOf="@+id/textViewDrugTel" />
 
 </RelativeLayout>
