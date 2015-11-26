@@ -43,7 +43,7 @@ public class HospitalList extends Activity {
 
         if(gps.canGetLocation()) {
 
-            hospitalController.oganizeListHospitalForDistance(this, list);
+            hospitalController.oganizeListHospitalForDistance();
             // Initializing new HospitalAdapter with list of hospitals
             HospitalAdapter adapter = new HospitalAdapter(this, list);
             // Setting adapter to listView

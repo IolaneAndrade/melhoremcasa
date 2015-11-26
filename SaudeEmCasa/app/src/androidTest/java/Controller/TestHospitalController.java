@@ -40,7 +40,7 @@ public class TestHospitalController extends ActivityInstrumentationTestCase2<Loa
 
     }
 
-        public void testInitControllerHospital() {
+/*        public void testInitControllerHospital() {
 
             try {
                 hospitalController.initControllerHospital();
@@ -70,7 +70,7 @@ public class TestHospitalController extends ActivityInstrumentationTestCase2<Loa
             assertFalse(hospitalController.getAllHospitals().size() < 0);
             myActivity.finish();
 
-        }
+        }*/
 
     public void testOrganizeListHospitalForDistance() throws Exception{
 

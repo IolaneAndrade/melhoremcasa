@@ -41,7 +41,7 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
 
     }
 
-    public void testInitControllerDrugStore() {
+/*    public void testInitControllerDrugStore() {
 
         try {
             drugStoreController.initControllerDrugstore();
@@ -71,7 +71,7 @@ public class TestDrugStoreController extends ActivityInstrumentationTestCase2<Lo
         assertFalse(drugStoreController.getAllDrugstores().size() < 0);
         myActivity.finish();
 
-    }
+    }*/
 
 
     public void testOrganizeListDrugStoreForDistance() throws Exception {
