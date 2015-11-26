@@ -4,18 +4,24 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import mds.gpp.saudeemcasa.R;
+import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
+import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.model.DrugStore;
+import mds.gpp.saudeemcasa.model.Hospital;
 
 import android.provider.Settings.Secure;
 import android.widget.Toast;
@@ -25,7 +31,9 @@ import static java.security.AccessController.getContext;
 /**
  * Created by lucas on 10/21/15.
  */
-public class DrugstoreScreen extends Activity {
+public class DrugstoreScreen extends FragmentActivity {
+
+    ArrayList<DrugStore> list;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +83,24 @@ public class DrugstoreScreen extends Activity {
             @Override
             public void onClick(View v) {
 
-                controller.updateRate(drugStore.getRate(),androidId,drugStore.getId());
+                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
             }
         });
+
+        Button drugStoreMapButton = (Button) findViewById(R.id.button_drugstore_map);
+        //Intent nextScreen;
+
+        drugStoreMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                System.out.println("OK OK");
+                Intent nextScreen = new Intent(getBaseContext(), GoogleMapDrugStore.class);
+                startActivity(nextScreen);
+            }
+
+        });
+
     }
 }
 
