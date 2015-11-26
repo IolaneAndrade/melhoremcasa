@@ -19,7 +19,9 @@
         android:text="CEP"
         android:id="@+id/textViewCep"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="27dp"
+
+        android:layout_marginTop="19dp"
+
         android:layout_below="@+id/textViewAddress"
         android:layout_alignParentStart="true" />
 
@@ -49,17 +51,18 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Telephone"
         android:id="@+id/textViewDrugTel"
-        android:layout_alignTop="@+id/textViewCep"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="63dp" />
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/textViewCep"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="30dip"
         android:layout_height="30dip"
         android:id="@+id/phonecallButtonDrugstore"
         android:src="@mipmap/phonecall_icon"
-        android:layout_alignBottom="@+id/textViewDrugTel"
-        android:layout_toStartOf="@+id/textViewDrugTel" />
+        android:layout_below="@+id/textViewCep"
+        android:layout_alignEnd="@+id/textViewCep"
+        android:layout_marginTop="19dp" />
 
     <RatingBar
         android:layout_width="wrap_content"

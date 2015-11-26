@@ -76,24 +76,15 @@ public class HospitalScreen extends Fragment {
         textViewRate.setText("" + controller.getHospital().getRate());
 
 
-    private void setPhoneCallListenner(final String telephone) {
+
         ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonHospital);
         phoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) throws SecurityException{
 
-                Intent phoneCall = new Intent(Intent.ACTION_CALL);
-                phoneCall.setData(Uri.parse(telephone));
-                if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
+                Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+telephone));
+
+
                 startActivity(phoneCall);
 
             }
@@ -113,8 +104,8 @@ public class HospitalScreen extends Fragment {
                 startActivity(intent);
             }
         });*/
-        return (view);
-    }
+
+    return view;
 }
 }
 

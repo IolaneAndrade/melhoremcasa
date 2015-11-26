@@ -41,6 +41,7 @@ android:contextClickable="false"
     android:text="Telephone"
     android:id="@+id/textViewHospTel"
 
+
     android:layout_alignBottom="@+id/textViewAddressHosp"/>
 
     <RatingBar
@@ -86,7 +87,7 @@ android:contextClickable="false"
         android:layout_height="30dip"
         android:id="@+id/phonecallButtonHospital"
         android:src="@mipmap/phonecall_icon"
-        android:layout_alignBottom="@+id/textViewHospTel"
+        android:layout_alignBottom="@+id/textViewAddressHosp"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
 
