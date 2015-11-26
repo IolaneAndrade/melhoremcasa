@@ -19,13 +19,12 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
  */
 public class HospitalScreen extends FragmentActivity {
 
-    HospitalController controller = HospitalController.getInstance(this);
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_screen);
+
+        final HospitalController controller = HospitalController.getInstance(this);
 
         // setting name
         TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
@@ -74,7 +73,6 @@ public class HospitalScreen extends FragmentActivity {
                 startActivity(intent);
             }
         });
-
     }
 }
 

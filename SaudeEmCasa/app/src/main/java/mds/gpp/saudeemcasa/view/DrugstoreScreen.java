@@ -88,13 +88,11 @@ public class DrugstoreScreen extends FragmentActivity {
         });
 
         Button drugStoreMapButton = (Button) findViewById(R.id.button_drugstore_map);
-        //Intent nextScreen;
 
         drugStoreMapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                System.out.println("OK OK");
                 Intent nextScreen = new Intent(getBaseContext(), GoogleMapDrugStore.class);
                 startActivity(nextScreen);
             }

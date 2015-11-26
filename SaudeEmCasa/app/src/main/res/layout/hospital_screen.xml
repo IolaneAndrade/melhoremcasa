@@ -41,8 +41,7 @@ android:contextClickable="false"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:text="Telephone"
     android:id="@+id/textViewHospTel"
-    android:layout_alignBottom="@+id/textViewAddressHosp"
-    android:layout_alignStart="@+id/dismiss_overlay" />
+    android:layout_alignBottom="@+id/textViewAddressHosp"/>
 
     <!-- android:layout_alignParentStart="true" /> -->
 
@@ -55,8 +54,8 @@ android:contextClickable="false"
         android:id="@+id/ratingBarUserHospital"
         android:numStars="5"
         android:stepSize="1"
-        android:layout_below="@+id/textViewRatingHospital"
-        android:layout_alignStart="@+id/dismiss_overlay" />
+        android:layout_above="@+id/button_hospital_map"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,8 +63,8 @@ android:contextClickable="false"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nota"
         android:id="@+id/textViewRatingHospital"
-        android:layout_below="@+id/textViewAddressHosp"
-        android:layout_alignStart="@+id/dismiss_overlay" />
+        android:layout_above="@+id/ratingBarFinalHospital"
+        android:layout_alignParentStart="true" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -85,17 +84,13 @@ android:contextClickable="false"
         android:layout_alignBottom="@+id/ratingBarUserHospital"
         android:layout_toEndOf="@+id/textViewHospName" />
 
-    <android.support.wearable.view.DismissOverlayView
-        android:id="@+id/dismiss_overlay"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Acessar mapa"
         android:id="@+id/button_hospital_map"
-        android:layout_below="@+id/buttonSaveRateHostpital"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="108dp" />
 
 </RelativeLayout>
