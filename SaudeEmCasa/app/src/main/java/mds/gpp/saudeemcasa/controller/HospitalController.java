@@ -67,7 +67,7 @@ public class HospitalController {
                 //creating
                 HttpConnection httpConnection = new HttpConnection();
                 //requesting
-                String jsonHospital = httpConnection.newRequest("http://159.203.95.153:3000/habilitados");
+                String jsonHospital = httpConnection.RequestAll("http://159.203.95.153:3000/habilitados");
 
                 JSONHelper jsonParser = new JSONHelper(context);
 

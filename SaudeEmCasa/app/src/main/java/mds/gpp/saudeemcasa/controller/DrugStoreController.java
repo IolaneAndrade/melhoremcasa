@@ -61,14 +61,14 @@ public class DrugStoreController {
 
             if (drugStoreDao.isDbEmpty()) {
 
-                HttpConnection httpConnectionPublic = new HttpConnection();
+                HttpConnection httpConnection = new HttpConnection();
                 //requesting public drugstore
-                String jsonPublic = httpConnectionPublic.newRequest("http://159.203.95.153:3000/farmacia_popular");
+                String jsonPublic = httpConnection.RequestAll("http://159.203.95.153:3000/farmacia_popular");
 
                 HttpConnection httpConnectionPrivate = new HttpConnection();
                 //requesting private drugstore
-                //String jsonPrivate = httpConnectionPrivate.newRequest("http://159.203.95.153:3000/farmacia_popular_conveniada");
-                String jsonPrivate = loadJSONFromAsset("json_drugstore_test_data_2.json");
+                String jsonPrivate = httpConnectionPrivate.RequestAll("http://159.203.95.153:3000/farmacia_popular_conveniada");
+
                 //if both were  sucessful
                 if(jsonPublic != null && jsonPrivate !=null){
 
@@ -111,23 +111,7 @@ public class DrugStoreController {
         }
 
     }
-    public String loadJSONFromAsset(String jsonfile) {
-        String json = null;
 
-        try {
-            InputStream is = context.getAssets().open(jsonfile);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-
-        return json;
-    }
     public static class DistanceComparator implements Comparator<Stablishment>
     {
 
