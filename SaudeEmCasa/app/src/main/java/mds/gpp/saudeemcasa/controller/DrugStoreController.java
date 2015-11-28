@@ -137,16 +137,10 @@ public class DrugStoreController {
     }
     public String updateRate(float rate,String androidId,int drugstoreId ){
         JSONObject json = new JSONObject();
-        try{
-            json.put("rate", rate);
-            json.put("androidId", androidId);
-            json.put("drugstoreId",drugstoreId);
-        } catch (JSONException e) {
-            /*Handle exception*/
-        }
+
         HttpConnection connection = new HttpConnection();
 
-        String response = connection.postRequest(json, "PUT THE IP HERE");
+        String response = connection.postRequest(json, "http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+drugstoreId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
 
         return response;
     }
