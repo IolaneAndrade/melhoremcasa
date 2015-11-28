@@ -66,6 +66,7 @@ public class JSONHelper {
 
                 hospital.setName(jArray.getJSONObject(index).getString("no_fantasia"));
 
+
                 hospitalDao.insertHospital(hospital);
                 
             }
