@@ -5,9 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.*;
 import java.util.*;
@@ -38,11 +35,9 @@ public class DrugStoreList extends Activity {
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
-<<<<<<< Updated upstream
 
-=======
         menu = findViewById(R.id.topbar_description);
->>>>>>> Stashed changes
+
         gps = new GPSTracker(this);
 
         // Instancing controller
