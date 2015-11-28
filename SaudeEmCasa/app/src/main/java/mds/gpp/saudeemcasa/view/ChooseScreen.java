@@ -25,7 +25,9 @@ public class ChooseScreen extends Activity{
 
         Button hospitalButton = (Button) findViewById(R.id.melhor_em_casa_button);
         Button drugStoreButton = (Button) findViewById(R.id.farm_popular_button);
-        ImageButton infoButton = (ImageButton) findViewById(R.id.infoButton);
+        ImageButton infoSaudeEmCasaButton = (ImageButton) findViewById(R.id.infoButton);
+        ImageButton infoMelhorEmCasaButton = (ImageButton) findViewById(R.id.melhoremcasalogo);
+
         gps = new GPSTracker(this);
 
         hospitalButton.setOnClickListener(new View.OnClickListener() {
@@ -55,11 +57,20 @@ public class ChooseScreen extends Activity{
             }
         });
 
-        infoButton.setOnClickListener(new View.OnClickListener() {
+        infoSaudeEmCasaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent nextScreen = new Intent(getBaseContext(), InformationScreen.class);
+                    Intent nextScreen = new Intent(getBaseContext(), InfoScreenSaudeEmCasa.class);
                     startActivity(nextScreen);
+
+            }
+        });
+
+        infoSaudeEmCasaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(getBaseContext(), InfoScreenMelhorEmCasa.class);
+                startActivity(nextScreen);
 
             }
         });
