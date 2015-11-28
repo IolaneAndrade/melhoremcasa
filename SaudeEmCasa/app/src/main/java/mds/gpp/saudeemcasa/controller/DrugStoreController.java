@@ -112,6 +112,19 @@ public class DrugStoreController {
 
     }
 
+
+
+    public void requestRating() {
+        HttpConnection httpConnection = new HttpConnection();
+        for(int i = 0;i<15;i++){
+            try {
+                drugStoreList.get(i).setRate(Float.parseFloat(httpConnection.newRequest("ipAdress")));
+            } catch (ConnectionErrorException e) {
+                /*fail to request*/
+            }
+        }
+    }
+
     public static class DistanceComparator implements Comparator<Stablishment>
     {
 

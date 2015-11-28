@@ -38,7 +38,7 @@ public class DrugStoreList extends Activity {
 
         // Instancing controller
         final DrugStoreController drugStoreController = DrugStoreController.getInstance(this);
-
+        drugStoreController.requestRating();
         // Initialize and fill list of drugstore
         list = (ArrayList<DrugStore>) drugStoreController.getAllDrugstores();
 
