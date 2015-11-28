@@ -25,7 +25,7 @@ public class JSONHelper {
 
     public JSONHelper(Context context){
         drugStoreDao = DrugStoreDao.getInstance(context);
-        hospitalDao =HospitalDao.getInstance(context);
+        hospitalDao = HospitalDao.getInstance(context);
     }
     //list of hospitals to be populated
     HospitalDao hospitalDao;
@@ -39,34 +39,32 @@ public class JSONHelper {
     * @throws JSONException
     * */
     public boolean hospitalListFromJSON(String hospitalJsonList )throws JSONException {
-        JSONArray tmp = new JSONArray(hospitalJsonList);
-        JSONObject jsonObj = tmp.getJSONObject(0);
-        JSONArray jArray = jsonObj.getJSONArray("features");
+        JSONArray jArray = new JSONArray(hospitalJsonList);
 
         try {
             Hospital hospital = new Hospital();
 
             for( int index = 0; index < jArray.length(); index++ ) {
 
-                hospital.setLatitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(1));
+                hospital.setLatitude(jArray.getJSONObject(index).getString("long"));
 
-                hospital.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));
+                hospital.setLongitude(jArray.getJSONObject(index).getString("lat"));
 
-                hospital.setType(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(1).getString("tipo_sus"));
+                hospital.setType(jArray.getJSONObject(index).getString("tipo_sus"));
 
-                hospital.setState(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(2).getString("uf"));
+                hospital.setState(jArray.getJSONObject(index).getString("uf"));
 
-                hospital.setCity(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(3).getString("cidade"));
+                hospital.setCity(jArray.getJSONObject(index).getString("cidade"));
 
-                hospital.setAddress(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(4).getString("no_logradouro"));
+                hospital.setAddress(jArray.getJSONObject(index).getString("no_logradouro"));
 
-                hospital.setNumber(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(5).getString("nu_endereco"));
+                hospital.setNumber(jArray.getJSONObject(index).getString("nu_endereco"));
 
-                hospital.setDistrict(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(6).getString("no_bairro"));
+                hospital.setDistrict(jArray.getJSONObject(index).getString("no_bairro"));
 
-                hospital.setTelephone(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(7).getString("nu_telefone"));
+                hospital.setTelephone(jArray.getJSONObject(index).getString("nu_telefone"));
 
-                hospital.setName(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(8).getString("no_fantasia"));
+                hospital.setName(jArray.getJSONObject(index).getString("no_fantasia"));
 
                 hospitalDao.insertHospital(hospital);
 
@@ -91,28 +89,26 @@ public class JSONHelper {
     * */
     public boolean drugstorePublicListFromJSON(String drugstoreJsonList )throws JSONException {
 
-        JSONArray tmp = new JSONArray(drugstoreJsonList);
-        JSONObject jsonObj = tmp.getJSONObject(0);
-        JSONArray jArray = jsonObj.getJSONArray("features");
+        JSONArray jArray = new JSONArray(drugstoreJsonList);
 
         try {
             DrugStore drugStore = new DrugStore();;
 
             for( int index = 0; index < jArray.length(); index++ ) {
 
-                drugStore.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));
+                drugStore.setLongitude(jArray.getJSONObject(index).getString("long"));
 
-                drugStore.setLatitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(1));
+                drugStore.setLatitude(jArray.getJSONObject(index).getString("lat"));
 
-                drugStore.setAddress(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(5).getString("ds_endereco_farmacia"));
+                drugStore.setAddress(jArray.getJSONObject(index).getString("ds_endereco_farmacia"));
 
-                drugStore.setPostalCode(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(6).getString("nu_cep_farmacia"));
+                drugStore.setPostalCode(jArray.getJSONObject(index).getString("nu_cep_farmacia"));
 
-                drugStore.setState(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(7).getString("uf"));
+                drugStore.setState(jArray.getJSONObject(index).getString("uf"));
 
-                drugStore.setCity(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(8).getString("cidade"));
+                drugStore.setCity(jArray.getJSONObject(index).getString("cidade"));
 
-                drugStore.setTelephone("(00) 00000000");
+                drugStore.setTelephone("");
 
                 drugStore.setName("Farmácia popular do Brasil");
 
@@ -141,31 +137,29 @@ public class JSONHelper {
     * */
     public boolean drugstorePrivateListFromJSON(String drugstoreJsonList )throws JSONException {
 
-        JSONArray tmp = new JSONArray(drugstoreJsonList);
-        JSONObject jsonObj = tmp.getJSONObject(0);
-        JSONArray jArray = jsonObj.getJSONArray("features");
+        JSONArray jArray = new JSONArray(drugstoreJsonList);
 
         try {
             DrugStore drugStore = new DrugStore();;
 
             for( int index = 0; index < jArray.length(); index++ ) {
 
-                drugStore.setLongitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(0));
+                drugStore.setLongitude(jArray.getJSONObject(index).getString("long"));
 
-                drugStore.setLatitude(jArray.getJSONObject(index).getJSONObject("geometry").getJSONArray("coordinates").getString(1));
+                drugStore.setLatitude(jArray.getJSONObject(index).getString("lat"));
 
-                drugStore.setTelephone("(" + jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(2).getString("nu_ddd_farmacia") + ")"
-                        + jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(3).getString("nu_telefone_farmacia"));
+                drugStore.setTelephone("(" + jArray.getJSONObject(index).getString("nu_ddd_farmacia") + ")"
+                        + jArray.getJSONObject(index).getString("nu_telefone_farmacia"));
 
-                drugStore.setPostalCode(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(4).getString("nu_cep_farmacia"));
+                drugStore.setPostalCode(jArray.getJSONObject(index).getString("nu_cep_farmacia"));
 
-                drugStore.setAddress(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(6).getString("ds_endereco_farmacia"));
+                drugStore.setAddress(jArray.getJSONObject(index).getString("ds_endereco_farmacia"));
 
-                drugStore.setName(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(7).getString("no_farmacia"));
+                drugStore.setName(jArray.getJSONObject(index).getString("no_farmacia"));
 
-                drugStore.setCity(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(8).getString("no_cidade"));
+                drugStore.setCity(jArray.getJSONObject(index).getString("no_cidade"));
 
-                drugStore.setState(jArray.getJSONObject(index).getJSONArray("properties").getJSONObject(9).getString("uf"));
+                drugStore.setState(jArray.getJSONObject(index).getString("uf"));
 
                 drugStore.setType("AQUITEMFARMACIAPOPULAR");
 
@@ -174,7 +168,7 @@ public class JSONHelper {
                 System.out.println("drugstore inserted");
             }
 
-        } catch( NullPointerException npe ) {
+        } catch (NullPointerException npe ) {
             return false;
         }
 
