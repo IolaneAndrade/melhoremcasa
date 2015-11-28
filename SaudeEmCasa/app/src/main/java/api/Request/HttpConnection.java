@@ -67,10 +67,10 @@ public class HttpConnection{
             } catch (ConnectionErrorException e) {
                 Log.e("Error to request UF = ",states[i]);
             }
-            finalJson = finalJson+tmp;
+            finalJson = finalJson + tmp.substring(1, tmp.length()-1);
         }
 
-        return finalJson;
+        return "["+finalJson+"]";
     }
 
     public String Request(HttpGet httpGet, HttpClient client) throws IOException {
