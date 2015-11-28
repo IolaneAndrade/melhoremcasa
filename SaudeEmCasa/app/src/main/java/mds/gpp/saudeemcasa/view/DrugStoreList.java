@@ -34,6 +34,7 @@ public class DrugStoreList extends Activity {
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
+
         gps = new GPSTracker(this);
 
         // Instancing controller
