@@ -46,7 +46,7 @@ public class JSONHelper {
 
             for( int index = 0; index < jArray.length(); index++ ) {
 
-                hospital.setLatitude(jArray.getJSONObject(index).getString("long"));
+                hospital.setLatitude(jArray.getJSONObject(index).getString("lon"));
 
                 hospital.setLongitude(jArray.getJSONObject(index).getString("lat"));
 
@@ -67,8 +67,7 @@ public class JSONHelper {
                 hospital.setName(jArray.getJSONObject(index).getString("no_fantasia"));
 
                 hospitalDao.insertHospital(hospital);
-
-                System.out.println("hospital inserted");
+                
             }
 
         } catch( NullPointerException npe ) {return false;}
@@ -116,7 +115,6 @@ public class JSONHelper {
 
                 drugStoreDao.insertDrugstore(drugStore);
 
-                System.out.println("drugstore inserted");
 
             }
 
@@ -165,7 +163,6 @@ public class JSONHelper {
 
                 drugStoreDao.insertDrugstore(drugStore);
 
-                System.out.println("drugstore inserted");
             }
 
         } catch (NullPointerException npe ) {

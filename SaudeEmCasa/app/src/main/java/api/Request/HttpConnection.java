@@ -58,9 +58,9 @@ public class HttpConnection{
             } catch (ConnectionErrorException e) {
                 Log.e("Error to request UF = ",states[i]);
             }
-            finalJson = finalJson + tmp.substring(1, tmp.length()-1);
+            finalJson = finalJson +","+ tmp.substring(1, tmp.length()-1);
         }
-
+        finalJson = finalJson.substring(1,finalJson.length());
         return "["+finalJson+"]";
     }
 

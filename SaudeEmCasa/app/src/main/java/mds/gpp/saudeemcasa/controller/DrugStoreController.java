@@ -62,11 +62,12 @@ public class DrugStoreController {
 
                 HttpConnection httpConnection = new HttpConnection();
                 //requesting public drugstore
-                String jsonPublic = httpConnection.RequestAll("http://159.203.95.153:3000/farmacia_popular");
-
+                String jsonPublic = httpConnection.newRequest("http://159.203.95.153:3000/farmacia_popular");
+                System.out.println(jsonPublic);
                 HttpConnection httpConnectionPrivate = new HttpConnection();
                 //requesting private drugstore
                 String jsonPrivate = httpConnectionPrivate.RequestAll("http://159.203.95.153:3000/farmacia_popular_conveniada");
+                System.out.println(jsonPrivate);
 
                 //if both were  sucessful
                 if(jsonPublic != null && jsonPrivate !=null){
