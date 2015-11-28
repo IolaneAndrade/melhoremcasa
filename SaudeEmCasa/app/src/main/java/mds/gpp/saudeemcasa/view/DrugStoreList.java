@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.RequiresPermission;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.*;
 import java.util.*;
@@ -22,6 +25,7 @@ import mds.gpp.saudeemcasa.model.DrugStore;
 public class DrugStoreList extends Activity {
 
     ListView listView;
+    View menu;
     ArrayList<DrugStore> list;
     GPSTracker gps;
     int drugstore = -1;
@@ -30,11 +34,15 @@ public class DrugStoreList extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drugstore_list_screen);
+        setContentView(R.layout.list_screen_activity);
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
+<<<<<<< Updated upstream
 
+=======
+        menu = findViewById(R.id.topbar_description);
+>>>>>>> Stashed changes
         gps = new GPSTracker(this);
 
         // Instancing controller
@@ -57,11 +65,19 @@ public class DrugStoreList extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position, long id) {
-                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
+                list.get(position).setRate((float) 3.3);//this should be set as the httprequest
                 drugStoreController.setDrugStore(list.get(position));
                 //request from server the rate and set to the drugstore
                 Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
 
+                startActivity(intent);
+            }
+        });
+
+        menu.setOnClickListener(new AdapterView.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), ChooseScreen.class);
                 startActivity(intent);
             }
         });
