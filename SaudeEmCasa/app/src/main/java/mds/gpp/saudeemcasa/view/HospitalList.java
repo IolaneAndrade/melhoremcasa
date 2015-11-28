@@ -40,7 +40,7 @@ public class HospitalList extends Activity {
 
         // Instancing controller
         final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
-
+        hospitalController.requestRating();
         // Initialize and fill list of hospital
         list = (ArrayList<Hospital>) HospitalController.getAllHospitals();
 
