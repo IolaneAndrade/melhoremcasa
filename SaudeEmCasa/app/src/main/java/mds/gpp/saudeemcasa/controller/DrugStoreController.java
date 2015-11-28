@@ -74,7 +74,6 @@ public class DrugStoreController {
                     JSONHelper jsonParser = new JSONHelper(context);
                     //Json parser and database insert
                     //this way there is no more error of memory stack
-                    System.out.println("Here");
                     if(jsonParser.drugstorePublicListFromJSON(jsonPublic) && jsonParser.drugstorePrivateListFromJSON(jsonPrivate)){
                         drugStoreList = drugStoreDao.getAllDrugStores();
                     }else{/*error introducing to database*/}
