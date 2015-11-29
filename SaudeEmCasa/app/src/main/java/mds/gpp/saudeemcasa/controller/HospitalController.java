@@ -77,7 +77,7 @@ public class HospitalController {
                 HttpConnection httpConnection = new HttpConnection();
                 //requesting
                 String jsonHospital = httpConnection.newRequest("http://159.203.95.153:3000/habilitados");
-
+                System.out.println(jsonHospital);
                 JSONHelper jsonParser = new JSONHelper(context);
 
                 if(jsonHospital !=null){

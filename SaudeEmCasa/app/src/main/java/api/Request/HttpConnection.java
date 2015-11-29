@@ -1,9 +1,13 @@
 package api.Request;
 
+import api.Exception.ConnectionErrorException;
 import android.content.Entity;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
+
+import android.util.Log;
+
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -26,13 +30,13 @@ import api.Exception.ConnectionErrorException;
  * Created by lucas on 9/28/15.
  */
 public class HttpConnection{
-
+    private static String states[] = {"AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
 
     public HttpConnection() {
 
     }
 
-    public String newRequest(String ipAddress) throws ConnectionErrorException{
+    public String newRequest(String ipAddress) throws ConnectionErrorException {
         String json;
         try{
             System.out.println("Starting connection with " + ipAddress);
@@ -55,6 +59,21 @@ public class HttpConnection{
         return json;
     }
 
+    public String RequestAll(String ipAdress) {
+        String finalJson = "";
+
+        for(int i =0;i < states.length;i++){
+            String tmp = null;
+            try {
+                tmp = newRequest(ipAdress+"/uf/"+states[i]);
+            } catch (ConnectionErrorException e) {
+                Log.e("Error to request UF = ",states[i]);
+            }
+            finalJson = finalJson +","+ tmp.substring(1, tmp.length()-1);
+        }
+        finalJson = finalJson.substring(1,finalJson.length());
+        return "["+finalJson+"]";
+    }
 
     public String Request(HttpGet httpGet, HttpClient client) throws IOException {
 
