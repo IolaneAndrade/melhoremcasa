@@ -37,7 +37,12 @@ public class HospitalController {
         this.context = context;
         hospitalDao = HospitalDao.getInstance(context);
     }
-
+    /**
+     * Return the unique instance of DrugstoreController active in the
+     * project.
+     *
+     * @return The unique instance of DrugstoreController.
+     */
     public static HospitalController getInstance(Context context) {
         if (instance == null) {
             instance = new HospitalController(context);
@@ -47,35 +52,50 @@ public class HospitalController {
         return instance;
     }
 
+    /**
+     * Set the selected hospital
+     *
+     * @param hospital
+     *          the selected hospital
+     * */
     public void setHospital( Hospital hospital ) {
         HospitalController.hospital = hospital;
     }
-
+    /**
+     * Get the selected hospital
+     *
+     * @return the class hospital
+     * */
     public Hospital getHospital() {
         return hospital;
     }
-
-
+    /**
+     * Get hospital list
+     *
+     * @return the hospitalList
+     * */
     public static List<Hospital> getAllHospitals(){
 
         return hospitalList;
     }
-
+    /*
+        * Starts the application being inside the if for the first usage
+        * and the else for the times after that.
+        * Receives the response from server, take objects out of json and add to database
+        * */
     public void initControllerHospital() throws IOException, JSONException, ConnectionErrorException {
 
             if (hospitalDao.isDbEmpty()) {
-                //creating
                 HttpConnection httpConnection = new HttpConnection();
-                //requesting
+
                 String jsonHospital = httpConnection.newRequest("http://159.203.95.153:3000/habilitados");
-                System.out.println(jsonHospital);
                 JSONHelper jsonParser = new JSONHelper(context);
 
                 if(jsonHospital !=null){
                     if(jsonParser.hospitalListFromJSON(jsonHospital)){
                         hospitalList = hospitalDao.getAllHospitals();
-                    }else{/*error introducing to database*/}
-                }else {/*error on connection*/}
+                    }else{/*do nothing*/}
+                }else {/*do nothing*/}
 
 
             } else {
@@ -166,10 +186,9 @@ public class HospitalController {
      *
      * @throws ConnectionErrorException
      */
-    public String updateRate(float rate,String androidId,String hospitalId ) throws ConnectionErrorException {
+    public String updateRate(int rate,String androidId,String hospitalId ) throws ConnectionErrorException {
         HttpConnection connection = new HttpConnection();
-        String response = null;
-        System.out.println(hospitalId);
+        String response;
         response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+hospitalId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
 
         return response;

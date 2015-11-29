@@ -61,6 +61,7 @@ public class DrugstoreScreen extends Fragment {
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
         System.out.println("ANDROID ID >>> " + androidId);
+<<<<<<< HEAD
 
 
         /*
@@ -73,6 +74,11 @@ public class DrugstoreScreen extends Fragment {
 
 
         final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
+=======
+        
+        setContentView(R.layout.drugstore_screen);
+        final DrugStoreController controller = DrugStoreController.getInstance(this);
+>>>>>>> solving connection problems, cleaning code, commenting and adding permition for gps tracker
         final DrugStore drugStore = controller.getDrugstore();
 
         // setting name
@@ -106,6 +112,7 @@ public class DrugstoreScreen extends Fragment {
         textViewRate.setText("" + drugStore.getRate());
 
         Button drugStoreButton = (Button) view.findViewById(R.id.buttonSaveRateDrugstore);
+        final RatingBar drugstoreStars = (RatingBar) view.findViewById(R.id.ratingBarUserDrugstore);
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +122,8 @@ public class DrugstoreScreen extends Fragment {
                         Looper.prepare();
 
                         try {
-                            controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+
+                            controller.updateRate((int) drugstoreStars.getRating(), androidId, drugStore.getId());
                             Toast.makeText(getContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
 

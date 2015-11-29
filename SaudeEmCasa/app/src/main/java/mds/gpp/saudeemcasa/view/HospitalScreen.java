@@ -50,7 +50,9 @@ public class HospitalScreen extends Fragment {
 
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
+
         final HospitalController controller = HospitalController.getInstance(this.getContext());
+
         final Hospital hospital = controller.getHospital();
         // setting name
         final TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
@@ -63,13 +65,18 @@ public class HospitalScreen extends Fragment {
         telephoneTextView.setText("Tel: " + hospital.getTelephone());
 
         //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
+
+        final RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
+
         ratingBarFinal.setRating(hospital.getRate());
 
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingHospital);
         textViewRate.setText("" + hospital.getRate());
 
+
         Button hospitalButton = (Button) view.findViewById(R.id.buttonSaveRateHostpital);
+        final RatingBar hospitalStars = (RatingBar) view.findViewById(R.id.ratingBarUserHospital);
+
         hospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,8 +85,9 @@ public class HospitalScreen extends Fragment {
                     public void run() {
                         Looper.prepare();
                         try {
-                            controller.updateRate(hospital.getRate(), androidId, hospital.getId());
+                            controller.updateRate((int) hospitalStars.getRating(), androidId, hospital.getId());
                             Toast.makeText(getContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+
                         } catch (ConnectionErrorException e) {
 
                             Toast.makeText(getContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();
