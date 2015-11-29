@@ -21,7 +21,7 @@ import mds.gpp.saudeemcasa.model.Hospital;
 
 public class DrugStoreDao extends Dao{
 
-    private static String tableColumns[]={"latitude","longitude","city","address","state","rate","postalCode","telephone","name","type"};
+    private static String tableColumns[]={"latitude","longitude","city","address","state","rate","postalCode","telephone","name","type","drugstoreGid"};
 
     private static DrugStoreDao instance;
 
@@ -73,7 +73,7 @@ public class DrugStoreDao extends Dao{
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("id",drugStore.getId());
+
         values.put(tableColumns[0], drugStore.getLatitude());
         values.put(tableColumns[1], drugStore.getLongitude());
         values.put(tableColumns[2], drugStore.getCity());
@@ -84,6 +84,7 @@ public class DrugStoreDao extends Dao{
         values.put(tableColumns[7], drugStore.getTelephone());
         values.put(tableColumns[8], drugStore.getName());
         values.put(tableColumns[9], drugStore.getType());
+        values.put(tableColumns[10], drugStore.getId());
 
 
         boolean result = insertAndClose(sqLiteDatabase,tableName, values)>0;
@@ -104,9 +105,6 @@ public class DrugStoreDao extends Dao{
 
             DrugStore drugStore = new DrugStore();
 
-            drugStore.setId(cursor.getInt( cursor
-                    .getColumnIndex( "drugstoreId" ) ) );
-
             drugStore.setLatitude(cursor.getString(cursor
                     .getColumnIndex(tableColumns[0])));
 
@@ -126,9 +124,12 @@ public class DrugStoreDao extends Dao{
                     .getColumnIndex(tableColumns[7])));
             drugStore.setName(cursor.getString(cursor
                     .getColumnIndex(tableColumns[8])));
-            drugStore.setType(cursor.getString( cursor
-                    .getColumnIndex( tableColumns[9])));
-            listDrugstores.add(drugStore );
+            drugStore.setType(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[9])));
+            drugStore.setId(cursor.getInt(cursor
+                    .getColumnIndex(tableColumns[10])));
+
+            listDrugstores.add(drugStore);
         }
 
         //sqliteDatabase.close();

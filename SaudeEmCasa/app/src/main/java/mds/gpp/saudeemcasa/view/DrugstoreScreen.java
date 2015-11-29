@@ -93,6 +93,8 @@ public class DrugstoreScreen extends Activity {
                     public void run() {
 
                                 controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+                                Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+
                     }
                 }.start();
             }
