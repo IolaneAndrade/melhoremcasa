@@ -42,12 +42,11 @@ public class DrugstoreScreen extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.drugstore_screen);
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
         System.out.println("ANDROID ID >>> " + androidId);
-        
-        setContentView(R.layout.drugstore_screen);
+
         final DrugStoreController controller = DrugStoreController.getInstance(this);
         final DrugStore drugStore = controller.getDrugstore();
         // setting name

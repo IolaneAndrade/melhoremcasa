@@ -1,23 +1,18 @@
 package api.Request;
 
 
-import android.content.Entity;
 import android.util.Log;
-import org.apache.http.HttpResponse;
+
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import api.Exception.ConnectionErrorException;
 
@@ -31,16 +26,25 @@ public class HttpConnection {
     public HttpConnection() {
 
     }
+    /**
+     * Create the connection with some url and return the response in string format.
+     *
+     * @param ipAddress
+     *           address to be accessed.
 
+     * @return response from http connection.
+     *
+     * @throws ConnectionErrorException
+     */
     public String newRequest(String ipAddress) throws ConnectionErrorException {
-        String json;
+        String response;
         try {
             System.out.println("Starting connection with " + ipAddress);
             HttpGet httpGet = new HttpGet(ipAddress);
 
             HttpClient client = new DefaultHttpClient();
 
-            json = Request(httpGet, client);
+            response = Request(httpGet, client);
 
             System.out.println("Resquest complete " + ipAddress);
 
@@ -52,25 +56,36 @@ public class HttpConnection {
             System.out.println("Request failed " + ipAddress);
             throw new ConnectionErrorException();
         }
-        return json;
+        return response;
     }
-
-    public String RequestAll(String ipAdress) {
+    /**
+     * Save or update rate from user on server database.
+     *
+     * @param ipAdress
+     *          address to be accessed.
+     * @return response from http connection.
+     *
+     * @throws ConnectionErrorException
+     */
+    public String RequestAllDrugstoresByUF(String ipAdress) throws ConnectionErrorException {
         String finalJson = "";
 
         for (int i = 0; i < states.length; i++) {
-            String tmp = null;
-            try {
+            String tmp;
                 tmp = newRequest(ipAdress + "/uf/" + states[i]);
-            } catch (ConnectionErrorException e) {
+
                 Log.e("Error to request UF = ", states[i]);
-            }
+
             finalJson = finalJson + "," + tmp.substring(1, tmp.length() - 1);
         }
         finalJson = finalJson.substring(1, finalJson.length());
         return "[" + finalJson + "]";
     }
-
+    public float getRating(String id,String ipAddress) throws ConnectionErrorException, JSONException {
+        String json = newRequest(ipAddress+id);
+        JSONArray jsonArray = new JSONArray(json);
+        return (float) jsonArray.getJSONObject(0).getDouble("rate");
+    }
     public String Request(HttpGet httpGet, HttpClient client) throws IOException {
 
         ResponseHandler<String> responseHandler = new BasicResponseHandler();

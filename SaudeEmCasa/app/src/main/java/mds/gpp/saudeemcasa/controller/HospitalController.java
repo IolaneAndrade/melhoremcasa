@@ -144,8 +144,11 @@ public class HospitalController {
     public void requestRating() throws ConnectionErrorException {
         HttpConnection httpConnection = new HttpConnection();
         for(int i = 0;i<15;i++){
-            hospitalList.get(i).setRate(Float.parseFloat(httpConnection.newRequest("ipAdress")));
-
+            try {
+                hospitalList.get(i).setRate(httpConnection.getRating(hospitalList.get(i).getId(),"http://159.203.95.153:3000/rate/gid/"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
     /*
