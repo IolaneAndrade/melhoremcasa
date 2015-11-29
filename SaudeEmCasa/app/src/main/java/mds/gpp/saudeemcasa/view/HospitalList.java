@@ -41,41 +41,31 @@ public class HospitalList extends Activity {
 
         // Instancing controller
         final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
-        new Thread() {
-            public void run() {
-                try {
-                    hospitalController.requestRating();
-                } catch (ConnectionErrorException e) {
-                    Toast.makeText(getApplicationContext(),"Não foi possivel receber as avaliações dos estabelecimentos.\nverifique sua conexão com a internet. ",Toast.LENGTH_LONG).show();
-                }
-                // Initialize and fill list of hospital
-                list = (ArrayList<Hospital>) HospitalController.getAllHospitals();
+        // Initialize and fill list of hospital
+        list = (ArrayList<Hospital>) HospitalController.getAllHospitals();
 
-                if(gps.canGetLocation()) {
+        if(gps.canGetLocation()) {
 
-                    hospitalController.setDistance(getApplicationContext(), list);
-                    // Initializing new HospitalAdapter with list of hospitals
-                    HospitalAdapter adapter = new HospitalAdapter(getApplicationContext(), list);
-                    // Setting adapter to listView
-                    listView.setAdapter(adapter);
-                }else {
-                    Toast.makeText(getApplicationContext(), "Voce nao esta conectado ao gps ou a internet!\n Conecte-se para prosseguir.",Toast.LENGTH_LONG).show();
+            hospitalController.setDistance(getApplicationContext(), list);
+            // Initializing new HospitalAdapter with list of hospitals
+            HospitalAdapter adapter = new HospitalAdapter(getApplicationContext(), list);
+            // Setting adapter to listView
+            listView.setAdapter(adapter);
+        }else {
+            Toast.makeText(getApplicationContext(), "Voce nao esta conectado ao gps ou a internet!\n Conecte-se para prosseguir.",Toast.LENGTH_LONG).show();
+        }
 
-                }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int position,
+                                    long id) {
+                //list.get(position).setRate((float) 4.1 );//this should be set as the httprequest
+                hospitalController.setHospital(list.get(position));
+                Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView adapterView, View view, int position,
-                                            long id) {
-                        //list.get(position).setRate((float) 4.1 );//this should be set as the httprequest
-                        hospitalController.setHospital(list.get(position));
-                        Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
-
-                        startActivity(intent);
-                    }
-                });
+                startActivity(intent);
             }
-        }.start();
+        });
 
 
     }

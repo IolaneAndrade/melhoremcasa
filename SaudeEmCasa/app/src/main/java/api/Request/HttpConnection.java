@@ -84,7 +84,11 @@ public class HttpConnection {
     public float getRating(String id,String ipAddress) throws ConnectionErrorException, JSONException {
         String json = newRequest(ipAddress+id);
         JSONArray jsonArray = new JSONArray(json);
-        return (float) jsonArray.getJSONObject(0).getDouble("rate");
+        if(jsonArray.length() == 0){
+            return 0;
+        }else {
+            return (float) jsonArray.getJSONObject(0).getDouble("rate");
+        }
     }
     public String Request(HttpGet httpGet, HttpClient client) throws IOException {
 

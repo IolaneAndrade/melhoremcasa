@@ -39,42 +39,32 @@ public class DrugStoreList extends Activity {
 
         // Instancing controller
         final DrugStoreController drugStoreController = DrugStoreController.getInstance(this);
-        new Thread() {
 
-            public void run() {
-                try {
-                    drugStoreController.requestRating();
-                } catch (ConnectionErrorException e) {
-                    Toast.makeText(getApplicationContext(),"Não foi possivel receber as avaliações dos estabelecimentos.\n verifique sua conexão com a internet. ",Toast.LENGTH_LONG).show();
-                }
-                // Initialize and fill list of drugstore
-                list = (ArrayList<DrugStore>) drugStoreController.getAllDrugstores();
+        // Initialize and fill list of drugstore
+        list = (ArrayList<DrugStore>) drugStoreController.getAllDrugstores();
 
-                if (gps.canGetLocation()) {
-                    drugStoreController.setDistance(getApplicationContext(), list);
-                    // Initializing new DrugStoreAdapter with list of drugstore
-                    final DrugStoreAdapter adapter = new DrugStoreAdapter(getApplicationContext(), list);
+        if (gps.canGetLocation()) {
+            drugStoreController.setDistance(getApplicationContext(), list);
+            // Initializing new DrugStoreAdapter with list of drugstore
+            final DrugStoreAdapter adapter = new DrugStoreAdapter(getApplicationContext(), list);
 
-                    // Setting adapter to listView
-                    listView.setAdapter(adapter);
+            // Setting adapter to listView
+            listView.setAdapter(adapter);
 
-                } else {
-                    Toast.makeText(getApplicationContext(), "Voce nao esta conectado ao gps ou a internet!\n Conecte-se para prosseguir.", Toast.LENGTH_LONG).show();
-                }
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView adapterView, View view, int position, long id) {
-//                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
-                        drugStoreController.setDrugStore(list.get(position));
-                        //request from server the rate and set to the drugstore
-                        Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
+        } else {
+            Toast.makeText(getApplicationContext(), "Voce nao esta conectado ao gps ou a internet!\n Conecte-se para prosseguir.", Toast.LENGTH_LONG).show();
+        }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int position, long id) {
+        //                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
+                drugStoreController.setDrugStore(list.get(position));
+                //request from server the rate and set to the drugstore
+                Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
 
-                        startActivity(intent);
-                    }
-                });
+                startActivity(intent);
             }
-        }.start();
-
+        });
 
     }
 
