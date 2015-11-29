@@ -17,7 +17,7 @@ package mds.gpp.saudeemcasa.model;
     protected String address = "";
     protected String state = "";
     protected float rate = 0;
-    protected int id;
+    protected String id;
     protected float distance = 0;
 
 
@@ -30,10 +30,10 @@ package mds.gpp.saudeemcasa.model;
         this.telephone = telephone;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

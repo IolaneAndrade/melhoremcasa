@@ -126,7 +126,7 @@ public class DrugStoreDao extends Dao{
                     .getColumnIndex(tableColumns[8])));
             drugStore.setType(cursor.getString(cursor
                     .getColumnIndex(tableColumns[9])));
-            drugStore.setId(cursor.getInt(cursor
+            drugStore.setId(cursor.getString(cursor
                     .getColumnIndex(tableColumns[10])));
 
             listDrugstores.add(drugStore);

@@ -143,7 +143,7 @@ public class HospitalDao extends Dao{
             hospital.setNumber(cursor.getString(cursor
                     .getColumnIndex(tableColumns[10])));
 
-            hospital.setId(cursor.getInt(cursor
+            hospital.setId(cursor.getString(cursor
                     .getColumnIndex(tableColumns[11])));
 
             listHospitals.add(hospital);

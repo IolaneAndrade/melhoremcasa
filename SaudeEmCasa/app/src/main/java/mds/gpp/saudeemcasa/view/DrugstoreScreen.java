@@ -99,7 +99,7 @@ public class DrugstoreScreen extends Activity {
                             controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
                             Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
-                            Toast.makeText(getApplicationContext(),"Houve um error de conexão, verifique se está conectado a internet.",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();
                         }
 
 

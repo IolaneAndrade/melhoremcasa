@@ -84,43 +84,47 @@ public class HospitalController {
             }
 
     }
-
-    public int[] setDistance(Context context, ArrayList<Hospital> list) {
-        int[] results = new int[list.size()];
+    /**
+     * set distance based on the coordenates for each hospitals
+     * and then sort the list
+     * @param context
+     *           The activity where this is being executed.
+     *
+     * @param list
+     *           the list of hospitals.
+     *
+     * @return a boolean indicator for testing
+     *
+     * */
+    public boolean setDistance(Context context, ArrayList<Hospital> list) {
         GPSTracker gps = new GPSTracker(context);
-
-
-
         if(gps.canGetLocation()) {
             double userLongitude = gps.getLongitude();
             double userLatitude = gps.getLatitude();
-
             for (int i = 0; i < list.size(); i++) {
-                String auxLatitude = list.get(i).getLatitude();
-                String auxLongitude = list.get(i).getLongitude();
                 float resultsadapter[] = new float[1];
-                Double.parseDouble(auxLongitude);
+
                 Location.distanceBetween(Double.parseDouble(list.get(i).getLatitude()),
                         Double.parseDouble(list.get(i).getLongitude()),
-                        userLatitude,userLongitude,resultsadapter);
+                        userLatitude, userLongitude, resultsadapter);
+
                 list.get(i).setDistance(resultsadapter[0]);
             }
-
             sort(list, new DistanceComparator());
-            return results;
+            return true;
         }else {
-            return null;
+            return false;
         }
 
     }
-
+    /*
+    * Request the rating for the 15 first hospitals so that it can be shown
+    * at the HospitalList
+    * */
     public void requestRating() throws ConnectionErrorException {
         HttpConnection httpConnection = new HttpConnection();
         for(int i = 0;i<15;i++){
-
-                hospitalList.get(i).setRate(Float.parseFloat(httpConnection.newRequest("ipAdress")));
-
-                /*fail to request*/
+            hospitalList.get(i).setRate(Float.parseFloat(httpConnection.newRequest("ipAdress")));
 
         }
     }
@@ -162,10 +166,10 @@ public class HospitalController {
      *
      * @throws ConnectionErrorException
      */
-    public String updateRate(float rate,String androidId,int hospitalId ) throws ConnectionErrorException {
+    public String updateRate(float rate,String androidId,String hospitalId ) throws ConnectionErrorException {
         HttpConnection connection = new HttpConnection();
         String response = null;
-
+        System.out.println(hospitalId);
         response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+hospitalId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
 
         return response;

@@ -40,12 +40,12 @@ public class HospitalList extends Activity {
 
         // Instancing controller
         final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
-        /*
-            public void run() {
+
+            /*public void run() {
                 try {
                     hospitalController.requestRating();
                 } catch (ConnectionErrorException e) {
-                    Toast.makeText(getApplicationContext(),"Não foi possivel receber as avaliações dos estabelecimentos, verifique sua conexão com a internet. ",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Não foi possivel receber as avaliações dos estabelecimentos.\nverifique sua conexão com a internet. ",Toast.LENGTH_LONG).show();
                 }
             }
         }.start();*/

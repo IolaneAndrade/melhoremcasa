@@ -87,34 +87,48 @@ public class DrugStoreController {
                 drugStoreList = drugStoreDao.getAllDrugStores();
             }
     }
-
-    public static int[] setDistance(Context context,ArrayList<DrugStore> list) {
-        int[] results = new int[list.size()];
+    /**
+     * set distance based on the coordenates for each drugstore
+     * and then sort the list
+     * @param context
+     *           The activity where this is being executed.
+     *
+     * @param list
+     *           the list of drugstores.
+     *
+     * @return a boolean indicator for testing
+     *
+     * */
+    public static boolean setDistance(Context context,ArrayList<DrugStore> list) {
         GPSTracker gps = new GPSTracker(context);
+
         if(gps.canGetLocation()) {
             double userLongitude = gps.getLongitude();
             double userLatitude = gps.getLatitude();
 
             for (int i = 0; i < list.size(); i++) {
-                String auxLatitude = list.get(i).getLatitude();
-                String auxLongitude = list.get(i).getLongitude();
                 float resultsadapter[] = new float[1];
-                Double.parseDouble(auxLongitude);
+
                 Location.distanceBetween(Double.parseDouble(list.get(i).getLatitude()),
                         Double.parseDouble(list.get(i).getLongitude()),
                         userLatitude, userLongitude, resultsadapter);
+
                 list.get(i).setDistance(resultsadapter[0]);
             }
             sort(list, new DistanceComparator());
-            return results;
+
+            return true;
         }else {
-            return null;
+            return false;
         }
 
     }
 
 
-
+    /*
+        * Request the rating for the 15 first drugstores so that it can be shown
+        * at the HospitalList
+        * */
     public void requestRating() throws ConnectionErrorException {
         HttpConnection httpConnection = new HttpConnection();
         for(int i = 0;i<15;i++){
@@ -160,7 +174,7 @@ public class DrugStoreController {
      *
      * @throws ConnectionErrorException
      */
-    public String updateRate(float rate,String androidId,int drugstoreId ) throws ConnectionErrorException {
+    public String updateRate(float rate,String androidId,String drugstoreId ) throws ConnectionErrorException {
         HttpConnection connection = new HttpConnection();
         String response = null;
 
