@@ -76,6 +76,7 @@ public class HospitalScreen extends Fragment {
                     public void run() {
 
                         controller.updateRate(hospital.getRate(), androidId, hospital.getId());
+                        Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                     }
                 }.start();
             }

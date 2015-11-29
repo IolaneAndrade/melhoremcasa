@@ -46,9 +46,9 @@ public class JSONHelper {
 
             for( int index = 0; index < jArray.length(); index++ ) {
 
-                hospital.setLatitude(jArray.getJSONObject(index).getString("lon"));
+                hospital.setLatitude(Double.toString(jArray.getJSONObject(index).getDouble("lon")));
 
-                hospital.setLongitude(jArray.getJSONObject(index).getString("lat"));
+                hospital.setLongitude(Double.toString(jArray.getJSONObject(index).getDouble("lat")));
 
                 hospital.setType(jArray.getJSONObject(index).getString("tipo_sus"));
 
@@ -66,7 +66,7 @@ public class JSONHelper {
 
                 hospital.setName(jArray.getJSONObject(index).getString("no_fantasia"));
 
-                hospital.setId(Integer.parseInt(jArray.getJSONObject(index).getJSONObject("_id").getString("_str")));
+                hospital.setId(Integer.parseInt(jArray.getJSONObject(index).getString("gid")));
 
                 hospitalDao.insertHospital(hospital);
                 
@@ -115,7 +115,7 @@ public class JSONHelper {
 
                 drugStore.setType("FARMACIAPOPULAR");
 
-                drugStore.setId(Integer.parseInt(jArray.getJSONObject(index).getJSONObject("_id").getString("_str")));
+                drugStore.setId(Integer.parseInt(jArray.getJSONObject(index).getString("gid")));
 
                 drugStoreDao.insertDrugstore(drugStore);
 
@@ -164,8 +164,8 @@ public class JSONHelper {
                 drugStore.setState(jArray.getJSONObject(index).getString("uf"));
 
                 drugStore.setType("AQUITEMFARMACIAPOPULAR");
-
-                drugStore.setId(Integer.parseInt(jArray.getJSONObject(index).getJSONObject("_id").getString("_str")));
+                System.out.println(jArray.getJSONObject(index).toString());
+                drugStore.setId(Integer.parseInt(jArray.getJSONObject(index).getString("gid")));
 
                 drugStoreDao.insertDrugstore(drugStore);
 
