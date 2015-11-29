@@ -35,7 +35,12 @@ public class DrugStoreController {
         this.context = context;
         drugStoreDao = DrugStoreDao.getInstance(context);
     }
-
+    /**
+     * Return the unique instance of DrugstoreController active in the
+     * project.
+     *
+     * @return The unique instance of DrugstoreController.
+     */
     public static DrugStoreController getInstance(Context context) {
         if (instance == null) {
             instance = new DrugStoreController(context);
@@ -44,46 +49,59 @@ public class DrugStoreController {
         }
         return instance;
     }
+    /**
+     * Set the selected drugstore
+     *
+     * @param drugStore
+     *          the selected drugstore
+     * */
     public void setDrugStore( DrugStore drugStore ) {
         DrugStoreController.drugStore = drugStore;
     }
-
+    /**
+     * Get the selected drugstore
+     *
+     * @return the class drugstore
+     * */
     public DrugStore getDrugstore() {
         return drugStore;
     }
 
-
+    /**
+     * Get all the drugstores
+     *
+     * @return the list of drugstores
+     * */
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
     }
-
-    //this is the main method for all backend work
+    /*
+    * Starts the application being inside the if for the first usage
+    * and the else for the times after that.
+    * Receives the response from server, take objects out of json and add to database
+    * */
     public void initControllerDrugstore() throws IOException, JSONException,ConnectionErrorException {
 
             if (drugStoreDao.isDbEmpty()) {
 
                 HttpConnection httpConnection = new HttpConnection();
-                //requesting public drugstore
-                String jsonPublic = httpConnection.newRequest("http://159.203.95.153:3000/farmacia_popular");
-                System.out.println(jsonPublic);
-                HttpConnection httpConnectionPrivate = new HttpConnection();
-                //requesting private drugstore
-                String jsonPrivate = httpConnectionPrivate.RequestAll("http://159.203.95.153:3000/farmacia_popular_conveniada");
-                System.out.println(jsonPrivate);
 
-                //if both were  sucessful
+                String jsonPublic = httpConnection.newRequest("http://159.203.95.153:3000/farmacia_popular");
+
+                HttpConnection httpConnectionPrivate = new HttpConnection();
+
+                String jsonPrivate = httpConnectionPrivate.RequestAll("http://159.203.95.153:3000/farmacia_popular_conveniada");
+
                 if(jsonPublic != null && jsonPrivate !=null){
 
                     JSONHelper jsonParser = new JSONHelper(context);
-                    //Json parser and database insert
-                    //this way there is no more error of memory stack
+
                     if(jsonParser.drugstorePublicListFromJSON(jsonPublic) && jsonParser.drugstorePrivateListFromJSON(jsonPrivate)){
                         drugStoreList = drugStoreDao.getAllDrugStores();
-                    }else{/*error introducing to database*/}
-                }else {/*error on connection*/}
+                    }else{/*do nothing*/}
+                }else {/*do nothing*/}
 
             } else {
-                //just setting DrugStores to local list
                 drugStoreList = drugStoreDao.getAllDrugStores();
             }
     }
@@ -174,7 +192,7 @@ public class DrugStoreController {
      *
      * @throws ConnectionErrorException
      */
-    public String updateRate(float rate,String androidId,String drugstoreId ) throws ConnectionErrorException {
+    public String updateRate(int rate,String androidId,String drugstoreId ) throws ConnectionErrorException {
         HttpConnection connection = new HttpConnection();
         String response = null;
 

@@ -46,15 +46,7 @@ public class DrugstoreScreen extends Activity {
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
         System.out.println("ANDROID ID >>> " + androidId);
-
-        /*
-        * if (requestedId.equals(androidId)){
-        *   print "VOCE JA VOTOU!"
-        * else
-        *   
-        * */
-
-
+        
         setContentView(R.layout.drugstore_screen);
         final DrugStoreController controller = DrugStoreController.getInstance(this);
         final DrugStore drugStore = controller.getDrugstore();
@@ -87,6 +79,8 @@ public class DrugstoreScreen extends Activity {
         textViewRate.setText("" + drugStore.getRate());
 
         Button drugStoreButton = (Button) findViewById(R.id.buttonSaveRateDrugstore);
+
+        final RatingBar drugstoreStars = (RatingBar) findViewById(R.id.ratingBarUserDrugstore);
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +90,7 @@ public class DrugstoreScreen extends Activity {
                         Looper.prepare();
 
                         try {
-                            controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+                            controller.updateRate((int) drugstoreStars.getRating(), androidId, drugStore.getId());
                             Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
                             Toast.makeText(getApplicationContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();

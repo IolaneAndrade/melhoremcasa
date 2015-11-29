@@ -34,7 +34,7 @@ public class HospitalScreen extends Activity {
         setContentView(R.layout.hospital_screen);
 
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
+        System.out.println(androidId);
         final HospitalController controller = HospitalController.getInstance(this);
         final Hospital hospital = controller.getHospital();
         // setting name
@@ -48,13 +48,15 @@ public class HospitalScreen extends Activity {
         telephoneTextView.setText("Tel: " + hospital.getTelephone());
 
         //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
+        final RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
         ratingBarFinal.setRating(hospital.getRate());
 
         TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
         textViewRate.setText("" + hospital.getRate());
 
         Button hospitalButton = (Button) findViewById(R.id.buttonSaveRateHostpital);
+
+        final RatingBar hospitalStars = (RatingBar) findViewById(R.id.ratingBarUserHospital);
         hospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +65,7 @@ public class HospitalScreen extends Activity {
                     public void run() {
                         Looper.prepare();
                         try {
-                            controller.updateRate(hospital.getRate(), androidId, hospital.getId());
+                            controller.updateRate((int) hospitalStars.getRating(), androidId, hospital.getId());
                             Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
                             Toast.makeText(getApplicationContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();

@@ -25,16 +25,16 @@ import api.Exception.ConnectionErrorException;
 /*
  * Created by lucas on 9/28/15.
  */
-public class HttpConnection{
-    private static String states[] = {"AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
+public class HttpConnection {
+    private static String states[] = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 
     public HttpConnection() {
 
     }
 
-    public String newRequest(String ipAddress) throws ConnectionErrorException{
+    public String newRequest(String ipAddress) throws ConnectionErrorException {
         String json;
-        try{
+        try {
             System.out.println("Starting connection with " + ipAddress);
             HttpGet httpGet = new HttpGet(ipAddress);
 
@@ -45,11 +45,11 @@ public class HttpConnection{
             System.out.println("Resquest complete " + ipAddress);
 
         } catch (ClientProtocolException e) {
-            System.out.println("Request failed "+ ipAddress);
+            System.out.println("Request failed " + ipAddress);
             throw new ConnectionErrorException();
 
         } catch (IOException e) {
-            System.out.println("Request failed "+ ipAddress);
+            System.out.println("Request failed " + ipAddress);
             throw new ConnectionErrorException();
         }
         return json;
@@ -58,48 +58,24 @@ public class HttpConnection{
     public String RequestAll(String ipAdress) {
         String finalJson = "";
 
-        for(int i =0;i < states.length;i++){
+        for (int i = 0; i < states.length; i++) {
             String tmp = null;
             try {
-                tmp = newRequest(ipAdress+"/uf/"+states[i]);
+                tmp = newRequest(ipAdress + "/uf/" + states[i]);
             } catch (ConnectionErrorException e) {
-                Log.e("Error to request UF = ",states[i]);
+                Log.e("Error to request UF = ", states[i]);
             }
-            finalJson = finalJson +","+ tmp.substring(1, tmp.length()-1);
+            finalJson = finalJson + "," + tmp.substring(1, tmp.length() - 1);
         }
-        finalJson = finalJson.substring(1,finalJson.length());
-        return "["+finalJson+"]";
+        finalJson = finalJson.substring(1, finalJson.length());
+        return "[" + finalJson + "]";
     }
 
     public String Request(HttpGet httpGet, HttpClient client) throws IOException {
 
-        ResponseHandler<String> responseHandler=new BasicResponseHandler();
+        ResponseHandler<String> responseHandler = new BasicResponseHandler();
 
-        return client.execute(httpGet,responseHandler);
+        return client.execute(httpGet, responseHandler);
     }
 
-    public String postRequest(String ipAdress) {
-
-        HttpClient client = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(ipAdress);
-
-
-        //httpPost.setEntity(jsonString);
-        HttpResponse httpResponse = null;
-        try {
-            httpResponse = client.execute(httpPost);
-        } catch (IOException e) {
-            /*handle exception*/
-        }
-        String responseText = null;
-
-        try {
-            responseText = EntityUtils.toString(httpResponse.getEntity());
-        } catch (IOException e) {
-            Log.i("parse exception", e + "");
-        }
-        System.out.println(responseText);
-        //JSONObject jsonResponse = new JSONObject(responseText);
-        return responseText;
-    }
 }

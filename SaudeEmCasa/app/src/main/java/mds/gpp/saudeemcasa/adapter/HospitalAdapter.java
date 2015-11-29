@@ -20,14 +20,11 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
     public static final int COUNT = 15;
 
     public HospitalAdapter(Context context, ArrayList<Hospital> lista){
-
-        // Setting HospitalAdapter constructor
         super(context, 0, lista);
         this.context = context;
         this.lista = lista;
     }
 
-    //Set the number of objects to show on list
     @Override
     public int getCount() { return COUNT; }
 
@@ -52,19 +49,15 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
     }
 
     public View populateAdapter(View convertView, int position){
-        // Override method to get view
         Hospital hospitalPosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        // Setting image view of list item
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
         imageView.setImageResource(R.mipmap.farm_popular);
 
-        // Setting name of drugstore on list item
         TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
         textView.setText((CharSequence) hospitalPosition.getName());
 
-        // Setting phone of drugstore on list item
         TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
         textView1.setText((CharSequence) hospitalPosition.getTelephone());
 
