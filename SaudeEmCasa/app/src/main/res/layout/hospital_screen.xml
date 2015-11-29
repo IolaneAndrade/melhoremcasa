@@ -40,9 +40,8 @@ android:contextClickable="false"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:text="Telephone"
     android:id="@+id/textViewHospTel"
-
-
     android:layout_alignBottom="@+id/textViewAddressHosp"/>
+
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -95,5 +94,6 @@ android:contextClickable="false"
 
 
 </RelativeLayout>
+
 
 
