@@ -57,19 +57,19 @@ public class DrugstoreScreen extends Activity {
         final DrugStoreController controller = DrugStoreController.getInstance(this);
         final DrugStore drugStore = controller.getDrugstore();
         // setting name
-        TextView nameTextView = (TextView)findViewById(R.id.textViewDrugName);
+        TextView nameTextView = (TextView) findViewById(R.id.textViewDrugName);
         nameTextView.setText(drugStore.getName());
         // Address
-        TextView addressTextView = (TextView)findViewById(R.id.textViewAddress);
+        TextView addressTextView = (TextView) findViewById(R.id.textViewAddress);
         addressTextView.setText(Html.fromHtml(drugStore.getAddress() + " - " + drugStore.getCity() + " - " + drugStore.getState()));
         //CEP
-        TextView cepTextView = (TextView)findViewById(R.id.textViewCep);
+        TextView cepTextView = (TextView) findViewById(R.id.textViewCep);
         cepTextView.setText("Cep: " + drugStore.getPostalCode());
         // setting telephone
-        if(drugStore.getType().equals("FARMACIAPOPULAR")){
+        if (drugStore.getType().equals("FARMACIAPOPULAR")) {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
             telephoneTextView.setText("Não possui telefone");
-        }else {
+        } else {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
 
             telephoneTextView.setText("Tel: " + controller.getDrugstore().getTelephone());
@@ -78,36 +78,42 @@ public class DrugstoreScreen extends Activity {
         }
 
         //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalDrugstore);
+        RatingBar ratingBarFinal = (RatingBar) findViewById(R.id.ratingBarFinalDrugstore);
         ratingBarFinal.setRating(drugStore.getRate());
 
-        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingDrugstore);
+        TextView textViewRate = (TextView) findViewById(R.id.textViewRatingDrugstore);
         textViewRate.setText("" + drugStore.getRate());
 
         Button drugStoreButton = (Button) findViewById(R.id.buttonSaveRateDrugstore);
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Thread() {
 
-                controller.updateRate(drugStore.getRate(),androidId,drugStore.getId());
+                    public void run() {
+
+                                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+                    }
+                }.start();
             }
-        });
-    }
 
-    private void setPhoneCallListenner(final String telephone) {
-        ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonDrugstore);
-        phoneCallButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) throws SecurityException {
-
-                Intent phoneCall = new Intent(Intent.ACTION_CALL);
-                phoneCall.setData(Uri.parse("tel:" + telephone));
-                startActivity(phoneCall);
-
-            }
         });
     }
 
 
+            private void setPhoneCallListenner(final String telephone) {
+                ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonDrugstore);
+                phoneCallButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) throws SecurityException {
 
-}
+                        Intent phoneCall = new Intent(Intent.ACTION_CALL);
+                        phoneCall.setData(Uri.parse("tel:" + telephone));
+                        startActivity(phoneCall);
+
+                    }
+                });
+            }
+
+
+        }

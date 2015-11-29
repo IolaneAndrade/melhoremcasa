@@ -78,17 +78,13 @@ public class HttpConnection{
         return client.execute(httpGet,responseHandler);
     }
 
-    public String postRequest(JSONObject json,String ipAdress) {
+    public String postRequest(String ipAdress) {
 
         HttpClient client = new DefaultHttpClient();
         HttpPost httpPost = new HttpPost(ipAdress);
-        StringEntity jsonString = null;
-        try {
-            jsonString = new StringEntity(json.toString());
-        } catch (UnsupportedEncodingException e) {
-            /*handle exception*/
-        }
-        httpPost.setEntity(jsonString);
+
+
+        //httpPost.setEntity(jsonString);
         HttpResponse httpResponse = null;
         try {
             httpResponse = client.execute(httpPost);
@@ -102,6 +98,7 @@ public class HttpConnection{
         } catch (IOException e) {
             Log.i("parse exception", e + "");
         }
+        System.out.println(responseText);
         //JSONObject jsonResponse = new JSONObject(responseText);
         return responseText;
     }

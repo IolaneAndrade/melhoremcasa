@@ -73,7 +73,7 @@ public class DrugStoreDao extends Dao{
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
+        values.put("id",drugStore.getId());
         values.put(tableColumns[0], drugStore.getLatitude());
         values.put(tableColumns[1], drugStore.getLongitude());
         values.put(tableColumns[2], drugStore.getCity());

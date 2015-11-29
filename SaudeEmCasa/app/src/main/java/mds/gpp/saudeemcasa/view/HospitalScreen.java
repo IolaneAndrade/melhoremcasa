@@ -30,23 +30,42 @@ public class HospitalScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_screen);
-        HospitalController controller = HospitalController.getInstance(this);
-        
+
+        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        final HospitalController controller = HospitalController.getInstance(this);
+        final Hospital hospital = controller.getHospital();
         // setting name
-        TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
-        nameTextView.setText(controller.getHospital().getName());
+        final TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
+        nameTextView.setText(hospital.getName());
         // Address
         TextView addressTextView = (TextView) findViewById(R.id.textViewAddressHosp);
-        addressTextView.setText(Html.fromHtml(controller.getHospital().getAddress() + " - " + controller.getHospital().getCity() + " - " + controller.getHospital().getState()));
+        addressTextView.setText(Html.fromHtml(hospital.getAddress() + " - " + hospital.getCity() + " - " + hospital.getState()));
         // setting telephone
         TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
-        telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
+        telephoneTextView.setText("Tel: " + hospital.getTelephone());
+
         //set ratting for drugstore
         RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
-        ratingBarFinal.setRating(controller.getHospital().getRate());
+        ratingBarFinal.setRating(hospital.getRate());
 
         TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText(""+controller.getHospital().getRate());
+        textViewRate.setText("" + hospital.getRate());
+
+        Button hospitalButton = (Button) findViewById(R.id.buttonSaveRateHostpital);
+        hospitalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread() {
+
+                    public void run() {
+
+                        controller.updateRate(hospital.getRate(), androidId, hospital.getId());
+                    }
+                }.start();
+            }
+
+        });
 
         setPhoneCallListenner(controller.getHospital().getTelephone());
     }

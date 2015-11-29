@@ -134,18 +134,15 @@ public class HospitalController {
         }
 
     }
-    public String updateRate(float rate,String androidId,int drugstoreId ){
-        JSONObject json = new JSONObject();
-        try{
-            json.put("rate", rate);
-            json.put("androidId", androidId);
-            json.put("drugstoreId",drugstoreId);
-        } catch (JSONException e) {
-            /*Handle exception*/
-        }
+    public String updateRate(float rate,String androidId,int hospitalId ){
         HttpConnection connection = new HttpConnection();
 
-        String response = connection.postRequest(json, "PUT THE IP HERE");
+        String response = null;
+        try {
+            response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+hospitalId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
+        } catch (ConnectionErrorException e) {
+            e.printStackTrace();
+        }
 
         return response;
     }

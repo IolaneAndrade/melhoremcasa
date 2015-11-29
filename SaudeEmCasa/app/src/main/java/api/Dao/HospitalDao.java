@@ -70,7 +70,7 @@ public class HospitalDao extends Dao{
         SQLiteDatabase sqLiteDatabase = database.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
+        values.put("id",hospital.getId());
         values.put(tableColumns[0], hospital.getLatitude());
         values.put(tableColumns[1], hospital.getLongitude());
         values.put(tableColumns[2], hospital.getCity());
