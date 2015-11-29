@@ -135,11 +135,15 @@ public class DrugStoreController {
 
     }
     public String updateRate(float rate,String androidId,int drugstoreId ){
-        JSONObject json = new JSONObject();
 
         HttpConnection connection = new HttpConnection();
 
-        String response = connection.postRequest(json, "http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+drugstoreId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
+        String response = null;
+        try {
+            response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+drugstoreId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
+        } catch (ConnectionErrorException e) {
+            e.printStackTrace();
+        }
 
         return response;
     }

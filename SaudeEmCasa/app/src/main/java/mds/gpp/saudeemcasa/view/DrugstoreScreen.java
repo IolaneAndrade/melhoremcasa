@@ -75,6 +75,7 @@ public class DrugstoreScreen extends Fragment {
         final DrugStore drugStore = controller.getDrugstore();
 
         // setting name
+
         TextView nameTextView = (TextView) view.findViewById(R.id.textViewDrugName);
         nameTextView.setText(drugStore.getName());
         // Address
@@ -90,25 +91,33 @@ public class DrugstoreScreen extends Fragment {
         } else {
             TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewDrugTel);
             telephoneTextView.setText("Tel: " + drugStore.getTelephone());
+
         }
 
 
         //set ratting for drugstore
+
         RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalDrugstore);
         ratingBarFinal.setRating(drugStore.getRate());
 
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingDrugstore);
+
         textViewRate.setText("" + drugStore.getRate());
 
         Button drugStoreButton = (Button) view.findViewById(R.id.buttonSaveRateDrugstore);
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Thread() {
 
-                controller.updateRate(drugStore.getRate(),androidId,drugStore.getId());
+                    public void run() {
+
+                                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+                    }
+                }.start();
             }
-        });
 
+        });
 
             ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonDrugstore);
             phoneCallButton.setOnClickListener(new View.OnClickListener() {
@@ -130,3 +139,4 @@ public class DrugstoreScreen extends Fragment {
 
 
 }
+

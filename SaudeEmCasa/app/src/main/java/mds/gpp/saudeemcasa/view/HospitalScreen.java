@@ -45,56 +45,49 @@ public class HospitalScreen extends Fragment {
         View view = inflater.inflate(R.layout.hospital_screen, null);
 
 
-        HospitalController controller = HospitalController.getInstance(this.getContext());
-        
+
+        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        final HospitalController controller = HospitalController.getInstance(this.getContext());
+        final Hospital hospital = controller.getHospital();
         // setting name
-
-        TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
-        nameTextView.setText(controller.getHospital().getName());
-
+        final TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
+        nameTextView.setText(hospital.getName());
         // Address
-
         TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddressHosp);
-        addressTextView.setText(Html.fromHtml(controller.getHospital().
-
-                        getAddress()
-
-                        + " - " + controller.getHospital().
-
-                        getCity()
-
-                        + " - " + controller.getHospital().
-
-                        getState()
-
-        ));
+        addressTextView.setText(Html.fromHtml(hospital.getAddress() + " - " + hospital.getCity() + " - " + hospital.getState()));
         // setting telephone
-
         TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
-        telephoneTextView.setText("Tel: " + controller.getHospital().
-
-                        getTelephone()
-
-        );
+        telephoneTextView.setText("Tel: " + hospital.getTelephone());
 
         //set ratting for drugstore
         RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
-        ratingBarFinal.setRating(controller.getHospital().getRate());
-
+        ratingBarFinal.setRating(hospital.getRate());
 
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText("" + controller.getHospital().getRate());
+        textViewRate.setText("" + hospital.getRate());
 
+        Button hospitalButton = (Button) view.findViewById(R.id.buttonSaveRateHostpital);
+        hospitalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread() {
 
+                    public void run() {
 
+                        controller.updateRate(hospital.getRate(), androidId, hospital.getId());
+                    }
+                }.start();
+            }
 
+        });
 
         ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonHospital);
         phoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) throws SecurityException {
 
-                Intent phoneCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + telephone));
+                Intent phoneCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + hospital.getTelephone()));
 
 
                 startActivity(phoneCall);

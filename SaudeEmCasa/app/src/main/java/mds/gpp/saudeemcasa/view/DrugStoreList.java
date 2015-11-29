@@ -38,7 +38,13 @@ public class DrugStoreList extends Activity {
 
         // Instancing controller
         final DrugStoreController drugStoreController = DrugStoreController.getInstance(this);
-        drugStoreController.requestRating();
+       /* new Thread() {
+
+            public void run() {
+                drugStoreController.requestRating();
+            }
+        }.start();*/
+
         // Initialize and fill list of drugstore
         list = (ArrayList<DrugStore>) drugStoreController.getAllDrugstores();
 
@@ -57,7 +63,8 @@ public class DrugStoreList extends Activity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position, long id) {
 
-                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
+//                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
+
                 drugStoreController.setDrugStore(list.get(position));
                 //request from server the rate and set to the drugstore
                 Intent intent = new Intent(getBaseContext(), GoogleMapDrugStore.class);
