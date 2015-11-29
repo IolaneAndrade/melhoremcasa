@@ -47,6 +47,7 @@ import static java.security.AccessController.getContext;
  * Created by lucas on 10/21/15.
  */
 
+
 public class DrugstoreScreen extends Fragment {
 
     ArrayList<DrugStore> list;
@@ -61,24 +62,20 @@ public class DrugstoreScreen extends Fragment {
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
         System.out.println("ANDROID ID >>> " + androidId);
-<<<<<<< HEAD
+
 
 
         /*
         * if (requestedId.equals(androidId)){
         *   print "VOCE JA VOTOU!"
         * else
-        *   
+        *
         * */
 
 
 
         final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
-=======
-        
-        setContentView(R.layout.drugstore_screen);
-        final DrugStoreController controller = DrugStoreController.getInstance(this);
->>>>>>> solving connection problems, cleaning code, commenting and adding permition for gps tracker
+
         final DrugStore drugStore = controller.getDrugstore();
 
         // setting name

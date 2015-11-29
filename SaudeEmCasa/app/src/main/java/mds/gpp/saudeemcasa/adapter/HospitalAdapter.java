@@ -42,12 +42,29 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
     public View getView(int position, View convertView, ViewGroup parent) {
         return populateAdapter(convertView,position);
     }
-
+    /**
+     * convert the distance value from meters to kilometers.
+     *
+     * @param distance
+     *           float value to be converted.
+     *
+     * @return distance value in km.
+     *
+     */
     private Float convertToKM(Float distance){
         return distance/1000;
 
     }
-
+    /**
+     * Inflate the list view so that a list can be created with the specified elements.
+     *
+     * @param convertView
+     *           View to inflated.
+     *
+     * @param position
+     *           index in the view list.
+     *@return inflated layout.
+     * */
     public View populateAdapter(View convertView, int position){
         Hospital hospitalPosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
@@ -65,7 +82,15 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
 
         return convertView;
     }
-
+    /**
+     * set distance value in the item layout
+     *
+     * @param convertView
+     *           View to be accessed.
+     *
+     * @param position
+     *           position of the item layout to be accessed.
+     * */
     public void setDistance(View convertView, int position) {
         if (this.lista.get(position).getDistance() < 1f) {
             // Setting distance of drugstore on list item

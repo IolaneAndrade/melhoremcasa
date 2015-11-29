@@ -3,11 +3,9 @@ package mds.gpp.saudeemcasa.controller;
 import android.content.Context;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.location.Location;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -91,7 +89,7 @@ public class DrugStoreController {
 
                 HttpConnection httpConnectionPrivate = new HttpConnection();
 
-                String jsonPrivate = httpConnectionPrivate.RequestAll("http://159.203.95.153:3000/farmacia_popular_conveniada");
+                String jsonPrivate = httpConnectionPrivate.RequestAllDrugstoresByUF("http://159.203.95.153:3000/farmacia_popular_conveniada");
 
                 if(jsonPublic != null && jsonPrivate !=null){
 
@@ -151,8 +149,11 @@ public class DrugStoreController {
     public void requestRating() throws ConnectionErrorException {
         HttpConnection httpConnection = new HttpConnection();
         for(int i = 0;i<15;i++){
-
-            drugStoreList.get(i).setRate(Float.parseFloat(httpConnection.newRequest("ipAdress")));
+            try {
+                drugStoreList.get(i).setRate(httpConnection.getRating(drugStoreList.get(i).getId(),"http://159.203.95.153:3000/rate/gid/"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
     /*
