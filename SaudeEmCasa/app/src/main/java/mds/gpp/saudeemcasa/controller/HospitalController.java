@@ -114,35 +114,59 @@ public class HospitalController {
 
     }
 
-    public void requestRating() {
+    public void requestRating() throws ConnectionErrorException {
         HttpConnection httpConnection = new HttpConnection();
         for(int i = 0;i<15;i++){
-            try {
+
                 hospitalList.get(i).setRate(Float.parseFloat(httpConnection.newRequest("ipAdress")));
-            } catch (ConnectionErrorException e) {
+
                 /*fail to request*/
-            }
+
         }
     }
-
+    /*
+    * Creates object that will determine how the comparation is done for
+    * setDistante function sort.
+    * */
     public static class DistanceComparator implements Comparator<Stablishment>
     {
 
-
+        /**
+         * Use responseHandler created to request the requested through a URL.
+         *
+         * @param stablishment1
+         *          A stablishment to be compared.
+         *
+         * @param stablishment2
+         *          A stablishment to be compared.
+         *
+         * @return which stablishment has the gratter distance.
+         */
         public int compare(Stablishment stablishment1, Stablishment stablishment2) {
             return stablishment1.getDistance()<(stablishment2.getDistance())? -1 : 1;
         }
 
     }
-    public String updateRate(float rate,String androidId,int hospitalId ){
+    /**
+     * Save or update rate from user on server database.
+     *
+     * @param rate
+     *           float value received from user input.
+     *
+     * @param androidId
+     *           string value that represents the unique android id.
+     * @param hospitalId
+     *           int value that represents the stablishment unique id.
+     *
+     * @return response from http connection.
+     *
+     * @throws ConnectionErrorException
+     */
+    public String updateRate(float rate,String androidId,int hospitalId ) throws ConnectionErrorException {
         HttpConnection connection = new HttpConnection();
-
         String response = null;
-        try {
-            response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+hospitalId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
-        } catch (ConnectionErrorException e) {
-            e.printStackTrace();
-        }
+
+        response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+hospitalId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
 
         return response;
     }

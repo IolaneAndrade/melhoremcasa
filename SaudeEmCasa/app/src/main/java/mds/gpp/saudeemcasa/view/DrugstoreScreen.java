@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 
@@ -24,6 +25,7 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
+import api.Exception.ConnectionErrorException;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
 import mds.gpp.saudeemcasa.model.DrugStore;
@@ -91,10 +93,17 @@ public class DrugstoreScreen extends Activity {
                 new Thread() {
 
                     public void run() {
+                        Looper.prepare();
 
-                                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
-                                Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+                        try {
+                            controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
+                            Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+                        } catch (ConnectionErrorException e) {
+                            Toast.makeText(getApplicationContext(),"Houve um error de conexão, verifique se está conectado a internet.",Toast.LENGTH_LONG).show();
+                        }
 
+
+                        Looper.loop();
                     }
                 }.start();
             }

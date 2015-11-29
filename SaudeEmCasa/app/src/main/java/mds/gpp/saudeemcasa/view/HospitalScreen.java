@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 
@@ -18,6 +19,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import api.Exception.ConnectionErrorException;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.model.Hospital;
@@ -59,9 +61,15 @@ public class HospitalScreen extends Activity {
                 new Thread() {
 
                     public void run() {
+                        Looper.prepare();
+                        try {
+                            controller.updateRate(hospital.getRate(), androidId, hospital.getId());
+                            Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+                        } catch (ConnectionErrorException e) {
+                            Toast.makeText(getApplicationContext(),"Houve um error de conexão, verifique se está conectado a internet.",Toast.LENGTH_LONG).show();
+                        }
 
-                        controller.updateRate(hospital.getRate(), androidId, hospital.getId());
-                        Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+                        Looper.loop();
                     }
                 }.start();
             }

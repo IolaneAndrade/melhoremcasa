@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.*;
 import java.util.*;
 
+import api.Exception.ConnectionErrorException;
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.adapter.DrugStoreAdapter;
 import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
@@ -38,10 +39,14 @@ public class DrugStoreList extends Activity {
 
         // Instancing controller
         final DrugStoreController drugStoreController = DrugStoreController.getInstance(this);
-       /* new Thread() {
+        /*new Thread() {
 
             public void run() {
-                drugStoreController.requestRating();
+                try {
+                    drugStoreController.requestRating();
+                } catch (ConnectionErrorException e) {
+                    Toast.makeText(getApplicationContext(),"Não foi possivel receber as avaliações dos estabelecimentos, verifique sua conexão com a internet. ",Toast.LENGTH_LONG).show();
+                }
             }
         }.start();*/
 
