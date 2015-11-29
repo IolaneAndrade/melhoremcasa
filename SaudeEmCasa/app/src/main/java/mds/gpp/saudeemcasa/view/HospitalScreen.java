@@ -81,7 +81,9 @@ public class HospitalScreen extends Fragment {
                             controller.updateRate(hospital.getRate(), androidId, hospital.getId());
                             Toast.makeText(getContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
-                            Toast.makeText(getContext(),"Houve um error de conexão, verifique se está conectado a internet.",Toast.LENGTH_LONG).show();
+
+                            Toast.makeText(getContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();
+
                         }
 
                         Looper.loop();
