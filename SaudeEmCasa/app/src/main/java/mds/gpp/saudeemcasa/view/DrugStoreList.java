@@ -1,9 +1,7 @@
 package mds.gpp.saudeemcasa.view;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -11,13 +9,9 @@ import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.adapter.DrugStoreAdapter;
-import mds.gpp.saudeemcasa.adapter.HospitalAdapter;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.DrugStore;
-import mds.gpp.saudeemcasa.model.Hospital;
 import mds.gpp.saudeemcasa.controller.DrugStoreController;
-import mds.gpp.saudeemcasa.model.DrugStore;
-
 
 public class DrugStoreList extends Activity {
 
@@ -27,11 +21,24 @@ public class DrugStoreList extends Activity {
     GPSTracker gps;
     int drugstore = -1;
 
+    static final String STATE_SCORE = "playerScore";
+    static final String STATE_LEVEL = "playerLevel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_screen_activity);
+
+        // Check whether we're recreating a previously destroyed instance
+        if (savedInstanceState != null) {
+           // Restore value of members from saved state
+           mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+           mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+        } else {
+                // Probably initialize members with default values for a new instance
+            }
+
+
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
@@ -69,13 +76,35 @@ public class DrugStoreList extends Activity {
             }
         });
 
-        menu.setOnClickListener(new AdapterView.OnClickListener() {
+        menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), ChooseScreen.class);
-                startActivity(intent);
+
+                    Intent nextScreen = new Intent(getBaseContext(), HospitalList.class);
+                    //startActivity(nextScreen);
+                    onBackPressed();
+
+
             }
         });
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        savedInstanceState.putInt(STATE_SCORE, mCurrentScore);
+        savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
     }
 }
 

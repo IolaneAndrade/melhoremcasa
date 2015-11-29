@@ -11,27 +11,27 @@
             android:id="@+id/topbar_search_layer"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="65dp"
-            android:background="#ABABAB" >
+            android:layout_alignParentStart="true">
 
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:dividerHeight="1dp"
+                android:dividerHeight="10dp"
                 android:divider="#E6E5EC"
                 android:clickable="true"
-                android:layout_below="@+id/topbar_description"
-                android:layout_alignParentStart="true"
                 android:choiceMode="singleChoice"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/topbar_description" />
 
             <RelativeLayout
                 android:id="@+id/topbar_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#536571"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#8098a5"
+                android:clickable="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true">
 
@@ -42,6 +42,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
+
                     android:text="Lista de Farmácias"
                     android:textColor="#ffffff"
                     android:textSize="20sp" />
@@ -49,8 +50,8 @@
                 <ImageButton
                     android:id="@+id/topbar_logo"
                     android:background="@mipmap/logo_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:onClick="onClickAbout"
                     android:contentDescription="image_description_default"
                     android:layout_marginLeft="10dp"
