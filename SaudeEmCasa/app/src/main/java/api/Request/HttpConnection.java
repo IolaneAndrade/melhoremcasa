@@ -1,13 +1,12 @@
 package api.Request;
 
-<<<<<<< HEAD
+
 import android.content.Entity;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import android.util.Log;
-=======
->>>>>>> creating methods for the http post for the update of the rate on the server. Refactoring DrugstoreScreen the minimize redudancy.
+
 
 import android.util.Log;
 
@@ -92,7 +91,11 @@ public class HttpConnection {
     public float getRating(String id,String ipAddress) throws ConnectionErrorException, JSONException {
         String json = newRequest(ipAddress+id);
         JSONArray jsonArray = new JSONArray(json);
-        return (float) jsonArray.getJSONObject(0).getDouble("rate");
+        if(jsonArray.length() == 0){
+            return 0;
+        }else {
+            return (float) jsonArray.getJSONObject(0).getDouble("rate");
+        }
     }
     public String Request(HttpGet httpGet, HttpClient client) throws IOException {
 
