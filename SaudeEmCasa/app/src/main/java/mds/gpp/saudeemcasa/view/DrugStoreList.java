@@ -2,8 +2,16 @@ package mds.gpp.saudeemcasa.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.*;
 import java.util.*;
 
@@ -21,29 +29,16 @@ public class DrugStoreList extends Activity {
     GPSTracker gps;
     int drugstore = -1;
 
-    static final String STATE_SCORE = "playerScore";
-    static final String STATE_LEVEL = "playerLevel";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.list_screen_activity);
-
-        // Check whether we're recreating a previously destroyed instance
-        if (savedInstanceState != null) {
-           // Restore value of members from saved state
-           mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
-           mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
-        } else {
-                // Probably initialize members with default values for a new instance
-            }
-
-
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
 
-        menu = findViewById(R.id.topbar_description);
+        menu = findViewById(R.id.topbar_back);
 
         gps = new GPSTracker(this);
 
@@ -79,32 +74,12 @@ public class DrugStoreList extends Activity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    Intent nextScreen = new Intent(getBaseContext(), HospitalList.class);
-                    //startActivity(nextScreen);
-                    onBackPressed();
-
-
+                Intent intent = new Intent(DrugStoreList.this, ChooseScreen.class); // essa é activity Inicial do app
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // adiciona a flag para a intent
+                startActivity(intent);
             }
         });
     }
 
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save the user's current game state
-        savedInstanceState.putInt(STATE_SCORE, mCurrentScore);
-        savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
 
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        // Always call the superclass so it can restore the view hierarchy
-        super.onRestoreInstanceState(savedInstanceState);
-
-        // Restore state members from saved instance
-        mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
-        mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
-    }
 }
-

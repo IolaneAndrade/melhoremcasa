@@ -6,4 +6,10 @@
 
     <string name="program_drug">Farmacia Popular</string>
     <string name="program_hospital">Melhor em Casa</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="lista_farmacias">Name</string>
+    <string name="logo">image_description_default</string>
+    <string name="back">image_description_default</string>
 </resources>
