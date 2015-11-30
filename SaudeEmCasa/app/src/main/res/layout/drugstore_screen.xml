@@ -19,11 +19,8 @@
         android:text="CEP"
         android:id="@+id/textViewCep"
         android:layout_gravity="center_vertical"
-<<<<<<< HEAD
-        android:layout_marginTop="27dp"
-=======
-        android:layout_marginTop="19dp"
->>>>>>> 25454d3dc856796276e4392ec0a5256c561b6eec
+                android:layout_marginTop="19dp"
+
         android:layout_below="@+id/textViewAddress"
         android:layout_alignParentStart="true" />
 

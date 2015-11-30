@@ -6,17 +6,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-<<<<<<< HEAD
+
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.widget.RatingBar;
-=======
+
 import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
->>>>>>> 25454d3dc856796276e4392ec0a5256c561b6eec
 import android.widget.TextView;
 import android.widget.Toast;
 

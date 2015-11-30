@@ -2,7 +2,7 @@ package mds.gpp.saudeemcasa.view;
 
 import android.Manifest;
 import android.app.Activity;
-<<<<<<< HEAD
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
-=======
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -20,7 +20,6 @@ import android.support.v4.app.ActivityCompat;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
->>>>>>> 25454d3dc856796276e4392ec0a5256c561b6eec
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -72,7 +71,7 @@ public class DrugstoreScreen extends Activity {
             telephoneTextView.setText("Não possui telefone");
         }else {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
-<<<<<<< HEAD
+
             telephoneTextView.setText("Tel: " + drugStore.getTelephone());
         }
 
@@ -91,12 +90,12 @@ public class DrugstoreScreen extends Activity {
                 controller.updateRate(drugStore.getRate(),androidId,drugStore.getId());
             }
         });
-=======
-            telephoneTextView.setText("Tel: " + controller.getDrugstore().getTelephone());
-            setPhoneCallListenner(controller.getDrugstore().getTelephone());
+
+             /*telephoneTextView.setText("Tel: " + controller.getDrugstore().getTelephone());
+            setPhoneCallListenner(controller.getDrugstore().getTelephone());*/
         }
 
-    }
+
 
     private void setPhoneCallListenner(final String telephone) {
         ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonDrugstore);
@@ -111,7 +110,6 @@ public class DrugstoreScreen extends Activity {
             }
         });
 
->>>>>>> 25454d3dc856796276e4392ec0a5256c561b6eec
     }
 }
 
