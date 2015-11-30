@@ -1,11 +1,20 @@
 package mds.gpp.saudeemcasa.view;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
+
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -25,6 +34,8 @@ public class HospitalScreen extends FragmentActivity {
 
     HospitalController controller = HospitalController.getInstance(this);
     LatLng originLocation;
+
+    View menu;
 
 
     @Override
@@ -62,6 +73,7 @@ public class HospitalScreen extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        menu = findViewById(R.id.topbar_back);
 
         SupportMapFragment fragment = SupportMapFragment.newInstance();
                 getSupportFragmentManager().findFragmentById(R.id.hospital_map);
@@ -77,14 +89,40 @@ public class HospitalScreen extends FragmentActivity {
         HospitalController controller = HospitalController.getInstance(this);
         
         // setting name
-        TextView nameTextView = (TextView)findViewById(R.id.textViewHospName);
+        TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
         nameTextView.setText(controller.getHospital().getName());
         // Address
-        TextView addressTextView = (TextView)findViewById(R.id.textViewAddressHosp);
+        TextView addressTextView = (TextView) findViewById(R.id.textViewAddressHosp);
         addressTextView.setText(Html.fromHtml(controller.getHospital().getAddress() + " - " + controller.getHospital().getCity() + " - " + controller.getHospital().getState()));
         // setting telephone
-            TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
-            telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
+        TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
+        telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
+
+        setPhoneCallListenner(controller.getHospital().getTelephone());
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HospitalScreen.this, HospitalList.class); // essa é activity anterior do app
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // adiciona a flag para a intent
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setPhoneCallListenner(final String telephone) {
+        ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonHospital);
+        phoneCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) throws SecurityException{
+
+                Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+telephone));
+
+
+                startActivity(phoneCall);
+
+            }
+        });
 
         //set ratting for drugstore
         RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);

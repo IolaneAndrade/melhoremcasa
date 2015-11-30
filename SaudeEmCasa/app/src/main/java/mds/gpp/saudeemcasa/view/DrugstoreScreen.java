@@ -1,13 +1,16 @@
 package mds.gpp.saudeemcasa.view;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -27,8 +30,12 @@ import static java.security.AccessController.getContext;
  */
 public class DrugstoreScreen extends Activity {
 
+    View menu;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        menu = findViewById(R.id.topbar_back);
 
         final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
@@ -57,7 +64,7 @@ public class DrugstoreScreen extends Activity {
         // setting telephone
         if(drugStore.getType().equals("FARMACIAPOPULAR")){
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
-            telephoneTextView.setText("");
+            telephoneTextView.setText("Não possui telefone");
         }else {
             TextView telephoneTextView = (TextView) findViewById(R.id.textViewDrugTel);
             telephoneTextView.setText("Tel: " + drugStore.getTelephone());
@@ -75,9 +82,26 @@ public class DrugstoreScreen extends Activity {
             @Override
             public void onClick(View v) {
 
-                controller.updateRate(drugStore.getRate(),androidId,drugStore.getId());
+                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
             }
         });
+
+
+    }
+
+    private void setPhoneCallListenner(final String telephone) {
+        ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonDrugstore);
+        phoneCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) throws SecurityException{
+
+                Intent phoneCall = new Intent(Intent.ACTION_CALL);
+                phoneCall.setData(Uri.parse("tel:" + telephone));
+                startActivity(phoneCall);
+
+            }
+        });
+
     }
 }
 
