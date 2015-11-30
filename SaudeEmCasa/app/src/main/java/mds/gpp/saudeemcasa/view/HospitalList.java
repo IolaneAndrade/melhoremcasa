@@ -69,10 +69,9 @@ public class HospitalList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView adapterView, View view, int position,
                                     long id) {
-                list.get(position).setRate((float) 4.1 );//this should be set as the httprequest
+                list.get(position).setRate((float) 3.3 );//this should be set as the httprequest
                 hospitalController.setHospital(list.get(position));
-                Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
-
+                Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
                 startActivity(intent);
             }
         });

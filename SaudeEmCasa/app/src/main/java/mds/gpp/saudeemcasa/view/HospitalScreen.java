@@ -11,79 +11,49 @@ import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RatingBar;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-
 import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.controller.HospitalController;
-
 
 /**
  * Created by freemanpivo on 11/14/15.
  */
-public class HospitalScreen extends FragmentActivity {
-
-    SupportMapFragment fragmentMap;
-    GoogleMap googleMap;
-
-    HospitalController controller = HospitalController.getInstance(this);
-    LatLng originLocation;
+public class HospitalScreen extends Fragment {
 
     View menu;
 
+    HospitalController controller = HospitalController.getInstance(this.getContext());
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
 
-    public void onResume() {
-        super.onResume();
+        View view = inflater.inflate(R.layout.hospital_screen, null);
 
-        new Thread(){
-            public void run() {
-                while (fragmentMap.getMap() == null);
-                try {
-                    runOnUiThread (new Runnable() {
-                        @Override
-                        public void run() {
-                            configMap();
-                        }
-                    });
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        // setting name
+        TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
+        nameTextView.setText(controller.getHospital().getName());
 
-        }.start();
-
-    }
-
-    public void configMap() {
-        googleMap = fragmentMap.getMap();
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        controller.updateGoogleMap();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        // Address
+        TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddressHosp);
+        addressTextView.setText(Html.fromHtml(controller.getHospital().getAddress());
 
         menu = findViewById(R.id.topbar_back);
 
-        SupportMapFragment fragment = SupportMapFragment.newInstance();
-                getSupportFragmentManager().findFragmentById(R.id.hospital_map);
+        // setting telephone
+        TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
+        telephoneTextView.setText("Tel: " + controller.getHospital().
 
-        //googleMap = fragment.getMap();
-        //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-
-        //originLocation = new LatLng(-23.561706, -46.655981);
-       // controller.updateGoogleMap();
-
+                        getTelephone()
 
         setContentView(R.layout.hospital_screen);
         HospitalController controller = HospitalController.getInstance(this);
@@ -125,13 +95,27 @@ public class HospitalScreen extends FragmentActivity {
         });
 
         //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
+        RatingBar ratingBarFinal = (RatingBar) findViewById(R.id.ratingBarFinalHospital);
         ratingBarFinal.setRating(controller.getHospital().getRate());
 
-        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText(""+controller.getHospital().getRate());
+        TextView textViewRate = (TextView) findViewById(R.id.textViewRatingHospital);
+        textViewRate.setText("" + controller.getHospital().
 
+                        getRate()
 
+        );
+
+        /*Button hospitalMapButton = (Button) findViewById(R.id.button_hospital_map);
+
+        hospitalMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), GoogleMapHospital.class);
+                startActivity(intent);
+            }
+        });*/
+        return (view);
     }
-
 }
+
+

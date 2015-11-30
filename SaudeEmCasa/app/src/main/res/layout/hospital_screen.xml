@@ -19,7 +19,7 @@ android:contextClickable="false"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="hospitalName"
     android:id="@+id/textViewHospName"
-    android:layout_centerVertical="true"
+    android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true" />
 
 <TextView
@@ -32,13 +32,13 @@ android:contextClickable="false"
     android:layout_gravity="center_horizontal"
     android:layout_below="@+id/textViewHospName" />
 
-
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:text="Telephone"
     android:id="@+id/textViewHospTel"
+
     android:layout_below="@+id/textViewAddressHosp"
     android:layout_alignStart="@+id/textViewAddressHosp"
     android:layout_marginTop="33dp" />
@@ -53,7 +53,7 @@ android:contextClickable="false"
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="mds.gpp.saudeemcasa.view.MapToHospital"
+            android:name="mds.gpp.saudeemcasa.view.GoogleMapHospital"
             android:id="@+id/hospitaMapFragment"
             android:layout_marginTop="70dp"
             android:layout_alignParentTop="true"
@@ -114,6 +114,7 @@ android:contextClickable="false"
 
     <!-- android:layout_alignParentStart="true" /> -->
 
+
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,7 +122,8 @@ android:contextClickable="false"
         android:numStars="5"
         android:stepSize="1"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textViewHospName" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="144dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,8 +131,8 @@ android:contextClickable="false"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Nota"
         android:id="@+id/textViewRatingHospital"
-        android:layout_above="@+id/ratingBarUserHospital"
-        android:layout_alignStart="@+id/ratingBarUserHospital" />
+        android:layout_above="@+id/ratingBarFinalHospital"
+        android:layout_alignParentStart="true" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -147,9 +149,8 @@ android:contextClickable="false"
         android:layout_height="wrap_content"
         android:text="Salvar"
         android:id="@+id/buttonSaveRateHostpital"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/ratingBarUserHospital" />
-
+        android:layout_alignBottom="@+id/ratingBarUserHospital"
+        android:layout_toEndOf="@+id/textViewHospName" />
 
     <ImageButton
         android:layout_width="30dip"
@@ -160,3 +161,4 @@ android:contextClickable="false"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
+

@@ -50,33 +50,13 @@
         android:layout_alignTop="@+id/infoButton"
         android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:id="@+id/melhoremcasalogo"
-        android:src="@mipmap/melhor_em_casa"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:typeface="serif"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginEnd="21dp" />
-
-    <ImageView
-        android:id="@+id/farmpopularlogo"
-        android:src="@mipmap/farm_popular"
-        android:layout_width="130dp"
-        android:layout_height="65dp"
-        android:layout_alignTop="@+id/melhoremcasalogo"
-        android:layout_toEndOf="@+id/melhoremcasalogo"
-        android:layout_marginStart="45dp"
-        android:layout_alignBottom="@+id/melhoremcasalogo" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
+        android:id="@+id/view"
         android:layout_above="@+id/textView"
-        android:layout_alignEnd="@+id/infoButton"
-        android:id="@+id/view" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView"
@@ -84,8 +64,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_above="@+id/melhoremcasalogo"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/melhorEmCasaInfoButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp" />
 
     <ImageButton
         android:id="@+id/infoButton"
@@ -93,6 +74,34 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/logo" />
+        android:layout_alignEnd="@+id/logo"
+        android:background="#30ffffff"
+        android:contentDescription="Clique para saber mais sobre o o aplicativo Saúde em Casa"/>
+
+    <ImageButton
+        android:id="@+id/melhorEmCasaInfoButton"
+        android:src="@mipmap/melhor_em_casa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:typeface="serif"
+        android:background="#30ffffff"
+        android:layout_marginBottom="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginEnd="30dp"
+        android:contentDescription="Clique para saber mais sobre o programa Melhor em Casa"
+        android:adjustViewBounds="false" />
+
+    <ImageButton
+        android:id="@+id/farmPopularInfoButton"
+        android:src="@mipmap/farm_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Clique para saber mais sobre o programa Farmácia Popular"
+        android:background="#30ffffff"
+        android:layout_below="@+id/textView"
+        android:layout_toStartOf="@+id/infoButton"
+        android:layout_marginEnd="23dp"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

@@ -65,7 +65,7 @@ public class DrugStoreList extends Activity {
                 list.get(position).setRate((float) 3.3);//this should be set as the httprequest
                 drugStoreController.setDrugStore(list.get(position));
                 //request from server the rate and set to the drugstore
-                Intent intent = new Intent(getBaseContext(), DrugstoreScreen.class);
+                Intent intent = new Intent(getBaseContext(), GoogleMapDrugStore.class);
 
                 startActivity(intent);
             }

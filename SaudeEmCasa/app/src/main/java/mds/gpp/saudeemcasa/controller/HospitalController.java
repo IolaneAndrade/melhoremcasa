@@ -3,15 +3,6 @@ package mds.gpp.saudeemcasa.controller;
 import android.content.Context;
 import android.location.Location;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +15,6 @@ import api.Dao.HospitalDao;
 import api.Exception.ConnectionErrorException;
 import api.Helper.JSONHelper;
 import api.Request.HttpConnection;
-import mds.gpp.saudeemcasa.R;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.Hospital;
 import mds.gpp.saudeemcasa.model.Stablishment;
@@ -56,6 +46,7 @@ public class HospitalController {
         }
         return instance;
     }
+
     public void setHospital( Hospital hospital ) {
         HospitalController.hospital = hospital;
     }
@@ -92,7 +83,6 @@ public class HospitalController {
                 hospitalList = hospitalDao.getAllHospitals();
 
             }
-
     }
 
     public int[] setDistance(Context context, ArrayList<Hospital> list) {
@@ -147,34 +137,6 @@ public class HospitalController {
         String response = connection.postRequest(json, "PUT THE IP HERE");
 
         return response;
-    }
-
-    public void updateGoogleMap() {
-
-        GoogleMap googleMap = null;
-        String latitude = hospital.getLatitude();
-        String longitude = hospital.getLongitude();
-        //convert string to double
-        LatLng originLocation = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
-
-        //BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.common_ic_googleplayservices);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        /*googleMap.addMarker(new MarkerOptions()
-                .position(originLocation)
-                //.icon(icon)
-                .title(hospital.getName())
-                .snippet(hospital.getCity()));*/
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(originLocation)
-                .zoom(17)
-                .bearing(90)
-                .tilt(45)
-                .build();
-        //googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
-        googleMap.moveCamera(cameraUpdate);
-
     }
 
 }
