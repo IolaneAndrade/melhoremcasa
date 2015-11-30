@@ -18,10 +18,14 @@ public class ChooseScreen extends Activity{
 
     GPSTracker gps;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_choose_screen);
+
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         Button hospitalButton = (Button) findViewById(R.id.melhor_em_casa_button);
         Button drugStoreButton = (Button) findViewById(R.id.farm_popular_button);
@@ -60,7 +64,11 @@ public class ChooseScreen extends Activity{
         infoSaudeEmCasaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                     Intent nextScreen = new Intent(getBaseContext(), InfoScreenSaudeEmCasa.class);
+=======
+                Intent nextScreen = new Intent(getBaseContext(), InformationScreen.class);
+>>>>>>> 75b17eb2585543badf957263871b9d817da20304
                     startActivity(nextScreen);
 
             }

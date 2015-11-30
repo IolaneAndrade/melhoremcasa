@@ -5,7 +5,12 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.*;
 
 import org.json.JSONException;
@@ -22,21 +27,23 @@ import mds.gpp.saudeemcasa.model.Hospital;
 /**
  * Created by gabriel on 29/09/15.
  */
-public class HospitalList extends Activity {
+public class HospitalList extends AppCompatActivity {
 
     ListView listView;
+    View menu;
     ArrayList<Hospital> list;
     GPSTracker gps;
     int hospital = -1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hospital_list_screen);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.list_screen_activity);
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);
+        menu = findViewById(R.id.topbar_back);
 
         gps = new GPSTracker(this);
 
@@ -66,6 +73,15 @@ public class HospitalList extends Activity {
                 hospitalController.setHospital(list.get(position));
                 Intent intent = new Intent(getBaseContext(), HospitalScreen.class);
 
+                startActivity(intent);
+            }
+        });
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HospitalList.this, ChooseScreen.class); // essa é activity Inicial do app
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // adiciona a flag para a intent
                 startActivity(intent);
             }
         });

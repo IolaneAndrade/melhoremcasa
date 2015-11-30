@@ -55,20 +55,20 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
 
     }
     public View populateAdapter(View convertView, int position){
+        /*Setting name list
+        TextView textView2 = (TextView) convertView.findViewById(R.id.topbar_name);
+        textView2.setText("Lista de Farmácias"); */
+
         // Override method to get view
         DrugStore drugStorePosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        // Setting image view of list item
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
-        imageView.setImageResource(R.mipmap.farm_popular);
-
         // Setting name of drugstore on list item
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
+        TextView textView = (TextView) convertView.findViewById(R.id.textView_LargeText);
         textView.setText((CharSequence) drugStorePosition.getName());
 
         // Setting phone of drugstore on list item
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
+        TextView textView1 = (TextView) convertView.findViewById(R.id.textView_MediumText);
         textView1.setText((CharSequence) drugStorePosition.getTelephone());
 
         setDistance(convertView, position);
@@ -79,11 +79,11 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
     public void setDistance(View convertView, int position) {
         if (this.lista.get(position).getDistance() < 1f) {
             // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
             textViewDistance.setText(this.lista.get(position).getDistance() + " m");
         } else {
             // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
             textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
         }
 

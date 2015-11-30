@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '23.0.1'
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -29,6 +29,9 @@ android {
             targetSdkVersion 23
             versionCode 1
             versionName "1.0"
+            // to solve ERRO _non-zero exit value 2_
+            // Enabling multidex support.
+            multiDexEnabled = true
         }
         debug{
             testCoverageEnabled = true
@@ -49,16 +52,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('src/main/java/Libs/google-api-client-1.4.1-beta.jar')
     compile files('src/main/java/Libs/commons-logging-1.1.2.jar')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:cardview-v7:21.0.3'
 
     //Google Maps
     compile 'com.google.android.gms:play-services-maps:8.3.0'
-
     androidTestCompile 'junit:junit:4.12'
     // App's dependencies, including test
     compile 'com.android.support:support-annotations:23.0.1'
-
     // Testing-only dependencies
     androidTestCompile 'com.android.support.test:runner:0.4.1'
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
-
 }
