@@ -137,39 +137,43 @@ public class JSONHelper {
     *
     * @throws JSONException
     * */
-    public boolean drugstorePrivateListFromJSON(String drugstoreJsonList )throws JSONException {
+    public boolean drugstorePrivateListFromJSON(String[] drugstoreJsonList )throws JSONException {
 
-        JSONArray jArray = new JSONArray(drugstoreJsonList);
 
         try {
-            DrugStore drugStore = new DrugStore();;
+            for(int j = 0; j<drugstoreJsonList.length;j++){
+                JSONArray jArray = new JSONArray(drugstoreJsonList[j]);
 
-            for( int index = 0; index < jArray.length(); index++ ) {
+                DrugStore drugStore = new DrugStore();
 
-                drugStore.setLongitude(jArray.getJSONObject(index).getString("long"));
 
-                drugStore.setLatitude(jArray.getJSONObject(index).getString("lat"));
+                for (int index = 0; index < jArray.length(); index++) {
 
-                drugStore.setTelephone("(" + jArray.getJSONObject(index).getString("nu_ddd_farmacia") + ")"
-                        + jArray.getJSONObject(index).getString("nu_telefone_farmacia"));
+                    drugStore.setLongitude(jArray.getJSONObject(index).getString("long"));
 
-                drugStore.setPostalCode(jArray.getJSONObject(index).getString("nu_cep_farmacia"));
+                    drugStore.setLatitude(jArray.getJSONObject(index).getString("lat"));
 
-                drugStore.setAddress(jArray.getJSONObject(index).getString("ds_endereco_farmacia"));
+                    drugStore.setTelephone("(" + jArray.getJSONObject(index).getString("nu_ddd_farmacia") + ")"
+                            + jArray.getJSONObject(index).getString("nu_telefone_farmacia"));
 
-                drugStore.setName(jArray.getJSONObject(index).getString("no_farmacia"));
+                    drugStore.setPostalCode(jArray.getJSONObject(index).getString("nu_cep_farmacia"));
 
-                drugStore.setCity(jArray.getJSONObject(index).getString("no_cidade"));
+                    drugStore.setAddress(jArray.getJSONObject(index).getString("ds_endereco_farmacia"));
 
-                drugStore.setState(jArray.getJSONObject(index).getString("uf"));
+                    drugStore.setName(jArray.getJSONObject(index).getString("no_farmacia"));
 
-                drugStore.setType("AQUITEMFARMACIAPOPULAR");
+                    drugStore.setCity(jArray.getJSONObject(index).getString("no_cidade"));
 
-                drugStore.setId(jArray.getJSONObject(index).getJSONObject("_id").getString("_str"));
+                    drugStore.setState(jArray.getJSONObject(index).getString("uf"));
 
-                drugStoreDao.insertDrugstore(drugStore);
+                    drugStore.setType("AQUITEMFARMACIAPOPULAR");
 
-            }
+                    drugStore.setId(jArray.getJSONObject(index).getJSONObject("_id").getString("_str"));
+
+                    drugStoreDao.insertDrugstore(drugStore);
+
+                }
+        }
 
         } catch (NullPointerException npe ) {
             return false;

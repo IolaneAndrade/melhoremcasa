@@ -67,19 +67,16 @@ public class HttpConnection {
      *
      * @throws ConnectionErrorException
      */
-    public String RequestAllDrugstoresByUF(String ipAdress) throws ConnectionErrorException {
-        String finalJson = "";
+    public String[] RequestAllDrugstoresByUF(String ipAdress) throws ConnectionErrorException {
+        String finalJson[] = new String[states.length];
 
         for (int i = 0; i < states.length; i++) {
             String tmp;
-                tmp = newRequest(ipAdress + "/uf/" + states[i]);
 
-                Log.e("Error to request UF = ", states[i]);
-
-            finalJson = finalJson + "," + tmp.substring(1, tmp.length() - 1);
+            tmp = newRequest(ipAdress + "/uf/" + states[i]);
+            finalJson[i] = tmp;
         }
-        finalJson = finalJson.substring(1, finalJson.length());
-        return "[" + finalJson + "]";
+        return finalJson;
     }
     public float getRating(String id,String ipAddress) throws ConnectionErrorException, JSONException {
         String json = newRequest(ipAddress+id);

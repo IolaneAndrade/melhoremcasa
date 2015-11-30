@@ -88,7 +88,7 @@ public class DrugStoreController {
 
                 HttpConnection httpConnectionPrivate = new HttpConnection();
 
-                String jsonPrivate = httpConnectionPrivate.RequestAllDrugstoresByUF("http://159.203.95.153:3000/farmacia_popular_conveniada");
+                String jsonPrivate[] = httpConnectionPrivate.RequestAllDrugstoresByUF("http://159.203.95.153:3000/farmacia_popular_conveniada");
 
                 if(jsonPublic != null && jsonPrivate !=null){
 
