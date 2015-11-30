@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import mds.gpp.saudeemcasa.R;
@@ -64,24 +66,24 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
         TextView textView = (TextView) convertView.findViewById(R.id.textView_LargeText);
         textView.setText((CharSequence) hospitalPosition.getName());
 
-        // Setting phone of drugstore on list item
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView_MediumText);
-        textView1.setText((CharSequence) hospitalPosition.getTelephone());
-
         setDistance(convertView, position);
 
         return convertView;
     }
 
     public void setDistance(View convertView, int position) {
+        // Formato decimal
+        NumberFormat mascara = new DecimalFormat(".##");
         if (this.lista.get(position).getDistance() < 1f) {
             // Setting distance of drugstore on list item
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
-            textViewDistance.setText(this.lista.get(position).getDistance() + " m");
+            float distance = this.lista.get(position).getDistance();
+            textViewDistance.setText(mascara.format(distance) + " m");
         } else {
             // Setting distance of drugstore on list item
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
-            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
+            float distance = convertToKM(this.lista.get(position).getDistance());
+            textViewDistance.setText(mascara.format(distance) + " Km");
         }
     }
 
