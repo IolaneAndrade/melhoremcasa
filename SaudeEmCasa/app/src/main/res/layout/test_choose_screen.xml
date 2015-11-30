@@ -81,27 +81,32 @@
     <ImageButton
         android:id="@+id/melhorEmCasaInfoButton"
         android:src="@mipmap/melhor_em_casa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:typeface="serif"
         android:background="#30ffffff"
-        android:layout_marginBottom="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="29dp"
         android:contentDescription="Clique para saber mais sobre o programa Melhor em Casa"
-        android:adjustViewBounds="false" />
+        android:adjustViewBounds="false"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/textView" />
 
     <ImageButton
         android:id="@+id/farmPopularInfoButton"
         android:src="@mipmap/farm_popular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:contentDescription="Clique para saber mais sobre o programa Farmácia Popular"
         android:background="#30ffffff"
         android:layout_below="@+id/textView"
         android:layout_toStartOf="@+id/infoButton"
         android:layout_marginEnd="23dp"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:scaleType="fitXY" />
 
 </RelativeLayout>

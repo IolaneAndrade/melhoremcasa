@@ -21,23 +21,26 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name=".view.LoadingScreen" >
+        <activity android:name=".view.LoadingScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ChooseScreen" >
+        <activity android:name=".view.ChooseScreen"
+            android:screenOrientation="portrait">
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.default" />
         </activity>
-        <activity android:name=".view.DrugStoreList" >
+        <activity android:name=".view.DrugStoreList"
+            android:screenOrientation="portrait">
             <action android:name="android.intent.action.MAIN" />
             <action android:name="android.intent.category.default" />
         </activity>
-        <activity android:name=".view.HospitalList" >
+        <activity android:name=".view.HospitalList"
+            android:screenOrientation="portrait">
             <action android:name="android.intent.action.MAIN" />
             <action android:name="android.intent.category.default" />
         </activity>
@@ -51,7 +54,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".view.InfoScreenSaudeEmCasa"
-            android:parentActivityName=".view.ChooseScreen" >
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
@@ -60,7 +64,8 @@
         </activity>
 
         <activity android:name=".view.InfoScreenMelhorEmCasa"
-            android:parentActivityName=".view.ChooseScreen" >
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
@@ -69,7 +74,8 @@
         </activity>
 
         <activity android:name=".view.InfoScreenDrugStore"
-            android:parentActivityName=".view.ChooseScreen" >
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
@@ -78,7 +84,8 @@
         </activity>
 
         <activity android:name=".view.GoogleMapDrugStore"
-            android:parentActivityName=".view.ChooseScreen" >
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
@@ -86,7 +93,8 @@
             <action android:name="android.intent.category.default" />
         </activity>
         <activity android:name=".view.GoogleMapHospital"
-            android:parentActivityName=".view.ChooseScreen" >
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
