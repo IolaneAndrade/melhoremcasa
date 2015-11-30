@@ -1,5 +1,6 @@
 package api.Request;
 
+import api.Exception.ConnectionErrorException;
 import android.content.Entity;
 import android.util.Log;
 
@@ -33,7 +34,7 @@ public class HttpConnection{
 
     }
 
-    public String newRequest(String ipAddress) throws ConnectionErrorException{
+    public String newRequest(String ipAddress) throws ConnectionErrorException {
         String json;
         try{
             System.out.println("Starting connection with " + ipAddress);

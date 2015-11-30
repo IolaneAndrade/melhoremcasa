@@ -67,7 +67,6 @@ android:contextClickable="false"
             android:background="#8098a5"
             android:clickable="true"
             android:layout_marginBottom="23dp"
-            android:layout_alignBottom="@+id/topbar_description"
             android:layout_alignParentStart="true"
             android:layout_marginStart="26dp">
 
@@ -111,9 +110,6 @@ android:contextClickable="false"
         <!-- Barra superior para voltar -->
 
     </RelativeLayout>
-
-    <!-- android:layout_alignParentStart="true" /> -->
-
 
     <RatingBar
         android:layout_width="wrap_content"

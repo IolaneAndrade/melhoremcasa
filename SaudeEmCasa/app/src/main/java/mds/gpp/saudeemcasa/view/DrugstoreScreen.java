@@ -11,7 +11,16 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RatingBar;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.text.Html;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,91 +37,67 @@ public class DrugstoreScreen extends Fragment {
 
     ArrayList<DrugStore> list;
     View menu;
-
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        protected void onCreate (Bundle savedInstanceState){
-            super.onCreate(savedInstanceState);
+        //final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        View view = inflater.inflate(R.layout.drugstore_screen, null);
 
-            menu = findViewById(R.id.topbar_back);
+        menu = view.findViewById(R.id.topbar_back);
 
-            final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-            View view = inflater.inflate(R.layout.drugstore_screen, null);
+        //final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 
+        final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
+        final DrugStore drugStore = controller.getDrugstore();
+        // setting name
+        TextView nameTextView = (TextView) view.findViewById(R.id.textViewDrugName);
+        nameTextView.setText(drugStore.getName());
+        // Address
+        TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddress);
+        addressTextView.setText(Html.fromHtml(drugStore.getAddress() + " - " + drugStore.getCity() + " - " + drugStore.getState()));
+        //CEP
+        TextView cepTextView = (TextView) view.findViewById(R.id.textViewCep);
+        cepTextView.setText("Cep: " + drugStore.getPostalCode());
+        // setting telephone
 
-        /*final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        if (drugStore.getType().equals("FARMACIAPOPULAR")) {
+            TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewDrugTel);
+            telephoneTextView.setText("Não possui telefone");
+        } else {
+            TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewDrugTel);
+            telephoneTextView.setText("Tel: " + drugStore.getTelephone());
+        }
 
-        System.out.println("ANDROID ID >>> " + androidId);*/
+        //set ratting for drugstore
+        RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalDrugstore);
+        ratingBarFinal.setRating(drugStore.getRate());
 
-        /*
-        * if (requestedId.equals(androidId)){
-        *   print "VOCE JA VOTOU!"
-        * else
-        *   
-        * */
+        TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingDrugstore);
+        textViewRate.setText("" + drugStore.getRate());
 
-            final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
-            final DrugStore drugStore = controller.getDrugstore();
-            // setting name
-            TextView nameTextView = (TextView) view.findViewById(R.id.textViewDrugName);
-            nameTextView.setText(drugStore.getName());
-            // Address
-            TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddress);
-            addressTextView.setText(Html.fromHtml(drugStore.getAddress() + " - " + drugStore.getCity() + " - " + drugStore.getState()));
-            //CEP
-            TextView cepTextView = (TextView) view.findViewById(R.id.textViewCep);
-            cepTextView.setText("Cep: " + drugStore.getPostalCode());
-            // setting telephone
-
-            if (drugStore.getType().equals("FARMACIAPOPULAR")) {
-                TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewDrugTel);
-                telephoneTextView.setText("Não possui telefone");
-            } else {
-                TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewDrugTel);
-                telephoneTextView.setText("Tel: " + drugStore.getTelephone());
-            }
-
-            //set ratting for drugstore
-            RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalDrugstore);
-            ratingBarFinal.setRating(drugStore.getRate());
-
-            TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingDrugstore);
-            textViewRate.setText("" + drugStore.getRate());
-
+        return view;
+    }
         /*Button drugStoreButton = (Button) view.findViewById(R.id.buttonSaveRateDrugstore);
         drugStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId());
-<<<<<<< HEAD
-            }
-        });
+                controller.updateRate(drugStore.getRate(), androidId, drugStore.getId()); */
 
-
-    }
-
-    private void setPhoneCallListenner(final String telephone) {
-        ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonDrugstore);
+    private void setPhoneCallListenner(final String telephone, View view) {
+        ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonDrugstore);
         phoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) throws SecurityException{
 
                 Intent phoneCall = new Intent(Intent.ACTION_CALL);
-                phoneCall.setData(Uri.parse("tel:" + telephone));
+                phoneCall.setData(Uri.parse("tel:"+telephone));
                 startActivity(phoneCall);
 
             }
         });
 
-=======
-            }
-        });*/
-        }
     }
-
 }
 

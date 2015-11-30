@@ -9,8 +9,14 @@ import android.os.Bundle;
 
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
+import android.widget.RatingBar;
+
+import android.support.v4.app.ActivityCompat;
+
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageButton;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -39,71 +45,26 @@ public class HospitalScreen extends Fragment {
 
         View view = inflater.inflate(R.layout.hospital_screen, null);
 
+        menu = view.findViewById(R.id.topbar_back);
+
+        HospitalController controller = HospitalController.getInstance(this.getContext());
+
         // setting name
         TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
         nameTextView.setText(controller.getHospital().getName());
-
         // Address
         TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddressHosp);
-        addressTextView.setText(Html.fromHtml(controller.getHospital().getAddress());
-
-        menu = findViewById(R.id.topbar_back);
-
-        // setting telephone
-        TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
-        telephoneTextView.setText("Tel: " + controller.getHospital().
-
-                        getTelephone()
-
-        setContentView(R.layout.hospital_screen);
-        HospitalController controller = HospitalController.getInstance(this);
-        
-        // setting name
-        TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
-        nameTextView.setText(controller.getHospital().getName());
-        // Address
-        TextView addressTextView = (TextView) findViewById(R.id.textViewAddressHosp);
         addressTextView.setText(Html.fromHtml(controller.getHospital().getAddress() + " - " + controller.getHospital().getCity() + " - " + controller.getHospital().getState()));
         // setting telephone
-        TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
+        TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
         telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
 
-        setPhoneCallListenner(controller.getHospital().getTelephone());
-
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HospitalScreen.this, HospitalList.class); // essa é activity anterior do app
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // adiciona a flag para a intent
-                startActivity(intent);
-            }
-        });
-    }
-
-    private void setPhoneCallListenner(final String telephone) {
-        ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonHospital);
-        phoneCallButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) throws SecurityException{
-
-                Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+telephone));
-
-
-                startActivity(phoneCall);
-
-            }
-        });
-
         //set ratting for drugstore
-        RatingBar ratingBarFinal = (RatingBar) findViewById(R.id.ratingBarFinalHospital);
+        RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
         ratingBarFinal.setRating(controller.getHospital().getRate());
 
-        TextView textViewRate = (TextView) findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText("" + controller.getHospital().
-
-                        getRate()
-
-        );
+        TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingHospital);
+        textViewRate.setText("" + controller.getHospital().getRate());
 
         /*Button hospitalMapButton = (Button) findViewById(R.id.button_hospital_map);
 
@@ -114,7 +75,32 @@ public class HospitalScreen extends Fragment {
                 startActivity(intent);
             }
         });*/
+
+        setPhoneCallListenner(controller.getHospital().getTelephone(), view);
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(HospitalScreen.this, ChooseScreen.class); // essa é activity anterior do app
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // adiciona a flag para a intent
+                //startActivity(intent);
+            }
+        });
         return (view);
+    }
+
+
+
+    private void setPhoneCallListenner(final String telephone, View view) {
+        ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonHospital);
+        phoneCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) throws SecurityException{
+                Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+telephone));
+                startActivity(phoneCall);
+
+            }
+        });
     }
 }
 
