@@ -43,8 +43,6 @@ public class LoadingScreen extends Activity {
         MultiDex.install(this);
         setContentView(R.layout.loading_screen);
         final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa_logo);
-        //------//
-        hospitalController = HospitalController.getInstance(getApplicationContext());
         //---------//
         requestStablishment();
     }
@@ -68,7 +66,8 @@ public class LoadingScreen extends Activity {
                 Looper.prepare();
 
                 final HospitalController hospitalController = HospitalController.getInstance(getApplicationContext());
-
+                final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+                hospitalController.setAndroidId(androidId);
                 try {
                     hospitalController.initControllerHospital();
                 } catch (IOException e) {
@@ -80,7 +79,7 @@ public class LoadingScreen extends Activity {
                 }
 
                 final DrugStoreController drugstoreController = DrugStoreController.getInstance(getApplicationContext());
-
+                drugstoreController.setAndroidId(androidId);
                 try {
                     drugstoreController.initControllerDrugstore();
                 } catch (IOException e) {

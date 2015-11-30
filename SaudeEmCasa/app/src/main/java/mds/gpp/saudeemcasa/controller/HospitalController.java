@@ -32,6 +32,7 @@ public class HospitalController {
     private static List<Hospital> hospitalList = new ArrayList<Hospital>();
     private static HospitalDao hospitalDao;
     private static Context context;
+    private String androidId;
 
     private HospitalController(Context context) {
         this.context = context;
@@ -151,6 +152,15 @@ public class HospitalController {
             }
         }
     }
+
+    public void setAndroidId(String androidId) {
+        this.androidId = androidId;
+    }
+
+    public String getAndroidId() {
+        return androidId;
+    }
+
     /*
     * Creates object that will determine how the comparation is done for
     * setDistante function sort.

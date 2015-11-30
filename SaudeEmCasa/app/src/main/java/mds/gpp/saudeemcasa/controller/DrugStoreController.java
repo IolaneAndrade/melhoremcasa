@@ -28,7 +28,8 @@ public class DrugStoreController {
     private static List<DrugStore> drugStoreList = new ArrayList<DrugStore>();
     private static Context context;
     private static DrugStoreDao drugStoreDao;
-
+    private String androidId;
+    
     private DrugStoreController(Context context) {
         this.context = context;
         drugStoreDao = DrugStoreDao.getInstance(context);
@@ -140,7 +141,7 @@ public class DrugStoreController {
         }
 
     }
-
+    
 
     /*
         * Request the rating for the 15 first drugstores so that it can be shown
@@ -156,6 +157,15 @@ public class DrugStoreController {
             }
         }
     }
+
+    public void setAndroidId(String androidId) {
+        this.androidId = androidId;
+    }
+
+    public String getAndroidId() {
+        return androidId;
+    }
+
     /*
         * Creates object that will determine how the comparation is done for
         * setDistante function sort.

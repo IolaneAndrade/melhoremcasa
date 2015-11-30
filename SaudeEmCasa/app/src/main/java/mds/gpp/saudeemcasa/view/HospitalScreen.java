@@ -46,11 +46,6 @@ public class HospitalScreen extends Fragment {
 
         View view = inflater.inflate(R.layout.hospital_screen, null);
 
-
-
-        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
-
         final HospitalController controller = HospitalController.getInstance(this.getContext());
 
         final Hospital hospital = controller.getHospital();
@@ -85,7 +80,7 @@ public class HospitalScreen extends Fragment {
                     public void run() {
                         Looper.prepare();
                         try {
-                            controller.updateRate((int) hospitalStars.getRating(), androidId, hospital.getId());
+                            controller.updateRate((int) hospitalStars.getRating(), controller.getAndroidId(), hospital.getId());
                             Toast.makeText(getContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
 
                         } catch (ConnectionErrorException e) {

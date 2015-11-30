@@ -58,22 +58,6 @@ public class DrugstoreScreen extends Fragment {
 
         View view = inflater.inflate(R.layout.drugstore_screen, null);
 
-
-        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
-        System.out.println("ANDROID ID >>> " + androidId);
-
-
-
-        /*
-        * if (requestedId.equals(androidId)){
-        *   print "VOCE JA VOTOU!"
-        * else
-        *
-        * */
-
-
-
         final DrugStoreController controller = DrugStoreController.getInstance(this.getContext());
 
         final DrugStore drugStore = controller.getDrugstore();
@@ -120,7 +104,7 @@ public class DrugstoreScreen extends Fragment {
 
                         try {
 
-                            controller.updateRate((int) drugstoreStars.getRating(), androidId, drugStore.getId());
+                            controller.updateRate((int) drugstoreStars.getRating(), controller.getAndroidId(), drugStore.getId());
                             Toast.makeText(getContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
 
