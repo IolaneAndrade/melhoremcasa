@@ -73,7 +73,7 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
 
     public void setDistance(View convertView, int position) {
         // Formato decimal
-        NumberFormat mascara = new DecimalFormat(".##");
+        NumberFormat mascara = new DecimalFormat("#.##");
         if (this.lista.get(position).getDistance() < 1f) {
             // Setting distance of drugstore on list item
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);

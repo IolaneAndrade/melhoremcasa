@@ -1,21 +1,12 @@
 package mds.gpp.saudeemcasa.view;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.*;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.*;
 
 import mds.gpp.saudeemcasa.R;
@@ -39,7 +30,7 @@ public class HospitalList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.list_screen_activity);
+        setContentView(R.layout.list_screen_hospital);
 
         // Initializing list view
         listView = (ListView) findViewById(R.id.listView);

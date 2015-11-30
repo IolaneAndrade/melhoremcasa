@@ -8,17 +8,17 @@
         android:id="@+id/farm_popular_info"
         android:src="@mipmap/drugstore_info_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="60dp"
         android:layout_alignParentEnd="true" />
 
     <RelativeLayout
         android:id="@+id/topbar_description"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#8098a5"
+        android:background="#53636b"
         android:clickable="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true">
@@ -70,7 +70,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/farm_popular_info"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="match_parent"

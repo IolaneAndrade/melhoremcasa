@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/card_view"
+    android:id="@+id/list_item"
     android:layout_gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_width="wrap_content"
+    android:layout_height="90dp"
     android:clickable="true">
 
     <TextView
@@ -23,10 +23,10 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/ratingBarItem"
+        android:layout_below="@+id/textView_LargeText"
         android:layout_alignStart="@+id/textView_LargeText"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,8 +34,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/textView_SmallText"
-        android:layout_marginEnd="26dp"
-        android:layout_alignTop="@+id/ratingBar"
+        android:layout_marginEnd="25dp"
+        android:layout_alignTop="@+id/ratingBarItem"
         android:layout_alignParentEnd="true" />
 
     <View

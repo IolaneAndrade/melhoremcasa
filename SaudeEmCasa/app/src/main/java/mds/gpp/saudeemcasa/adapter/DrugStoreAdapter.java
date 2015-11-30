@@ -77,12 +77,11 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
     public void setDistance(View convertView, int position) {
 
         // Formato decimal
-        NumberFormat mascara = new DecimalFormat(".##");
-        if (this.lista.get(position).getDistance() < 1f) {
+        NumberFormat mascara = new DecimalFormat("#.##");
+        if (this.lista.get(position).getDistance() < 1000f) {
             // Setting distance of drugstore on list item
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
-            float distance = this.lista.get(position).getDistance();
-            textViewDistance.setText(mascara.format(distance) + " m");
+            textViewDistance.setText(this.lista.get(position).getDistance() + " m");
         } else {
             // Setting distance of drugstore on list item
             TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);

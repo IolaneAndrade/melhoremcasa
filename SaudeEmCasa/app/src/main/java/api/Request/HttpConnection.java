@@ -44,7 +44,7 @@ public class HttpConnection{
 
         json = Request(httpGet, client);
 
-        System.out.println("Resquest complete " + ipAddress);
+        System.out.println("Request complete " + ipAddress);
 
         } catch (ClientProtocolException e) {
             System.out.println("Request failed "+ ipAddress);
