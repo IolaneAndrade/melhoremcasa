@@ -9,7 +9,7 @@ import mds.gpp.saudeemcasa.R;
 /**
  * Created by iolane on 28/11/15.
  */
-public class InfoDrugStore extends FragmentActivity {
+public class InfoScreenDrugStore extends FragmentActivity {
 
     public class InfoScreenSaudeEmCasa extends FragmentActivity{
         protected void onCreate(Bundle savedInstanceState) {
