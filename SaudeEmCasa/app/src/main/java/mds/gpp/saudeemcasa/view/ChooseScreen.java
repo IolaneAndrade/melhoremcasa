@@ -31,6 +31,7 @@ public class ChooseScreen extends Activity{
         Button drugStoreButton = (Button) findViewById(R.id.farm_popular_button);
         ImageButton infoSaudeEmCasaButton = (ImageButton) findViewById(R.id.infoButton);
         ImageButton infoMelhorEmCasaButton = (ImageButton) findViewById(R.id.melhoremcasalogo);
+        ImageButton infoDrugStoreButton = (ImageButton) findViewById(R.id.farmpopularlogo);
 
         gps = new GPSTracker(this);
 
@@ -64,20 +65,26 @@ public class ChooseScreen extends Activity{
         infoSaudeEmCasaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
+
                     Intent nextScreen = new Intent(getBaseContext(), InfoScreenSaudeEmCasa.class);
-=======
-                Intent nextScreen = new Intent(getBaseContext(), InformationScreen.class);
->>>>>>> 75b17eb2585543badf957263871b9d817da20304
                     startActivity(nextScreen);
 
             }
         });
 
-        infoSaudeEmCasaButton.setOnClickListener(new View.OnClickListener() {
+        infoMelhorEmCasaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nextScreen = new Intent(getBaseContext(), InfoScreenMelhorEmCasa.class);
+                startActivity(nextScreen);
+
+            }
+        });
+
+        infoDrugStoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(getBaseContext(), InfoScreenDrugStore.class);
                 startActivity(nextScreen);
 
             }
