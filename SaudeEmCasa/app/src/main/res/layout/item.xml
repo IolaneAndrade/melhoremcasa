@@ -16,15 +16,17 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="13dp"
+        android:singleLine="true" />
 
     <RatingBar
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
-        android:layout_below="@+id/textView_MediumText"
-        android:layout_alignStart="@+id/textView_MediumText" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView_LargeText"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,16 +34,16 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/textView_SmallText"
-        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="26dp"
+        android:layout_alignTop="@+id/ratingBar"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView_MediumText"
-        android:layout_below="@+id/textView_LargeText"
-        android:layout_alignStart="@+id/textView_LargeText" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>
