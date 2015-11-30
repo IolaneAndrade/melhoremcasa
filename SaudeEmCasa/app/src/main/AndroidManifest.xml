@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mds.gpp.saudeemcasa" >
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- api to map cache -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- access google services -->
+    <uses-permission android:name="com.google.providers.gsf.permission.READ_GSERVICES" />
+    <!-- access mobile location with wi-fi -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- access mobile location with GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -14,44 +22,88 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".view.LoadingScreen">
+        <activity android:name=".view.LoadingScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.ChooseScreen">
-            <action android:name="android.intent.action.MAIN"></action>
-            <category android:name="android.intent.category.default"></category>
-
+        <activity android:name=".view.ChooseScreen"
+            android:screenOrientation="portrait">
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.default" />
+        </activity>
+        <activity android:name=".view.DrugStoreList"
+            android:screenOrientation="portrait">
+            <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.category.default" />
+        </activity>
+        <activity android:name=".view.HospitalList"
+            android:screenOrientation="portrait">
+            <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.category.default" />
         </activity>
 
-        <activity android:name=".view.DrugStoreList">
+        <!-- API Key -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDiz3GLq_9mijorWyNPANDhziIfuioxrJY" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".view.InfoScreenSaudeEmCasa"
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
             <action android:name="android.intent.action.MAIN"></action>
             <action android:name="android.intent.category.default"></action>
         </activity>
 
-        <activity android:name=".view.HospitalList">
+        <activity android:name=".view.InfoScreenMelhorEmCasa"
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
             <action android:name="android.intent.action.MAIN"></action>
             <action android:name="android.intent.category.default"></action>
         </activity>
 
-        <activity android:name=".view.DrugstoreScreen">
+        <activity android:name=".view.InfoScreenDrugStore"
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
             <action android:name="android.intent.action.MAIN"></action>
             <action android:name="android.intent.category.default"></action>
         </activity>
 
-        <activity android:name=".view.HospitalScreen">
-            <action android:name="android.intent.action.MAIN"></action>
-            <action android:name="android.intent.category.default"></action>
+        <activity android:name=".view.GoogleMapDrugStore"
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
+            <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.category.default" />
+        </activity>
+        <activity android:name=".view.GoogleMapHospital"
+            android:parentActivityName=".view.ChooseScreen"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mds.gpp.saudeemcasa.view.ChooseScreen" />
+            <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.category.default" />
         </activity>
 
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 </manifest>
+

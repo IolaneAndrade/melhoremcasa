@@ -28,6 +28,7 @@ public class DrugStoreController {
     private static List<DrugStore> drugStoreList = new ArrayList<DrugStore>();
     private static Context context;
     private static DrugStoreDao drugStoreDao;
+    private String androidId;
 
     private DrugStoreController(Context context) {
         this.context = context;
@@ -65,11 +66,13 @@ public class DrugStoreController {
         return drugStore;
     }
 
+
     /**
      * Get all the drugstores
      *
      * @return the list of drugstores
      * */
+
     public List<DrugStore> getAllDrugstores(){
         return drugStoreList;
     }
@@ -155,6 +158,11 @@ public class DrugStoreController {
             }
         }
     }
+
+    public String getAndroidId() {
+        return androidId;
+    }
+
     /*
         * Creates object that will determine how the comparation is done for
         * setDistante function sort.
@@ -198,6 +206,7 @@ public class DrugStoreController {
         String response = null;
 
         response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+drugstoreId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
+
 
         return response;
     }

@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context="{relativePackage}.${activityClass}">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:text="@string/app_name" />
+
+    </android.support.v7.widget.Toolbar>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

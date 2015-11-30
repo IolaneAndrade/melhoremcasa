@@ -6,11 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import mds.gpp.saudeemcasa.R;
+import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.model.DrugStore;
 import mds.gpp.saudeemcasa.model.Hospital;
 
@@ -72,22 +77,20 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
      *@return inflated layout.
      * */
     public View populateAdapter(View convertView, int position){
+        /*Setting name list
+        TextView textView2 = (TextView) convertView.findViewById(R.id.topbar_name);
+        textView2.setText("Lista de Farmácias"); */
+
         // Override method to get view
         DrugStore drugStorePosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        // Setting image view of list item
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
-        imageView.setImageResource(R.mipmap.farm_popular);
-
         // Setting name of drugstore on list item
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
+        TextView textView = (TextView) convertView.findViewById(R.id.textView_LargeText);
         textView.setText((CharSequence) drugStorePosition.getName());
 
-        // Setting phone of drugstore on list item
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
-        textView1.setText((CharSequence) drugStorePosition.getTelephone());
-
+        RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBarItem);
+        ratingBar.setRating(HospitalController.getInstance(context).getHospital().getRate());
         setDistance(convertView, position);
 
         return convertView;
@@ -102,16 +105,22 @@ public class DrugStoreAdapter extends ArrayAdapter<DrugStore>   {
      *           position of the item layout to be accessed.
      * */
     public void setDistance(View convertView, int position) {
-        if (this.lista.get(position).getDistance() < 1f) {
+
+        // Formato decimal
+        NumberFormat mascara = new DecimalFormat("#.##");
+        if (this.lista.get(position).getDistance() < 1000f) {
             // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
             textViewDistance.setText(this.lista.get(position).getDistance() + " m");
         } else {
             // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
-            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
+            float distance = convertToKM(this.lista.get(position).getDistance());
+            textViewDistance.setText(mascara.format(distance) + " Km");
         }
-    }
 
+        //convertView.setOnClickListener(new OnItemClickListener(position));
+        //return convertView;
+    }
 
 }

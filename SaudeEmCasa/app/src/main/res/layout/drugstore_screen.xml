@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".view.DrugstoreScreen"
-    android:background="#F5F5F5"
+    android:background="#ffffff"
     android:contextClickable="false">
 
     <TextView
@@ -30,8 +30,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="drugstoreName"
         android:id="@+id/textViewDrugName"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/buttonSaveRateDrugstore" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +69,10 @@
         android:id="@+id/ratingBarUserDrugstore"
         android:numStars="5"
         android:stepSize="1"
+
         android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -78,8 +81,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Nota"
         android:id="@+id/textViewRatingDrugstore"
+
         android:layout_above="@+id/ratingBarUserDrugstore"
-        android:layout_alignStart="@+id/ratingBarUserDrugstore" />
+        android:layout_alignStart="@+id/ratingBarUserDrugstore"
+
+        android:layout_toEndOf="@+id/textViewCep" />
+
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -97,6 +104,7 @@
         android:text="Salvar"
         android:id="@+id/buttonSaveRateDrugstore"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/ratingBarUserDrugstore" />
+        android:layout_toEndOf="@+id/ratingBarUserDrugstore"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

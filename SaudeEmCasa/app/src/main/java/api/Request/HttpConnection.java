@@ -1,18 +1,32 @@
 package api.Request;
 
 
+import api.Exception.ConnectionErrorException;
+import android.content.Entity;
 import android.util.Log;
+
+import org.apache.http.HttpResponse;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
+
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import api.Exception.ConnectionErrorException;
 
@@ -46,7 +60,8 @@ public class HttpConnection {
 
             response = Request(httpGet, client);
 
-            System.out.println("Resquest complete " + ipAddress);
+        System.out.println("Request complete " + ipAddress);
+
 
         } catch (ClientProtocolException e) {
             System.out.println("Request failed " + ipAddress);

@@ -6,11 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import mds.gpp.saudeemcasa.R;
+import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.model.Hospital;
 
 public class HospitalAdapter extends ArrayAdapter<Hospital>   {
@@ -66,17 +70,17 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
      *@return inflated layout.
      * */
     public View populateAdapter(View convertView, int position){
+
+        // Override method to get view
         Hospital hospitalPosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
-        imageView.setImageResource(R.mipmap.farm_popular);
-
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
+        // Setting name of drugstore on list item
+        TextView textView = (TextView) convertView.findViewById(R.id.textView_LargeText);
         textView.setText((CharSequence) hospitalPosition.getName());
 
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
-        textView1.setText((CharSequence) hospitalPosition.getTelephone());
+        RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBarItem);
+        ratingBar.setRating(HospitalController.getInstance(context).getHospital().getRate());
 
         setDistance(convertView, position);
 
@@ -92,14 +96,18 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
      *           position of the item layout to be accessed.
      * */
     public void setDistance(View convertView, int position) {
+        // Formato decimal
+        NumberFormat mascara = new DecimalFormat("#.##");
         if (this.lista.get(position).getDistance() < 1f) {
             // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
-            textViewDistance.setText(this.lista.get(position).getDistance() + " m");
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
+            float distance = this.lista.get(position).getDistance();
+            textViewDistance.setText(mascara.format(distance) + " m");
         } else {
             // Setting distance of drugstore on list item
-            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView4_item);
-            textViewDistance.setText(convertToKM(this.lista.get(position).getDistance()).toString() + " Km");
+            TextView textViewDistance = (TextView) convertView.findViewById(R.id.textView_SmallText);
+            float distance = convertToKM(this.lista.get(position).getDistance());
+            textViewDistance.setText(mascara.format(distance) + " Km");
         }
     }
 

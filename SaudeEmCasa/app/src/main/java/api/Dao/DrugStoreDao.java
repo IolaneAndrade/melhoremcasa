@@ -124,12 +124,14 @@ public class DrugStoreDao extends Dao{
                     .getColumnIndex(tableColumns[7])));
             drugStore.setName(cursor.getString(cursor
                     .getColumnIndex(tableColumns[8])));
+
             drugStore.setType(cursor.getString(cursor
                     .getColumnIndex(tableColumns[9])));
             drugStore.setId(cursor.getString(cursor
                     .getColumnIndex(tableColumns[10])));
 
             listDrugstores.add(drugStore);
+
         }
 
         //sqliteDatabase.close();

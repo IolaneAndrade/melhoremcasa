@@ -32,6 +32,7 @@ public class HospitalController {
     private static List<Hospital> hospitalList = new ArrayList<Hospital>();
     private static HospitalDao hospitalDao;
     private static Context context;
+    private String androidId;
 
     private HospitalController(Context context) {
         this.context = context;
@@ -57,6 +58,7 @@ public class HospitalController {
      * @param hospital
      *          the selected hospital
      * */
+
     public void setHospital( Hospital hospital ) {
         HospitalController.hospital = hospital;
     }
@@ -102,7 +104,6 @@ public class HospitalController {
                 hospitalList = hospitalDao.getAllHospitals();
 
             }
-
     }
     /**
      * set distance based on the coordenates for each hospitals
@@ -151,6 +152,11 @@ public class HospitalController {
             }
         }
     }
+
+    public String getAndroidId() {
+        return androidId;
+    }
+
     /*
     * Creates object that will determine how the comparation is done for
     * setDistante function sort.
@@ -193,6 +199,7 @@ public class HospitalController {
         HttpConnection connection = new HttpConnection();
         String response;
         response = connection.newRequest("http://159.203.95.153:3000"+"/"+"rate"+"/"+"gid"+"/"+hospitalId+"/"+"aid"+"/"+androidId+"/"+"rating"+"/"+rate);
+
 
         return response;
     }

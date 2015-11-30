@@ -6,13 +6,30 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.os.Looper;
+
+
+import android.support.v4.app.FragmentActivity;
+import android.text.Html;
+import android.widget.Button;
+import android.widget.RatingBar;
+
+
 import android.support.v4.app.ActivityCompat;
+
 import android.text.Html;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import android.widget.RatingBar;
 
@@ -27,36 +44,35 @@ import mds.gpp.saudeemcasa.model.Hospital;
 /**
  * Created by freemanpivo on 11/14/15.
  */
-public class HospitalScreen extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.hospital_screen);
+public class HospitalScreen extends Fragment {
 
-        final String androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-        System.out.println(androidId);
-        final HospitalController controller = HospitalController.getInstance(this);
-        final Hospital hospital = controller.getHospital();
+    View menu;
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstaceState) {
+
+        View view = inflater.inflate(R.layout.hospital_screen, null);
+
+        menu = view.findViewById(R.id.topbar_back);
+
+        final HospitalController controller = HospitalController.getInstance(this.getContext());
+
         // setting name
-        final TextView nameTextView = (TextView) findViewById(R.id.textViewHospName);
-        nameTextView.setText(hospital.getName());
+        TextView nameTextView = (TextView) view.findViewById(R.id.textViewHospName);
+        nameTextView.setText(controller.getHospital().getName());
         // Address
-        TextView addressTextView = (TextView) findViewById(R.id.textViewAddressHosp);
-        addressTextView.setText(Html.fromHtml(hospital.getAddress() + " - " + hospital.getCity() + " - " + hospital.getState()));
+        TextView addressTextView = (TextView) view.findViewById(R.id.textViewAddressHosp);
+        addressTextView.setText(Html.fromHtml(controller.getHospital().getAddress() + " - " + controller.getHospital().getCity() + " - " + controller.getHospital().getState()));
         // setting telephone
-        TextView telephoneTextView = (TextView) findViewById(R.id.textViewHospTel);
-        telephoneTextView.setText("Tel: " + hospital.getTelephone());
+        TextView telephoneTextView = (TextView) view.findViewById(R.id.textViewHospTel);
+        telephoneTextView.setText("Tel: " + controller.getHospital().getTelephone());
 
-        //set ratting for drugstore
-        final RatingBar ratingBarFinal = (RatingBar)findViewById(R.id.ratingBarFinalHospital);
-        ratingBarFinal.setRating(hospital.getRate());
 
-        TextView textViewRate = (TextView)findViewById(R.id.textViewRatingHospital);
-        textViewRate.setText("" + hospital.getRate());
 
-        Button hospitalButton = (Button) findViewById(R.id.buttonSaveRateHostpital);
 
-        final RatingBar hospitalStars = (RatingBar) findViewById(R.id.ratingBarUserHospital);
+
+        Button hospitalButton = (Button) view.findViewById(R.id.buttonSaveRateHostpital);
+
+        final RatingBar hospitalStars = (RatingBar) view.findViewById(R.id.ratingBarUserHospital);
         hospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,10 +81,10 @@ public class HospitalScreen extends Activity {
                     public void run() {
                         Looper.prepare();
                         try {
-                            controller.updateRate((int) hospitalStars.getRating(), androidId, hospital.getId());
-                            Toast.makeText(getApplicationContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
+                            controller.updateRate((int) hospitalStars.getRating(), controller.getAndroidId(), controller.getHospital().getId());
+                            Toast.makeText(getContext(),"Sua avaliação foi salva!",Toast.LENGTH_LONG).show();
                         } catch (ConnectionErrorException e) {
-                            Toast.makeText(getApplicationContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Houve um error de conexão.\nverifique se está conectado a internet.",Toast.LENGTH_LONG).show();
                         }
 
                         Looper.loop();
@@ -78,25 +94,39 @@ public class HospitalScreen extends Activity {
 
         });
 
-        setPhoneCallListenner(controller.getHospital().getTelephone());
-    }
+        //set ratting for drugstore
+        RatingBar ratingBarFinal = (RatingBar) view.findViewById(R.id.ratingBarFinalHospital);
+        ratingBarFinal.setRating(controller.getHospital().getRate());
 
-    private void setPhoneCallListenner(final String telephone) {
-        ImageButton phoneCallButton = (ImageButton) findViewById(R.id.phonecallButtonHospital);
-        phoneCallButton.setOnClickListener(new View.OnClickListener() {
+
+        menu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) throws SecurityException {
-
-                Intent phoneCall = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + telephone));
-
-
-                startActivity(phoneCall);
-
+            public void onClick(View v) {
+                //Intent intent = new Intent(HospitalScreen.this, ChooseScreen.class); // essa é activity anterior do app
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // adiciona a flag para a intent
+                //startActivity(intent);
             }
         });
+            ImageButton phoneCallButton = (ImageButton) view.findViewById(R.id.phonecallButtonHospital);
+            phoneCallButton.setOnClickListener(new View.OnClickListener() {
+                @Override
 
+                public void onClick(View v) throws SecurityException{
+                    Intent phoneCall = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+controller.getHospital().getTelephone()));
 
+                    startActivity(phoneCall);
+
+                }
+            });
+
+        return (view);
 
     }
 
+
+
+
+
 }
+
+

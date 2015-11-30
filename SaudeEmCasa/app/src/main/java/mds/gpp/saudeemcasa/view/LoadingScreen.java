@@ -3,10 +3,12 @@ package mds.gpp.saudeemcasa.view;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.multidex.MultiDex;
 import android.widget.ImageView;
 import android.os.Handler;
 
@@ -28,9 +30,17 @@ public class LoadingScreen extends Activity {
     HospitalController hospitalController;
     private Handler messageHandler = new Handler();
 
+    // to solve ERRO _non-zero exit value 2_
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MultiDex.install(this);
         setContentView(R.layout.loading_screen);
         final ImageView logoSaudeEmCasa = (ImageView) findViewById(R.id.saude_em_casa_logo);
         //------//
