@@ -76,6 +76,8 @@ public class DrugstoreScreen extends Fragment {
         TextView textViewRate = (TextView) view.findViewById(R.id.textViewRatingDrugstore);
         textViewRate.setText("" + drugStore.getRate());
 
+
+
         return view;
     }
         /*Button drugStoreButton = (Button) view.findViewById(R.id.buttonSaveRateDrugstore);
