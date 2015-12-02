@@ -24,7 +24,7 @@ public class ChooseScreen extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_choose_screen);
+        setContentView(R.layout.choose_screen);
 
         gps = new GPSTracker(this);
 
