@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,7 +18,7 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
-public class ChooseScreen extends Activity{
+public class ChooseScreen extends FragmentActivity {
 
     GPSTracker gps;
 
@@ -26,9 +27,7 @@ public class ChooseScreen extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_screen);
 
-        gps = new GPSTracker(this);
-
-        //overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         Button hospitalButton = (Button) findViewById(R.id.melhor_em_casa_button);
         Button drugStoreButton = (Button) findViewById(R.id.farm_popular_button);
@@ -36,7 +35,7 @@ public class ChooseScreen extends Activity{
         ImageButton infoMelhorEmCasaButton = (ImageButton) findViewById(R.id.melhorEmCasaInfoButton);
         ImageButton infoDrugStoreButton = (ImageButton) findViewById(R.id.farmPopularInfoButton);
 
-
+        gps = new GPSTracker(this);
 
         hospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,5 +119,8 @@ public class ChooseScreen extends Activity{
                 Looper.loop();
             }
         }.start();
-    }
+
+        }
+
+
 }
