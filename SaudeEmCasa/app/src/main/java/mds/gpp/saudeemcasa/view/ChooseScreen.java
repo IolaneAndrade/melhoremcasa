@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import api.Exception.ConnectionErrorException;
@@ -16,9 +17,6 @@ import mds.gpp.saudeemcasa.controller.HospitalController;
 import mds.gpp.saudeemcasa.helper.GPSTracker;
 import mds.gpp.saudeemcasa.model.DrugStore;
 
-/**
- * Created by freemanpivo on 9/20/15.
- */
 public class ChooseScreen extends Activity{
 
     GPSTracker gps;
@@ -26,11 +24,19 @@ public class ChooseScreen extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_screen);
+        setContentView(R.layout.test_choose_screen);
+
+        gps = new GPSTracker(this);
+
+        //overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
         Button hospitalButton = (Button) findViewById(R.id.melhor_em_casa_button);
         Button drugStoreButton = (Button) findViewById(R.id.farm_popular_button);
-        gps = new GPSTracker(this);
+        ImageButton infoSaudeEmCasaButton = (ImageButton) findViewById(R.id.infoButton);
+        ImageButton infoMelhorEmCasaButton = (ImageButton) findViewById(R.id.melhorEmCasaInfoButton);
+        ImageButton infoDrugStoreButton = (ImageButton) findViewById(R.id.farmPopularInfoButton);
+
+
 
         hospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +51,37 @@ public class ChooseScreen extends Activity{
                 drugstoreListThread();
             }
         });
+
+        infoSaudeEmCasaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent nextScreen = new Intent(getBaseContext(), InfoScreenSaudeEmCasa.class);
+                startActivity(nextScreen);
+
+            }
+        });
+
+        infoMelhorEmCasaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(getBaseContext(), InfoScreenMelhorEmCasa.class);
+                startActivity(nextScreen);
+
+            }
+        });
+
+        infoDrugStoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(getBaseContext(), InfoScreenDrugstore.class);
+                startActivity(nextScreen);
+
+            }
+        });
+
     }
+
     public void hospitalListThread(){
         final ProgressDialog progress = new ProgressDialog(this);
         progress.setMessage("Requerindo avaliações...");
