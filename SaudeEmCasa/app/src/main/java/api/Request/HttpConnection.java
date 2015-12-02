@@ -79,9 +79,7 @@ public class HttpConnection {
 
         for (int i = 0; i < states.length; i++) {
             String tmp;
-                tmp = newRequest(ipAdress + "/uf/" + states[i]);
-
-                Log.e("Error to request UF = ", states[i]);
+            tmp = newRequest(ipAdress + "/uf/" + states[i]);
 
             finalJson = finalJson + "," + tmp.substring(1, tmp.length() - 1);
         }
