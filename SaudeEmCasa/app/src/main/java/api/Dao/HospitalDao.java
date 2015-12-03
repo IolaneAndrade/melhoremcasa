@@ -20,7 +20,7 @@ import mds.gpp.saudeemcasa.model.Hospital;
 public class HospitalDao extends Dao{
     private static HospitalDao instance;
 
-    private static String tableColumns[]={"latitude","longitude","city","address","state","rate","district","telephone","name","type","number"};
+    private static String tableColumns[]={"latitude","longitude","city","address","state","rate","district","telephone","name","type","number","hospitalGid"};
 
     private static String tableName = "Hospital";
 
@@ -82,6 +82,7 @@ public class HospitalDao extends Dao{
         values.put(tableColumns[8], hospital.getName());
         values.put(tableColumns[9], hospital.getType());
         values.put(tableColumns[10], hospital.getNumber());
+        values.put(tableColumns[11], hospital.getId());
 
 
         boolean result = insertAndClose(sqLiteDatabase,tableName, values)>0;
@@ -100,9 +101,6 @@ public class HospitalDao extends Dao{
         while( cursor.moveToNext() ) {
 
             Hospital hospital = new Hospital();
-
-            hospital.setId(cursor.getInt(cursor
-                    .getColumnIndex("hospitalId")));
 
             hospital.setLatitude(cursor.getString(cursor
                     .getColumnIndex(tableColumns[0])));
@@ -145,6 +143,9 @@ public class HospitalDao extends Dao{
             hospital.setNumber(cursor.getString(cursor
                     .getColumnIndex(tableColumns[10])));
 
+            hospital.setId(cursor.getString(cursor
+                    .getColumnIndex(tableColumns[11])));
+
             listHospitals.add(hospital);
         }
 
@@ -164,4 +165,11 @@ public class HospitalDao extends Dao{
         return result;
     }
 
+    public long deleteAllHospitals() {
+        long result;
+
+        result = deleteAndClose(sqliteDatabase, tableName);
+
+        return result;
+    }
 }
