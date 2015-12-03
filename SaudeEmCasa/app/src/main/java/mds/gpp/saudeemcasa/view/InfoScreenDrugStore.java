@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import mds.gpp.saudeemcasa.R;
 
-public class InfoScreenDrugstore extends FragmentActivity {
+public class InfoScreenDrugStore extends FragmentActivity {
     //View menu;
 
     protected void onCreate(Bundle savedInstanceState) {

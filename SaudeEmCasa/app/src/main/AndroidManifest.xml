@@ -52,6 +52,21 @@
             <action android:name="android.intent.category.default"></action>
         </activity>
 
+        <activity android:name=".view.InfoScreenMelhorEmCasa">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
+        <activity android:name=".view.InfoScreenSaudeEmCasa">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
+        <activity android:name=".view.InfoScreenDrugStore">
+            <action android:name="android.intent.action.MAIN"></action>
+            <action android:name="android.intent.category.default"></action>
+        </activity>
+
         <!-- API Key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -70,9 +85,7 @@
             <action android:name="android.intent.category.default"></action>
         </activity>
 
-
     </application>
-
 
 </manifest>
 
