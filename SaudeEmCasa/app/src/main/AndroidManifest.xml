@@ -40,6 +40,7 @@
             <action android:name="android.intent.action.MAIN"></action>
             <category android:name="android.intent.category.default"></category>
 
+
         </activity>
 
         <activity android:name=".view.DrugStoreList">
