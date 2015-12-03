@@ -69,14 +69,9 @@ public class HospitalAdapter extends ArrayAdapter<Hospital>   {
         Hospital hospitalPosition = this.lista.get(position);
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView_item);
-        imageView.setImageResource(R.mipmap.melhor_em_casa);
-
         TextView textView = (TextView) convertView.findViewById(R.id.textView2_item);
         textView.setText((CharSequence) hospitalPosition.getName());
 
-        TextView textView1 = (TextView) convertView.findViewById(R.id.textView3_item);
-        textView1.setText((CharSequence) hospitalPosition.getTelephone());
 
         setDistance(convertView, position);
 
